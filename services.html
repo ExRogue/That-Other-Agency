@@ -11,9 +11,10 @@
       content="Explore the core services from That Other Agency: growth strategy, paid acquisition execution, creative testing systems, and conversion optimisation for product and eCommerce brands."
     />
     <link rel="canonical" href="https://www.thatotheragency.co.uk/services.html" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=20260914" />
   </head>
   <body>
+    <a class="skip-link" href="#content">Skip to content</a>
     <div class="noise" aria-hidden="true"></div>
 
     <header class="site-header">
@@ -22,12 +23,12 @@
           <img src="assets/logo.svg" alt="That Other Agency logo" />
           <span>That Other Agency</span>
         </a>
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Open navigation">
+        <button class="menu-toggle" aria-controls="site-nav" type="button" aria-expanded="false" aria-label="Open navigation">
           <span></span>
           <span></span>
         </button>
-        <nav class="site-nav">
-          <a class="current" href="services.html">Services</a>
+        <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+          <a class="current" aria-current="page" href="services.html">Services</a>
           <a href="work.html">Work</a>
           <a href="about.html">About</a>
           <a href="blog/index.html">Blog</a>
@@ -37,7 +38,7 @@
       </div>
     </header>
 
-    <main>
+    <main id="content">
       <section class="page-hero reveal">
         <p class="eyebrow">Services</p>
         <h1>
@@ -52,7 +53,7 @@
 
       <section class="reveal">
         <div class="grid-2">
-          <article class="card" data-tilt>
+          <article class="card" id="strategy">
             <h3>Growth strategy &amp; offer positioning</h3>
             <p>Define the market angle, ideal customer profile, and offer structure that can support profitable scale.</p>
             <ul>
@@ -62,7 +63,7 @@
             </ul>
           </article>
 
-          <article class="card" data-tilt>
+          <article class="card" id="paid">
             <h3>Paid acquisition execution</h3>
             <p>Plan and manage paid acquisition with strict attention to CAC, contribution margin, and spend efficiency.</p>
             <ul>
@@ -72,7 +73,7 @@
             </ul>
           </article>
 
-          <article class="card" data-tilt>
+          <article class="card" id="creative">
             <h3>Creative testing systems</h3>
             <p>Run consistent testing cycles to improve creative performance and reduce subjective decision-making.</p>
             <ul>
@@ -82,7 +83,7 @@
             </ul>
           </article>
 
-          <article class="card" data-tilt>
+          <article class="card" id="conversion">
             <h3>Conversion optimisation</h3>
             <p>Improve on-site conversion by fixing message clarity, reducing friction, and tightening conversion pathways.</p>
             <ul>
@@ -100,7 +101,7 @@
           <h2>How we structure support</h2>
         </div>
         <div class="grid-3">
-          <article class="card" data-tilt>
+          <article class="card">
             <h3>Diagnostic sprint</h3>
             <p>Two-week review for teams that need to diagnose acquisition constraints before a wider rollout.</p>
             <ul>
@@ -108,7 +109,7 @@
               <li>Priority map with expected commercial impact</li>
             </ul>
           </article>
-          <article class="card" data-tilt>
+          <article class="card">
             <h3>90-day growth sprint</h3>
             <p>Execution sprint covering paid acquisition, creative testing, and conversion with weekly checkpoints.</p>
             <ul>
@@ -116,7 +117,7 @@
               <li>Weekly implementation and reporting</li>
             </ul>
           </article>
-          <article class="card" data-tilt>
+          <article class="card">
             <h3>Retained growth partner</h3>
             <p>Ongoing strategic and delivery support for brands with consistent monthly spend and clear growth targets.</p>
             <ul>
@@ -151,13 +152,13 @@
           <p class="eyebrow">Next step</p>
           <h2>Need a clear recommendation for your next quarter?</h2>
           <p class="lead">Share your growth target and bottleneck, and we will advise the best service mix to improve acquisition economics.</p>
-          <a class="btn btn-primary" data-magnetic href="contact.html">Discuss your growth plan</a>
+          <a class="btn btn-primary" href="contact.html">Discuss your growth plan</a>
         </div>
       </section>
     </main>
 
     <footer>
-      <p>© <span id="year"></span> That Other Agency. All rights reserved.</p>
+      <p>© <span id="year">2026</span> That Other Agency. All rights reserved.</p>
       <nav class="footer-nav" aria-label="Footer navigation">
         <a href="work.html">Work</a>
         <a href="blog/index.html">Blog</a>
@@ -165,6 +166,6 @@
       </nav>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=20260914" defer></script>
   </body>
 </html>

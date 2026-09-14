@@ -11,9 +11,10 @@
       content="See selected client work from That Other Agency, including Made Of More, TIRAK, and Ventete across offer strategy, paid acquisition, and conversion optimisation."
     />
     <link rel="canonical" href="https://www.thatotheragency.co.uk/work.html" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=20260914" />
   </head>
   <body>
+    <a class="skip-link" href="#content">Skip to content</a>
     <div class="noise" aria-hidden="true"></div>
 
     <header class="site-header">
@@ -22,13 +23,13 @@
           <img src="assets/logo.svg" alt="That Other Agency logo" />
           <span>That Other Agency</span>
         </a>
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Open navigation">
+        <button class="menu-toggle" aria-controls="site-nav" type="button" aria-expanded="false" aria-label="Open navigation">
           <span></span>
           <span></span>
         </button>
-        <nav class="site-nav">
+        <nav class="site-nav" id="site-nav" aria-label="Main navigation">
           <a href="services.html">Services</a>
-          <a class="current" href="work.html">Work</a>
+          <a class="current" aria-current="page" href="work.html">Work</a>
           <a href="about.html">About</a>
           <a href="blog/index.html">Blog</a>
           <a href="contact.html">Contact</a>
@@ -37,13 +38,10 @@
       </div>
     </header>
 
-    <main>
+    <main id="content">
       <section class="page-hero reveal">
         <p class="eyebrow">Client work</p>
-        <h1>
-          Recent delivery snapshots from
-          <span class="ink-mark" data-scribble="underline" style="--scribble-delay: 0.3s">active partnerships</span>
-        </h1>
+        <h1>Good brands.<br><span class="ink-mark">Focused work.</span></h1>
         <p class="lead">
           These pages show how we diagnose acquisition constraints, execute weekly tests, and improve conversion
           economics in live client environments.
@@ -52,7 +50,7 @@
 
       <section class="reveal">
         <div class="case-grid">
-          <article class="card" data-tilt>
+          <article class="card">
             <p class="client-chip">Made Of More</p>
             <h3>Offer positioning and paid acquisition efficiency</h3>
             <p>Improving offer clarity and campaign structure to lift purchase intent and reduce paid channel waste.</p>
@@ -64,7 +62,7 @@
             <a class="case-link" href="case-study-made-of-more.html">Open case study</a>
           </article>
 
-          <article class="card" data-tilt>
+          <article class="card">
             <p class="client-chip">TIRAK</p>
             <h3>Growth strategy and creative testing framework</h3>
             <p>Building a weekly operating rhythm for creative experiments, offer updates, and clearer reporting.</p>
@@ -76,7 +74,7 @@
             <a class="case-link" href="case-study-tirak.html">Open case study</a>
           </article>
 
-          <article class="card" data-tilt>
+          <article class="card">
             <p class="client-chip">Ventete</p>
             <h3>Acquisition efficiency and conversion economics</h3>
             <p>Connecting paid acquisition to stronger on-site conversion and more reliable commercial performance.</p>
@@ -96,11 +94,11 @@
           <h2>Why teams choose this model</h2>
         </div>
         <div class="grid-2">
-          <article class="card" data-tilt>
+          <article class="card">
             <h3>Single accountable team</h3>
             <p>One partner for strategy, execution, and reporting means fewer handovers and faster decisions.</p>
           </article>
-          <article class="card" data-tilt>
+          <article class="card">
             <h3>Commercial-first reporting</h3>
             <p>Performance is reviewed against CAC, conversion rate, and margin contribution, not vanity metrics alone.</p>
           </article>
@@ -112,13 +110,13 @@
           <p class="eyebrow">Discuss your brief</p>
           <h2>Need the same testing discipline in your team?</h2>
           <p class="lead">Share your growth objective and we will map where strategy, paid acquisition, and CRO should start.</p>
-          <a class="btn btn-primary" data-magnetic href="contact.html">Start a conversation</a>
+          <a class="btn btn-primary" href="contact.html">Start a conversation</a>
         </div>
       </section>
     </main>
 
     <footer>
-      <p>© <span id="year"></span> That Other Agency. All rights reserved.</p>
+      <p>© <span id="year">2026</span> That Other Agency. All rights reserved.</p>
       <nav class="footer-nav" aria-label="Footer navigation">
         <a href="services.html">Services</a>
         <a href="blog/index.html">Blog</a>
@@ -126,6 +124,6 @@
       </nav>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=20260914" defer></script>
   </body>
 </html>

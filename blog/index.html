@@ -19,9 +19,10 @@
     />
     <meta property="og:url" content="https://www.thatotheragency.co.uk/blog/" />
     <meta property="og:image" content="https://www.thatotheragency.co.uk/assets/blog/seo-fixes.svg" />
-    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="../styles.css?v=20260914" />
   </head>
   <body>
+    <a class="skip-link" href="#content">Skip to content</a>
     <div class="noise" aria-hidden="true"></div>
 
     <header class="site-header">
@@ -30,28 +31,25 @@
           <img src="../assets/logo.svg" alt="That Other Agency logo" />
           <span>That Other Agency</span>
         </a>
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Open navigation">
+        <button class="menu-toggle" aria-controls="site-nav" type="button" aria-expanded="false" aria-label="Open navigation">
           <span></span>
           <span></span>
         </button>
-        <nav class="site-nav">
+        <nav class="site-nav" id="site-nav" aria-label="Main navigation">
           <a href="../services.html">Services</a>
           <a href="../work.html">Work</a>
           <a href="../about.html">About</a>
-          <a class="current" href="index.html">Blog</a>
+          <a class="current" aria-current="page" href="index.html">Blog</a>
           <a href="../contact.html">Contact</a>
         </nav>
         <a class="btn btn-ghost header-cta" href="../contact.html">Book a strategy call</a>
       </div>
     </header>
 
-    <main>
+    <main id="content">
       <section class="page-hero reveal">
         <p class="eyebrow">Blog</p>
-        <h1>
-          Growth insights for teams scaling paid acquisition and
-          <span class="ink-mark" data-scribble="circle" style="--scribble-delay: 0.3s">conversion economics</span>
-        </h1>
+        <h1>Fresh thinking.<br><span class="ink-mark">Practical growth.</span></h1>
         <p class="lead">
           Articles built for founders and marketing leads who want stronger CAC performance, cleaner testing systems,
           and better conversion economics.
@@ -132,7 +130,7 @@
     </main>
 
     <footer>
-      <p>© <span id="year"></span> That Other Agency. All rights reserved.</p>
+      <p>© <span id="year">2026</span> That Other Agency. All rights reserved.</p>
       <nav class="footer-nav" aria-label="Footer navigation">
         <a href="../services.html">Services</a>
         <a href="../work.html">Work</a>
@@ -140,6 +138,6 @@
       </nav>
     </footer>
 
-    <script src="../script.js"></script>
+    <script src="../script.js?v=20260914" defer></script>
   </body>
 </html>

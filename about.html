@@ -11,9 +11,10 @@
       content="About That Other Agency, a London growth team focused on strategy, paid media, creative testing, and conversion improvements for product and eCommerce brands."
     />
     <link rel="canonical" href="https://www.thatotheragency.co.uk/about.html" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=20260914" />
   </head>
   <body>
+    <a class="skip-link" href="#content">Skip to content</a>
     <div class="noise" aria-hidden="true"></div>
 
     <header class="site-header">
@@ -22,14 +23,14 @@
           <img src="assets/logo.svg" alt="That Other Agency logo" />
           <span>That Other Agency</span>
         </a>
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Open navigation">
+        <button class="menu-toggle" aria-controls="site-nav" type="button" aria-expanded="false" aria-label="Open navigation">
           <span></span>
           <span></span>
         </button>
-        <nav class="site-nav">
+        <nav class="site-nav" id="site-nav" aria-label="Main navigation">
           <a href="services.html">Services</a>
           <a href="work.html">Work</a>
-          <a class="current" href="about.html">About</a>
+          <a class="current" aria-current="page" href="about.html">About</a>
           <a href="blog/index.html">Blog</a>
           <a href="contact.html">Contact</a>
         </nav>
@@ -37,13 +38,10 @@
       </div>
     </header>
 
-    <main>
+    <main id="content">
       <section class="page-hero reveal">
         <p class="eyebrow">About</p>
-        <h1>
-          A strategic and delivery partner for teams that need measurable
-          <span class="ink-mark" data-scribble="circle" style="--scribble-delay: 0.3s">growth</span>
-        </h1>
+        <h1>Independent thinking.<br><span class="ink-mark">Shared ambition.</span></h1>
         <p class="lead">
           That Other Agency exists for founders and marketing leads who want practical commercial outcomes, not vague
           activity reports. We focus on profitable acquisition, disciplined testing, and conversion economics.
@@ -52,15 +50,15 @@
 
       <section class="reveal">
         <div class="grid-3">
-          <article class="card" data-tilt>
+          <article class="card">
             <h3>Clarity before scale</h3>
             <p>We identify where acquisition economics are leaking before adding spend, channels, or complexity.</p>
           </article>
-          <article class="card" data-tilt>
+          <article class="card">
             <h3>Execution with structure</h3>
             <p>Work runs in weekly cycles with fixed priorities, test plans, and accountability for next actions.</p>
           </article>
-          <article class="card" data-tilt>
+          <article class="card">
             <h3>Commercial accountability</h3>
             <p>Success is measured through acquisition efficiency and conversion economics, not surface-level platform metrics.</p>
           </article>
@@ -73,22 +71,22 @@
           <h2>Typical monthly operating cadence</h2>
         </div>
         <div class="process-grid">
-          <article class="card" data-tilt>
+          <article class="card">
             <p class="case-meta">Week 1</p>
             <h3>Diagnose acquisition constraints</h3>
             <p>Review campaign performance, offer clarity, and conversion flow to lock in top priorities.</p>
           </article>
-          <article class="card" data-tilt>
+          <article class="card">
             <p class="case-meta">Week 2</p>
             <h3>Build and launch</h3>
             <p>Deploy paid acquisition updates, creative tests, and page improvements from the agreed plan.</p>
           </article>
-          <article class="card" data-tilt>
+          <article class="card">
             <p class="case-meta">Week 3</p>
             <h3>Optimise and iterate</h3>
             <p>Evaluate performance signal quality, refine targeting and creative, and remove conversion friction.</p>
           </article>
-          <article class="card" data-tilt>
+          <article class="card">
             <p class="case-meta">Week 4</p>
             <h3>Review and scale</h3>
             <p>Summarise learnings, scale validated tests, and agree the next set of execution bets.</p>
@@ -104,13 +102,13 @@
             We are usually a strong fit for product and eCommerce brands with ongoing media spend, clear growth goals,
             and a need for tighter conversion performance.
           </p>
-          <a class="btn btn-primary" data-magnetic href="contact.html">Speak with the team</a>
+          <a class="btn btn-primary" href="contact.html">Speak with the team</a>
         </div>
       </section>
     </main>
 
     <footer>
-      <p>© <span id="year"></span> That Other Agency. All rights reserved.</p>
+      <p>© <span id="year">2026</span> That Other Agency. All rights reserved.</p>
       <nav class="footer-nav" aria-label="Footer navigation">
         <a href="services.html">Services</a>
         <a href="work.html">Work</a>
@@ -118,6 +116,6 @@
       </nav>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=20260914" defer></script>
   </body>
 </html>

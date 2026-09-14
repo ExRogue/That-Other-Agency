@@ -16,9 +16,10 @@
     <meta property="og:description" content="Technical and content updates that improve profitable organic demand capture." />
     <meta property="og:url" content="https://www.thatotheragency.co.uk/blog/seo-for-london-agencies-7-fixes.html" />
     <meta property="og:image" content="https://www.thatotheragency.co.uk/assets/blog/seo-fixes.svg" />
-    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="../styles.css?v=20260914" />
   </head>
   <body>
+    <a class="skip-link" href="#content">Skip to content</a>
     <div class="noise" aria-hidden="true"></div>
 
     <header class="site-header">
@@ -27,19 +28,19 @@
           <img src="../assets/logo.svg" alt="That Other Agency logo" />
           <span>That Other Agency</span>
         </a>
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Open navigation"><span></span><span></span></button>
-        <nav class="site-nav">
+        <button class="menu-toggle" aria-controls="site-nav" type="button" aria-expanded="false" aria-label="Open navigation"><span></span><span></span></button>
+        <nav class="site-nav" id="site-nav" aria-label="Main navigation">
           <a href="../services.html">Services</a>
           <a href="../work.html">Work</a>
           <a href="../about.html">About</a>
-          <a class="current" href="index.html">Blog</a>
+          <a class="current" aria-current="page" href="index.html">Blog</a>
           <a href="../contact.html">Contact</a>
         </nav>
         <a class="btn btn-ghost header-cta" href="../contact.html">Book a strategy call</a>
       </div>
     </header>
 
-    <main>
+    <main id="content">
       <section class="reveal blog-post">
         <div class="post-layout">
           <article>
@@ -93,7 +94,7 @@
 
             <div class="article-nav">
               <a class="btn btn-ghost" href="index.html">Back to blog</a>
-              <a class="btn btn-primary" data-magnetic href="../contact.html">Request an SEO review</a>
+              <a class="btn btn-primary" href="../contact.html">Request an SEO review</a>
             </div>
           </article>
 
@@ -115,7 +116,7 @@
     </main>
 
     <footer>
-      <p>© <span id="year"></span> That Other Agency. All rights reserved.</p>
+      <p>© <span id="year">2026</span> That Other Agency. All rights reserved.</p>
       <nav class="footer-nav" aria-label="Footer navigation">
         <a href="../services.html">Services</a>
         <a href="../work.html">Work</a>
@@ -123,6 +124,6 @@
       </nav>
     </footer>
 
-    <script src="../script.js"></script>
+    <script src="../script.js?v=20260914" defer></script>
   </body>
 </html>

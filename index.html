@@ -20,8 +20,8 @@
     <meta property="og:url" content="https://www.thatotheragency.co.uk/" />
     <meta property="og:image" content="https://www.thatotheragency.co.uk/assets/hero-photo.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="theme-colour" content="#050506" />
-    <link rel="stylesheet" href="styles.css" />
+    <meta name="theme-color" content="#050506" />
+    <link rel="stylesheet" href="styles.css?v=20260914" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -45,11 +45,11 @@
           <img src="assets/logo.svg" alt="That Other Agency logo" />
           <span>That Other Agency</span>
         </a>
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Open navigation">
+        <button class="menu-toggle" aria-controls="site-nav" type="button" aria-expanded="false" aria-label="Open navigation">
           <span></span>
           <span></span>
         </button>
-        <nav class="site-nav">
+        <nav class="site-nav" id="site-nav" aria-label="Main navigation">
           <a href="services.html">Services</a>
           <a href="work.html">Work</a>
           <a href="about.html">About</a>
@@ -61,229 +61,76 @@
     </header>
 
     <main id="content">
-      <section class="hero reveal">
+      <section class="hero">
         <div class="hero-grid">
           <div class="hero-copy">
-            <p class="eyebrow">Paid Acquisition Growth Partner</p>
-            <h1 class="hero-title">
-              Scale profitable growth through disciplined
-              <span class="ink-mark" data-scribble="circle" style="--scribble-delay: 0.35s">testing</span>
-            </h1>
-            <p class="lead">
-              We partner with product and eCommerce brands to improve acquisition economics through sharper offer
-              positioning, tighter paid acquisition execution, and stronger conversion flow. Current partnerships include
-              Made Of More, Ventete, and TIRAK.
-            </p>
+            <p class="eyebrow">Independent thinking. Measurable growth.</p>
+            <h1 class="hero-title">A different way<br>to <span class="ink-mark">grow.</span></h1>
+            <p class="lead">Sharper strategy. Better creative. Paid media that works harder. We help product and eCommerce brands turn more of their marketing spend into profitable growth.</p>
             <div class="hero-actions">
-              <a class="btn btn-primary" data-magnetic href="contact.html">Book a growth call</a>
-              <a class="btn btn-ghost" href="work.html">View case work</a>
+              <a class="btn btn-primary" href="contact.html">Let’s talk growth <span aria-hidden="true">↗</span></a>
+              <a class="text-link" href="work.html">Explore our work <span aria-hidden="true">→</span></a>
             </div>
-            <div class="hero-proof">
-              <article class="card" data-tilt>
-                <span class="stat-value" data-count="4">0</span>
-                <p class="stat-label">Core services in one delivery model</p>
-              </article>
-              <article class="card" data-tilt>
-                <span class="stat-value" data-count="3">0</span>
-                <p class="stat-label">Active product and eCommerce partnerships</p>
-              </article>
-              <article class="card" data-tilt>
-                <span class="stat-value" data-count="90">0</span>
-                <p class="stat-label">Day growth roadmaps built for execution</p>
-              </article>
-              <article class="card" data-tilt>
-                <span class="stat-value" data-count="1">0</span>
-                <p class="stat-label">Single strategy + execution partner</p>
-              </article>
-            </div>
+            <p class="hero-footnote">London based. Commercially focused.</p>
           </div>
-          <aside class="hero-media" data-tilt>
-            <img src="assets/hero-photo.jpg" alt="London skyline over the River Thames at dusk" />
-          </aside>
+          <figure class="hero-media">
+            <img src="assets/hero-photo.jpg" width="2048" height="1152" fetchpriority="high" alt="London skyline over the River Thames at dusk" />
+            <figcaption><span class="image-label">THAT OTHER PERSPECTIVE</span><span>Big-picture thinking.<br>Hands-on execution.</span></figcaption>
+          </figure>
         </div>
       </section>
 
-      <section class="reveal approach-panel">
-        <div class="section-head approach-head">
-          <p class="eyebrow">Approach</p>
-          <h2>
-            We combine strategy, paid acquisition execution, creative testing, and conversion optimisation in one weekly
-            operating system.
-          </h2>
-          <p class="lead">
-            You get one accountable partner from diagnosis through scale. No handovers. No bloated reporting. Just clear
-            commercial decisions and weekly execution momentum.
-          </p>
+      <section class="partner-strip" aria-label="Selected brand partnerships">
+        <p class="kicker">Good company.<br><strong>Brands we’ve worked with.</strong></p>
+        <a href="case-study-made-of-more.html"><img src="assets/brands/made-of-more.svg" width="200" height="60" alt="Made Of More case study" /></a>
+        <a href="case-study-tirak.html"><img src="assets/brands/tirak.svg" width="200" height="60" alt="TIRAK case study" /></a>
+        <a href="case-study-ventete.html"><img src="assets/brands/ventete.svg" width="200" height="60" alt="Ventete case study" /></a>
+      </section>
+
+      <section>
+        <div class="section-heading-row">
+          <div class="section-head"><p class="eyebrow">01 / What we do</p><h2>Every part of growth.<br>Working together.</h2></div>
+          <p class="lead">One partner connecting your offer, creative, campaigns and website. A clear plan, with the people to put it into action.</p>
         </div>
+        <div class="services-grid">
+          <a class="service-card" href="services.html#strategy"><span class="service-number">01 <span aria-hidden="true">↗</span></span><h3>Growth strategy<br>&amp; positioning</h3><p>Find your strongest offer, sharpen your message and build a focused 90-day plan.</p><span class="service-tags">DIRECTION · OFFER · ROADMAP</span></a>
+          <a class="service-card" href="services.html#paid"><span class="service-number">02 <span aria-hidden="true">↗</span></span><h3>Paid<br>acquisition</h3><p>Make Meta, Google and TikTok work harder through hands-on campaign management.</p><span class="service-tags">META · GOOGLE · TIKTOK</span></a>
+          <a class="service-card" href="services.html#creative"><span class="service-number">03 <span aria-hidden="true">↗</span></span><h3>Creative<br>testing</h3><p>Test new angles, learn what resonates and turn winning ideas into your next campaign.</p><span class="service-tags">CONCEPTS · TESTS · LEARNING</span></a>
+          <a class="service-card" href="services.html#conversion"><span class="service-number">04 <span aria-hidden="true">↗</span></span><h3>Conversion<br>optimisation</h3><p>Connect the click to the purchase with clearer pages and a smoother customer journey.</p><span class="service-tags">LANDING PAGES · CRO</span></a>
+        </div>
+      </section>
+
+      <section class="selected-work">
+        <div class="section-heading-row"><div class="section-head"><p class="eyebrow">02 / Selected work</p><h2>Different brands.<br>A shared ambition.</h2></div><a class="text-link" href="work.html">See all work <span aria-hidden="true">→</span></a></div>
+        <div class="case-grid">
+          <a class="work-card" href="case-study-made-of-more.html"><div class="work-art work-art-more"><img src="assets/brands/made-of-more.svg" width="240" height="80" alt="Made Of More" loading="lazy" /><span aria-hidden="true">↗</span></div><p class="case-meta">STRATEGY / PAID ACQUISITION</p><h3>A clearer offer.<br>A stronger route to purchase.</h3><p>Offer positioning, creative testing and campaign structure.</p></a>
+          <a class="work-card" href="case-study-tirak.html"><div class="work-art work-art-tirak"><img src="assets/brands/tirak.svg" width="240" height="80" alt="TIRAK" loading="lazy" /><span aria-hidden="true">↗</span></div><p class="case-meta">GROWTH STRATEGY / CREATIVE</p><h3>Turning creative tests<br>into a repeatable process.</h3><p>A weekly rhythm for sharper ideas and better decisions.</p></a>
+          <a class="work-card" href="case-study-ventete.html"><div class="work-art work-art-ventete"><img src="assets/brands/ventete.svg" width="240" height="80" alt="Ventete" loading="lazy" /><span aria-hidden="true">↗</span></div><p class="case-meta">PAID ACQUISITION / CONVERSION</p><h3>Connecting the campaign<br>to the customer journey.</h3><p>Intent segmentation, page relevance and conversion testing.</p></a>
+        </div>
+      </section>
+
+      <section class="approach-panel">
+        <div class="section-head"><p class="eyebrow">03 / How we work</p><h2>Less guesswork.<br>More forward motion.</h2><p class="lead">A simple rhythm that keeps the work focused and the learning useful.</p></div>
         <div class="approach-cards">
-          <article class="card" data-tilt>
-            <p class="case-meta">01 · Diagnose</p>
-            <h3>Find the acquisition constraint</h3>
-            <p>Audit channel structure, offer clarity, and conversion flow to locate where margin is leaking.</p>
-          </article>
-          <article class="card" data-tilt>
-            <p class="case-meta">02 · Prioritise</p>
-            <h3>Build the 90-day roadmap</h3>
-            <p>Rank opportunities by impact and delivery effort with explicit owners, KPIs, and decision rules.</p>
-          </article>
-          <article class="card" data-tilt>
-            <p class="case-meta">03 · Execute</p>
-            <h3>Run weekly test sprints</h3>
-            <p>Coordinate paid acquisition, creative testing, and on-site conversion work in one sprint rhythm.</p>
-          </article>
-          <article class="card" data-tilt>
-            <p class="case-meta">04 · Scale</p>
-            <h3>Scale what proves profitable</h3>
-            <p>Increase spend behind validated winners and cut underperforming activity quickly.</p>
-          </article>
+          <article><span>01</span><div><h3>Find the real constraint.</h3><p>Look across your offer, channels and website to understand what is holding growth back.</p></div></article>
+          <article><span>02</span><div><h3>Make a focused plan.</h3><p>Prioritise the next 90 days around commercial impact, clear owners and practical delivery.</p></div></article>
+          <article><span>03</span><div><h3>Test. Learn. Improve.</h3><p>Run weekly experiments, review the evidence and build on what works.</p></div></article>
         </div>
       </section>
 
-      <section class="reveal logo-strip">
-        <p class="kicker">Current brand partners</p>
-        <div class="logo-carousel" aria-label="Current brand partners">
-          <div class="logo-carousel-track" data-logo-carousel-track>
-            <article class="logo-carousel-item"><img src="assets/brands/made-of-more.svg" alt="Made Of More logo" /></article>
-            <article class="logo-carousel-item"><img src="assets/brands/tirak.svg" alt="TIRAK logo" /></article>
-            <article class="logo-carousel-item"><img src="assets/brands/ventete.svg" alt="Ventete logo" /></article>
-          </div>
-        </div>
-      </section>
-
-      <section class="reveal">
-        <div class="section-head">
-          <p class="eyebrow">Services</p>
-          <h2>The four services we lead with</h2>
-          <p class="lead">A focused operating stack designed to improve profitable acquisition and conversion economics.</p>
-        </div>
-        <div class="grid-2">
-          <article class="card" data-tilt>
-            <h3>Growth strategy &amp; offer positioning</h3>
-            <p>Define the message, offer, and commercial angle that supports paid acquisition at healthy unit economics.</p>
-            <ul>
-              <li>Refined message hierarchy by buying intent</li>
-              <li>Offer framing aligned to margin and demand quality</li>
-              <li>90-day priorities tied to commercial outcomes</li>
-            </ul>
-          </article>
-          <article class="card" data-tilt>
-            <h3>Paid acquisition execution</h3>
-            <p>Hands-on channel delivery across Meta, Google, and TikTok with disciplined optimisation and spend control.</p>
-            <ul>
-              <li>Campaign architecture for cleaner learning signals</li>
-              <li>Budget pacing and acquisition cost governance</li>
-              <li>Weekly optimisation and reporting cadence</li>
-            </ul>
-          </article>
-          <article class="card" data-tilt>
-            <h3>Creative testing systems</h3>
-            <p>Build consistent testing routines so winning creative angles are identified quickly and scaled responsibly.</p>
-            <ul>
-              <li>Testing matrix for hooks, concepts, and offers</li>
-              <li>Creative briefing, QA, and iteration loops</li>
-              <li>Winner extraction and scale-ready creative backlog</li>
-            </ul>
-          </article>
-          <article class="card" data-tilt>
-            <h3>Conversion optimisation</h3>
-            <p>Improve on-site conversion flow so paid traffic converts at stronger economics and lower waste.</p>
-            <ul>
-              <li>Landing page, PDP, and checkout friction diagnosis</li>
-              <li>Message clarity and page-structure improvements</li>
-              <li>Experiment roadmap focused on conversion efficiency</li>
-            </ul>
-          </article>
-        </div>
-      </section>
-
-      <section class="reveal">
-        <div class="section-head">
-          <p class="eyebrow">Current brands</p>
-          <h2>Active brand partnerships</h2>
-        </div>
-        <div class="grid-3">
-          <article class="card" data-tilt>
-            <p class="client-chip">Made Of More</p>
-            <h3>Offer clarity and paid acquisition structure</h3>
-            <p>Support focused on tightening acquisition economics and reducing paid waste.</p>
-            <ul>
-              <li>Refined message hierarchy across key offer pages</li>
-              <li>Creative testing cadence across paid channels</li>
-              <li>Campaign optimisation and cleaner conversion flow</li>
-            </ul>
-            <a class="case-link" href="case-study-made-of-more.html">Read case study</a>
-          </article>
-          <article class="card" data-tilt>
-            <p class="client-chip">TIRAK</p>
-            <h3>Disciplined testing and weekly execution rhythm</h3>
-            <p>Partnership centred on consistent decisions across strategy, creative, and paid acquisition.</p>
-            <ul>
-              <li>Weekly creative testing and learning rhythm</li>
-              <li>Campaign optimisation with clear decision rules</li>
-              <li>Refined offer positioning for paid acquisition</li>
-            </ul>
-            <a class="case-link" href="case-study-tirak.html">Read case study</a>
-          </article>
-          <article class="card" data-tilt>
-            <p class="client-chip">Ventete</p>
-            <h3>Acquisition efficiency and conversion economics</h3>
-            <p>Workstream focused on reducing wasted spend and improving end-to-end conversion performance.</p>
-            <ul>
-              <li>Diagnosed acquisition constraints by channel and intent</li>
-              <li>Improved conversion flow across key landing journeys</li>
-              <li>Scaled validated tests with stronger measurement</li>
-            </ul>
-            <a class="case-link" href="case-study-ventete.html">Read case study</a>
-          </article>
-        </div>
-      </section>
-
-      <section class="reveal">
-        <div class="section-head">
-          <p class="eyebrow">Insights</p>
-          <h2>Playbooks for scaling paid acquisition and conversion economics</h2>
-        </div>
+      <section>
+        <div class="section-heading-row"><div class="section-head"><p class="eyebrow">04 / Our thinking</p><h2>A little perspective.</h2></div><a class="text-link" href="blog/index.html">All insights <span aria-hidden="true">→</span></a></div>
         <div class="blog-grid">
-          <article class="card blog-card" data-tilt>
-            <a class="blog-card-link" href="blog/meta-ads-london-dtc-creative-testing-framework.html">
-              <img class="blog-thumb" src="assets/blog/meta-testing.svg" alt="Illustration of paid social creative testing" />
-              <div class="card-body">
-                <div class="tag-row"><span class="tag">Paid Social</span><span class="tag">Creative Testing</span></div>
-                <h3>Meta Ads for London DTC Brands: Creative Testing Framework</h3>
-                <p>A practical weekly system for finding winners, improving efficiency, and scaling with control.</p>
-                <span class="read-link">Read article</span>
-              </div>
-            </a>
-          </article>
-          <article class="card blog-card" data-tilt>
-            <a class="blog-card-link" href="blog/website-conversion-checklist-london-smes.html">
-              <img class="blog-thumb" src="assets/blog/cro-checklist.svg" alt="Illustration of conversion optimisation checklist" />
-              <div class="card-body">
-                <div class="tag-row"><span class="tag">Conversion</span><span class="tag">Economics</span></div>
-                <h3>Website Conversion Checklist for Product and eCommerce Brands</h3>
-                <p>High-impact conversion fixes that improve paid traffic performance without a full rebuild.</p>
-                <span class="read-link">Read article</span>
-              </div>
-            </a>
-          </article>
+          <article class="card blog-card"><a class="blog-card-link" href="blog/meta-ads-london-dtc-creative-testing-framework.html"><img class="blog-thumb" src="assets/blog/meta-testing.svg" width="1200" height="675" loading="lazy" alt="Illustration of paid social creative testing" /><div class="card-body"><p class="case-meta">PAID SOCIAL / CREATIVE TESTING</p><h3>A practical framework for Meta creative testing</h3><p>A weekly system for finding winners and scaling with control.</p><span class="read-link">Read article</span></div></a></article>
+          <article class="card blog-card"><a class="blog-card-link" href="blog/website-conversion-checklist-london-smes.html"><img class="blog-thumb" src="assets/blog/cro-checklist.svg" width="1200" height="675" loading="lazy" alt="Illustration of a conversion optimisation checklist" /><div class="card-body"><p class="case-meta">CONVERSION / ECOMMERCE</p><h3>Make more of the traffic you already have</h3><p>Practical conversion checks for product and eCommerce brands.</p><span class="read-link">Read article</span></div></a></article>
         </div>
       </section>
 
-      <section class="reveal">
-        <div class="card">
-          <p class="eyebrow">Next step</p>
-          <h2>Scale without wasted paid spend</h2>
-          <p class="lead">
-            If acquisition costs are rising and conversion rate is flat, we will audit your setup and map a focused
-            growth plan built around profitable scale.
-          </p>
-          <a class="btn btn-primary" data-magnetic href="contact.html">Get your growth audit</a>
-        </div>
-      </section>
+      <section class="closing-cta"><p class="eyebrow">Your next chapter</p><h2>Ready for a<br><span>different result?</span></h2><p>Tell us where you want to go. We’ll work out what’s getting in the way.</p><a class="btn btn-primary" href="contact.html">Let’s talk growth <span aria-hidden="true">↗</span></a></section>
     </main>
 
     <footer>
-      <p>© <span id="year"></span> That Other Agency. All rights reserved.</p>
+      <p>© <span id="year">2026</span> That Other Agency. All rights reserved.</p>
       <nav class="footer-nav" aria-label="Footer navigation">
         <a href="services.html">Services</a>
         <a href="work.html">Work</a>
@@ -291,6 +138,6 @@
       </nav>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=20260914" defer></script>
   </body>
 </html>
