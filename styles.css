@@ -78,13 +78,29 @@ section, article, [id] { scroll-margin-top: 110px; }
 .section-head { max-width: 800px; }
 .section-head .eyebrow { margin-bottom: 20px; }
 .services-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
-.service-card { padding: 28px 24px; background: #10161f; min-width: 0; transition: background .2s; }
+.service-card { margin: 0; padding: 0; border-bottom: 0; background: #10161f; min-width: 0; transition: background .2s; }
 .service-card + .service-card { border-left: 1px solid var(--line); }
-.service-card:hover { background: #182439; }
+.service-card:has(summary:hover), .service-card[open] { background: #182439; }
 .service-number { display: flex; justify-content: space-between; color: #8897ac; font-size: 12px; margin-bottom: 45px; }
 .service-number span { color: var(--accent); font-size: 20px; }
-.service-card h3 { font-size: 23px; }
-.service-card p { font-size: 14px; margin: 18px 0 30px; }
+.service-card > summary { display: block; padding: 28px 24px; list-style: none; }
+.service-card > summary::-webkit-details-marker { display: none; }
+.service-card > summary:focus-visible { outline-offset: -5px; border-radius: 5px; }
+.service-title { display: block; color: var(--text); font-size: 23px; font-weight: 600; line-height: 1.25; letter-spacing: -.025em; }
+.service-intro { display: block; color: var(--muted); font-size: 14px; line-height: 1.7; margin: 18px 0 30px; }
+.service-toggle::before { content: "+"; }
+.service-card[open] .service-toggle::before { content: "−"; }
+.service-hint { display: block; margin-top: 20px; color: var(--accent); font-size: 12px; }
+.service-card .when-open, .service-card[open] .when-closed { display: none; }
+.service-card[open] .when-open { display: inline; }
+.service-detail { margin: 0 24px; padding: 24px 0 28px; border-top: 1px solid #40516b; }
+.service-detail h3 { font-size: 20px; line-height: 1.3; }
+.service-detail p { font-size: 14px; margin: 16px 0 0; }
+.service-detail ul { margin: 24px 0; padding-left: 18px; }
+.service-detail li { font-size: 14px; margin-top: 16px; }
+.service-detail strong { color: #e0e9f8; font-weight: 600; }
+.service-outcome strong { display: block; margin-bottom: 8px; }
+.service-detail .read-link { font-size: 13px; line-height: 1.6; }
 .service-tags { display: block; font-size: 9px; letter-spacing: .07em; color: #9eb3d0; }
 .grid-2, .grid-3, .grid-4, .services-layout, .blog-grid, .case-grid, .process-grid, .kpi-grid, .contact-grid, .stat-grid, .hero-proof { display: grid; gap: 22px; margin-top: 30px; }
 .grid-2, .services-layout, .blog-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
