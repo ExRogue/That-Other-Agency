@@ -1,0 +1,18 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="140" y1="100" x2="1460" y2="820" gradientUnits="userSpaceOnUse"><stop stop-color="#0c1730"/><stop offset="1" stop-color="#050A13"/></linearGradient>
+    <linearGradient id="bar" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#a9c8ff"/><stop offset="1" stop-color="#4f7fe0"/></linearGradient>
+  </defs>
+  <rect width="1600" height="900" rx="34" fill="url(#bg)"/>
+  <circle cx="1300" cy="120" r="240" fill="#6f8fe8" opacity="0.14"/>
+  <rect x="230" y="150" width="1140" height="620" rx="26" fill="#0B1222" stroke="#24324A" stroke-width="4"/>
+  <rect x="230" y="150" width="1140" height="70" rx="26" fill="#111C33"/>
+  <circle cx="280" cy="185" r="11" fill="#33435f"/><circle cx="316" cy="185" r="11" fill="#33435f"/><circle cx="352" cy="185" r="11" fill="#33435f"/>
+  <rect x="330" y="560" width="200" height="130" rx="14" fill="url(#bar)" opacity=".55"/>
+  <rect x="610" y="440" width="200" height="250" rx="14" fill="url(#bar)" opacity=".8"/>
+  <rect x="890" y="300" width="200" height="390" rx="14" fill="url(#bar)"/>
+  <text x="430" y="535" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="64" fill="#dce8ff">£</text>
+  <text x="710" y="415" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="64" fill="#dce8ff">££</text>
+  <text x="990" y="275" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="64" fill="#dce8ff">£££</text>
+  <rect x="330" y="712" width="760" height="6" rx="3" fill="#24324A"/>
+</svg>
