@@ -89,4 +89,37 @@
       }
     });
   }
+
+  const root = document.documentElement;
+  const canMove = root && window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (canMove && 'IntersectionObserver' in window) {
+    // Reveal on scroll. Content stays visible if this never runs.
+    const targets = document.querySelectorAll('.hero-copy > *, .hero-media, .page-hero > *, .partner-strip, .section-head, .section-heading-row > .lead, .section-heading-row > .text-link, .services-grid, .card, .system-card, .work-card, .approach-cards article, .split > *, .closing-cta, .marquee, main > section > details');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        observer.unobserve(el);
+        el.classList.add('in');
+        // Hand the element back to its own hover transitions once it has settled.
+        window.setTimeout(() => { el.classList.remove('rv', 'in'); el.style.removeProperty('--d'); }, 1500 + (Number(el.dataset.delay) || 0));
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+    targets.forEach((el) => {
+      const delay = Math.min([...el.parentElement.children].indexOf(el), 5) * 90;
+      el.dataset.delay = String(delay);
+      el.style.setProperty('--d', `${delay}ms`);
+      el.classList.add('rv');
+      observer.observe(el);
+    });
+    root.classList.add('motion');
+
+    document.addEventListener('pointermove', (event) => {
+      const card = event.target.closest && event.target.closest('.card, .system-card');
+      if (!card) return;
+      const box = card.getBoundingClientRect();
+      card.style.setProperty('--mx', `${event.clientX - box.left}px`);
+      card.style.setProperty('--my', `${event.clientY - box.top}px`);
+    }, { passive: true });
+  }
 })();
