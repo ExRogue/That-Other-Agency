@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="t" font-family="'Avenir Next','Helvetica Neue',Arial,sans-serif">
+  <title id="t">Example performance dashboard with headline numbers and a sales chart that marks each shipped change</title>
+  <rect width="1200" height="760" rx="14" fill="#0d131c"/>
+  <rect x=".5" y=".5" width="1199" height="759" rx="14" fill="none" stroke="#29313d"/>
+  <text x="44" y="66" font-size="28" font-weight="600" fill="#f5f6f8">Performance</text>
+  <g font-size="20" font-weight="600">
+    <rect x="700" y="36" width="96" height="44" rx="6" fill="#141c28" stroke="#29313d"/><text x="748" y="65" text-anchor="middle" fill="#aeb7c5">Today</text>
+    <rect x="808" y="36" width="96" height="44" rx="6" fill="#141c28" stroke="#29313d"/><text x="856" y="65" text-anchor="middle" fill="#aeb7c5">7 days</text>
+    <rect x="916" y="36" width="110" height="44" rx="6" fill="#a9c8ff"/><text x="971" y="65" text-anchor="middle" fill="#0b172a">28 days</text>
+    <rect x="1038" y="36" width="118" height="44" rx="6" fill="#141c28" stroke="#29313d"/><text x="1097" y="65" text-anchor="middle" fill="#aeb7c5">Month</text>
+  </g>
+  <g>
+    <g fill="#141c28" stroke="#29313d">
+      <rect x="44" y="108" width="356" height="124" rx="8"/><rect x="422" y="108" width="356" height="124" rx="8"/><rect x="800" y="108" width="356" height="124" rx="8"/>
+      <rect x="44" y="250" width="356" height="124" rx="8"/><rect x="422" y="250" width="356" height="124" rx="8"/><rect x="800" y="250" width="356" height="124" rx="8"/>
+    </g>
+    <g font-size="20" fill="#aeb7c5">
+      <text x="68" y="148">Sales</text><text x="446" y="148">New customers</text><text x="824" y="148">Returning share</text>
+      <text x="68" y="290">Ad spend</text><text x="446" y="290">Cost per new customer</text><text x="824" y="290">Return on all spend</text>
+    </g>
+    <g font-size="44" font-weight="600" fill="#f5f6f8" letter-spacing="-1.5">
+      <text x="68" y="204">£48,210</text><text x="446" y="204">612</text><text x="824" y="204">38%</text>
+      <text x="68" y="346">£11,480</text><text x="446" y="346">£18.76</text><text x="824" y="346">4.2x</text>
+    </g>
+    <g font-size="20" font-weight="600" text-anchor="end">
+      <text x="376" y="204" fill="#8fd6a8">+12%</text><text x="754" y="204" fill="#8fd6a8">+9%</text><text x="1132" y="204" fill="#8fd6a8">+3 pts</text>
+      <text x="376" y="346" fill="#8897ac">+4%</text><text x="754" y="346" fill="#8fd6a8">−6%</text><text x="1132" y="346" fill="#8fd6a8">+0.3</text>
+    </g>
+  </g>
+  <rect x="44" y="396" width="1112" height="320" rx="8" fill="#141c28" stroke="#29313d"/>
+  <text x="68" y="438" font-size="20" fill="#aeb7c5">Sales by day, with every change you shipped marked on the line</text>
+  <g stroke="#232c39" stroke-width="1"><line x1="68" y1="500" x2="1132" y2="500"/><line x1="68" y1="560" x2="1132" y2="560"/><line x1="68" y1="620" x2="1132" y2="620"/><line x1="68" y1="680" x2="1132" y2="680"/></g>
+  <polyline fill="none" stroke="#56647a" stroke-width="3" stroke-dasharray="7 8" points="68,650 144,640 220,646 296,630 372,636 448,624 524,628 600,616 676,620 752,606 828,612 904,600 980,604 1056,592 1132,596"/>
+  <path d="M68,640 L144,628 220,634 296,606 372,598 448,584 524,592 600,560 676,548 752,556 828,528 904,512 980,520 1056,492 1132,478 L1132,680 68,680 Z" fill="#a9c8ff" opacity=".08"/>
+  <polyline fill="none" stroke="#a9c8ff" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" points="68,640 144,628 220,634 296,606 372,598 448,584 524,592 600,560 676,548 752,556 828,528 904,512 980,520 1056,492 1132,478"/>
+  <g font-size="18" font-weight="600">
+    <line x1="296" y1="470" x2="296" y2="680" stroke="#f0c674" stroke-width="2" stroke-dasharray="4 6"/><circle cx="296" cy="606" r="8" fill="#f0c674" stroke="#141c28" stroke-width="3"/>
+    <rect x="212" y="456" width="168" height="34" rx="17" fill="#3a3220"/><text x="296" y="479" text-anchor="middle" fill="#f0c674">New page live</text>
+    <line x1="600" y1="500" x2="600" y2="680" stroke="#f0c674" stroke-width="2" stroke-dasharray="4 6"/><circle cx="600" cy="560" r="8" fill="#f0c674" stroke="#141c28" stroke-width="3"/>
+    <rect x="510" y="486" width="180" height="34" rx="17" fill="#3a3220"/><text x="600" y="509" text-anchor="middle" fill="#f0c674">New ads launched</text>
+    <line x1="904" y1="470" x2="904" y2="680" stroke="#f0c674" stroke-width="2" stroke-dasharray="4 6"/><circle cx="904" cy="512" r="8" fill="#f0c674" stroke="#141c28" stroke-width="3"/>
+    <rect x="826" y="456" width="156" height="34" rx="17" fill="#3a3220"/><text x="904" y="479" text-anchor="middle" fill="#f0c674">Offer test</text>
+  </g>
+  <text x="1132" y="438" text-anchor="end" font-size="15" font-weight="600" letter-spacing="2" fill="#8897ac">EXAMPLE DATA</text>
+</svg>

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="t" font-family="'Avenir Next','Helvetica Neue',Arial,sans-serif">
+  <title id="t">Example creative bible beside a finished ad script with its hook, story, proof and offer labelled</title>
+  <rect width="1200" height="760" rx="14" fill="#0d131c"/>
+  <rect x=".5" y=".5" width="1199" height="759" rx="14" fill="none" stroke="#29313d"/>
+  <text x="44" y="66" font-size="28" font-weight="600" fill="#f5f6f8">Creative bible</text>
+  <g>
+    <g fill="#141c28" stroke="#29313d">
+      <rect x="44" y="100" width="380" height="64" rx="8"/><rect x="44" y="176" width="380" height="64" rx="8"/><rect x="44" y="252" width="380" height="64" rx="8"/>
+      <rect x="44" y="328" width="380" height="64" rx="8" fill="#182439" stroke="#a9c8ff"/>
+      <rect x="44" y="404" width="380" height="64" rx="8"/><rect x="44" y="480" width="380" height="64" rx="8"/><rect x="44" y="556" width="380" height="64" rx="8"/><rect x="44" y="632" width="380" height="64" rx="8"/>
+    </g>
+    <g font-size="23" fill="#e0e5ed">
+      <text x="68" y="141">Customer types</text><text x="68" y="217">Buying stages</text><text x="68" y="293">Angles</text>
+      <text x="68" y="369" font-weight="600" fill="#ffffff">Hooks</text>
+      <text x="68" y="445">Script formulas</text><text x="68" y="521">Proof</text><text x="68" y="597">Customer language</text><text x="68" y="673">Objections</text>
+    </g>
+    <g font-size="20" font-weight="600" fill="#91b8ff" text-anchor="end">
+      <text x="400" y="141">10</text><text x="400" y="217">5</text><text x="400" y="293">8</text><text x="400" y="369">100</text><text x="400" y="445">8</text>
+    </g>
+  </g>
+  <path d="M440 398 H478" stroke="#a9c8ff" stroke-width="3"/><path d="M472 388 l12 10 -12 10" fill="none" stroke="#a9c8ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="496" y="100" width="660" height="596" rx="8" fill="#141c28" stroke="#29313d"/>
+  <text x="528" y="150" font-size="23" font-weight="600" fill="#f5f6f8">Script 04 · Founder to camera · 60 seconds</text>
+  <line x1="528" y1="172" x2="1124" y2="172" stroke="#29313d"/>
+  <g font-size="15" font-weight="700" letter-spacing="2">
+    <rect x="528" y="198" width="92" height="32" rx="16" fill="#3a3220"/><text x="574" y="220" text-anchor="middle" fill="#f0c674">HOOK</text>
+    <rect x="528" y="322" width="92" height="32" rx="16" fill="#1d2b44"/><text x="574" y="344" text-anchor="middle" fill="#a9c8ff">STORY</text>
+    <rect x="528" y="446" width="92" height="32" rx="16" fill="#1d3a2a"/><text x="574" y="468" text-anchor="middle" fill="#8fd6a8">PROOF</text>
+    <rect x="528" y="570" width="92" height="32" rx="16" fill="#3a2433"/><text x="574" y="592" text-anchor="middle" fill="#e9a3c9">OFFER</text>
+  </g>
+  <g font-size="24" fill="#e0e5ed">
+    <text x="644" y="222">“In one night you’ll feel it.</text><text x="644" y="256">In one week you’ll see it.”</text>
+    <text x="644" y="346">“I’ll be honest, I made this</text><text x="644" y="380">because nothing else worked.”</text>
+    <text x="644" y="470">“Here’s what the testing</text><text x="644" y="504">showed, in plain English.”</text>
+    <text x="644" y="594">“Try it for 30 days. If it’s not</text><text x="644" y="628">for you, send it back.”</text>
+  </g>
+  <text x="1124" y="66" text-anchor="end" font-size="15" font-weight="600" letter-spacing="2" fill="#8897ac">EXAMPLE SCRIPT</text>
+</svg>
