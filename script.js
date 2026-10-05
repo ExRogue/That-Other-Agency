@@ -79,7 +79,7 @@
         status.textContent = 'Thanks — your enquiry has been submitted. We’ll get back to you within one business day.';
       } catch {
         status.className = 'form-status err';
-        status.textContent = 'We couldn’t confirm your enquiry was sent. Your details are still here. Please try again or email hello.that.other.agency@gmail.com.';
+        status.textContent = 'We couldn’t confirm your enquiry was sent. Your details are still here. Please try again or email hello@thatotheragency.co.uk.';
       } finally {
         window.clearTimeout(timeout);
         sending = false;

@@ -9,7 +9,7 @@ function setup(fetchImpl, { valid = true, honey = '' } = {}) {
   const status = { className: '', textContent: '' };
   const button = { disabled: false, textContent: 'Send enquiry' };
   const form = {
-    action: 'https://formsubmit.co/hello.that.other.agency@gmail.com',
+    action: 'https://formsubmit.co/hello@thatotheragency.co.uk',
     querySelector: (selector) => selector === '[type="submit"]' ? button : status,
     reportValidity: () => valid,
     addEventListener: (_, handler) => { submit = handler; },
@@ -28,7 +28,7 @@ function setup(fetchImpl, { valid = true, honey = '' } = {}) {
 test('accepted enquiries reset the form and report success', async () => {
   for (const success of [true, 'true']) {
     const s = setup(async (url, options) => {
-      assert.equal(url, 'https://formsubmit.co/ajax/hello.that.other.agency@gmail.com');
+      assert.equal(url, 'https://formsubmit.co/ajax/hello@thatotheragency.co.uk');
       assert.equal(options.method, 'POST');
       return { ok: true, json: async () => ({ success }) };
     });
