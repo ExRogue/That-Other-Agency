@@ -416,3 +416,19 @@ body { overflow-x: clip; }
   .logo-marquee { overflow-x: auto; }
   .logo-track { transform: none; }
 }
+
+/* Client reviews */
+.review { position: relative; margin: 0; padding: 34px 34px 30px; border: 1px solid var(--line); border-radius: 6px; background: #10161f; }
+.review blockquote { margin: 0; }
+.review blockquote p { margin: 0; color: var(--text); font-size: clamp(1.15rem, 1.8vw, 1.4rem); line-height: 1.55; letter-spacing: -.01em; }
+.review figcaption { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+.review figcaption strong { color: var(--text); font-weight: 600; }
+.review figcaption a { color: #d2e1fb; font-weight: 600; }
+.review figcaption a:hover { color: var(--accent); }
+.review-stars { color: #f0c674; font-size: 15px; letter-spacing: 3px; }
+.review-single blockquote p { font-size: clamp(1.25rem, 2.2vw, 1.7rem); }
+.reviews-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 22px; margin-top: 30px; align-items: start; }
+@media (max-width: 760px) {
+  .reviews-grid { grid-template-columns: minmax(0,1fr); }
+  .review { padding: 26px 22px 22px; }
+}
