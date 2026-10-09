@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/demo",
+      "destination": "https://dashboard-demo-iota-bice.vercel.app/demo"
+    },
+    {
+      "source": "/demo/:path*",
+      "destination": "https://dashboard-demo-iota-bice.vercel.app/demo/:path*"
+    }
+  ]
+}
