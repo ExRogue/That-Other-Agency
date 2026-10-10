@@ -264,6 +264,12 @@ details > p { max-width: 72ch; margin: 0 0 26px; }
 .blog-card .card-body { padding-top: 22px; }
 .blog-card h3 { font-size: clamp(1.4rem, 2vw, 1.9rem); line-height: 1.1; letter-spacing: -.035em; transition: color .25s; }
 .blog-card:hover h3 { color: var(--accent); }
+.post-list { display: block; margin-top: clamp(32px, 4vw, 56px); border-top: 1px solid var(--line); }
+.post-list a { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: 6px 32px; padding: 18px 0; border-bottom: 1px solid var(--line); color: var(--text); }
+.post-list b { font-size: clamp(1.1rem, 1.6vw, 1.45rem); font-weight: 600; line-height: 1.2; letter-spacing: -.025em; transition: color .25s; }
+.post-list span { color: var(--dim); font-size: 14px; white-space: nowrap; }
+.post-list a:hover b, .post-list a:focus-visible b { color: var(--accent); }
+@media (max-width: 640px) { .post-list a { grid-template-columns: minmax(0, 1fr); } }
 .blog-card .card-body p { font-size: 16px; }
 .thumb-wrap { overflow: hidden; }
 .blog-card:hover .blog-thumb { transform: scale(1.035); }
