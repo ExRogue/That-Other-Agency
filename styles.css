@@ -393,6 +393,8 @@ main > .film { margin-top: clamp(44px, 5vw, 72px); }
 .film-frame.wipe { clip-path: inset(100% 0 0 0); }
 .film-frame.wipe.go { clip-path: inset(0 0 0 0); transition: clip-path 1.3s var(--ease); }
 .film-video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.film-frame.is-wide { aspect-ratio: 16 / 9; width: auto; }
+.film-frame.is-tall { aspect-ratio: 9 / 16; width: min(100%, calc(82svh * 9 / 16)); }
 .film-rail { position: relative; max-width: 1200px; margin: 30px auto 0; transform: translateY(var(--grow, 0px)); }
 .chapters { position: relative; height: 40px; margin: 0; padding: 0; list-style: none; }
 .chapters li { position: absolute; top: 0; left: var(--at); }
@@ -508,7 +510,7 @@ main:has(> .book:last-child) { padding-bottom: 0; }
 @media (max-width: 640px) {
   body { font-size: 16px; }
   .logo-set { --k: .72; gap: 56px; padding: 0 28px; }
-  .film-frame { aspect-ratio: 9 / 16; max-height: 82svh; margin-inline: auto; }
+  .film-frame { aspect-ratio: 9 / 16; width: min(100%, calc(82svh * 9 / 16)); }
   .chapters { height: auto; margin-bottom: 14px; padding-right: 104px; }
   .chapters li { position: static; display: none; }
   .chapters li.on { display: block; }

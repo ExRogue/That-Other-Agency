@@ -127,6 +127,23 @@
     const chapters = [...film.querySelectorAll('.chapters li')];
     const small = window.matchMedia('(max-width: 640px)');
     if (small.matches) video.poster = 'assets/video/dashboard-promo-poster-9x16.jpg';
+    // Choose the cut here as well: some phone browsers ignore the media query on <source> and play the wide film,
+    // which a tall frame would crop. The frame then takes the shape of whichever film actually loads.
+    const sources = [...video.querySelectorAll('source')];
+    const tallSource = sources.find((el) => el.media);
+    const wideSource = sources.find((el) => !el.media);
+    if (tallSource && wideSource) {
+      const want = (small.matches ? tallSource : wideSource).getAttribute('src');
+      if (!video.currentSrc.endsWith(want)) video.src = want;
+    }
+    const fit = () => {
+      if (!video.videoWidth) return;
+      const tall = video.videoHeight > video.videoWidth;
+      frame.classList.toggle('is-tall', tall);
+      frame.classList.toggle('is-wide', !tall);
+    };
+    video.addEventListener('loadedmetadata', fit);
+    fit();
     let userPaused = !canMove, visible = true;
     const setToggle = () => {
       toggle.setAttribute('aria-pressed', String(video.paused));
