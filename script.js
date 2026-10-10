@@ -101,7 +101,7 @@
     window.setTimeout(go, 1200);
   }
 
-  // The dashboard film: grows to full width as it scrolls in, with a chapter rail and a pause button.
+  // The dashboard film: settles into place as it scrolls in, with a chapter rail and a pause button.
   const film = document.querySelector('.film');
   if (film) {
     const frame = film.querySelector('.film-frame');
@@ -150,7 +150,7 @@
       // Wipe in, like the headlines
       frame.classList.add('wipe');
       window.requestAnimationFrame(() => window.requestAnimationFrame(() => frame.classList.add('go')));
-      // Grow from a framed screen to full width as its middle reaches the middle of the screen
+      // Grow from a smaller framed screen to the full column as its middle reaches the middle of the screen
       let queued = false;
       const grow = () => {
         queued = false;
@@ -159,10 +159,11 @@
         const vh = window.innerHeight;
         const p = Math.max(0, Math.min(1, 1 - (top + h / 2 - vh / 2) / (vh * 0.55)));
         const eased = 1 - Math.pow(1 - p, 3);
-        const start = 0.94, full = small.matches ? 1 : document.documentElement.clientWidth / w;
-        const s = start + (full - start) * eased;
+        // Settles at the width of the page column, so it never outgrows the layout on wide screens
+        const start = 0.92;
+        const s = start + (1 - start) * eased;
         frame.style.setProperty('--s', s.toFixed(4));
-        frame.style.setProperty('--r', `${(14 * (1 - eased)).toFixed(1)}px`);
+        frame.style.setProperty('--r', `${(18 - 12 * eased).toFixed(1)}px`);
         const shift = `${((s - 1) * h).toFixed(1)}px`;
         rail.style.setProperty('--grow', shift);
         note.style.setProperty('--grow', shift);

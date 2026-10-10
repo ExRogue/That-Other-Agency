@@ -367,7 +367,19 @@ main > .home-hero { margin-top: 0; }
 .brand-list a:hover { color: var(--red); }
 .brand-list > :not(:last-child)::after { content: "/"; margin-left: 30px; color: #d8d2d3; }
 
-/* Film hero (dashboard page): the promo grows to full width as you scroll, with a chapter rail */
+/* Client logo carousel (home): crisp white marks that fade out at both ends */
+main > .band-paper + .logo-band, main > .logo-band + .band-paper { margin-top: 0; }
+.logo-band { padding-block: clamp(64px, 7vw, 104px); }
+.logo-band .eyebrow { margin-bottom: clamp(36px, 4vw, 56px); }
+.logo-marquee { margin-inline: calc(50% - 50vw); overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 16%, #000 84%, transparent); mask-image: linear-gradient(90deg, transparent, #000 16%, #000 84%, transparent); }
+.logo-track { display: flex; width: max-content; animation: marquee 46s linear infinite; }
+.logo-marquee:hover .logo-track, .logo-marquee:focus-within .logo-track { animation-play-state: paused; }
+.logo-set { display: flex; flex-shrink: 0; align-items: center; gap: clamp(64px, 7.5vw, 128px); margin: 0; padding: 0 clamp(32px, 3.75vw, 64px); list-style: none; }
+.logo-set a { display: block; }
+.logo-set img { display: block; width: auto; height: calc(var(--h) * 1px * var(--k, 1)); max-width: none; opacity: .86; transition: opacity .3s; }
+.logo-set a:hover img, .logo-set a:focus-visible img { opacity: 1; }
+
+/* Film hero (dashboard page): the promo settles to the column width as you scroll, with a chapter rail */
 .video-hero { padding-bottom: 0; border-bottom: 0; }
 .video-hero::after { display: none; }
 .video-hero h1 { max-width: 18ch; }
@@ -375,11 +387,11 @@ main > .home-hero { margin-top: 0; }
 .hero-row .lead { margin: 0; }
 .hero-row .hero-actions { margin-top: 0; }
 main > .film { margin-top: clamp(44px, 5vw, 72px); }
-.film-frame { position: relative; overflow: hidden; aspect-ratio: 16 / 9; background: var(--ink-2); border-radius: var(--r, 14px); transform: scale(var(--s, 1)); transform-origin: 50% 0; box-shadow: 0 60px 140px -60px rgba(211, 32, 58, .5); }
+.film-frame { position: relative; overflow: hidden; aspect-ratio: 16 / 9; max-width: 1200px; margin-inline: auto; background: var(--ink-2); border-radius: var(--r, 14px); transform: scale(var(--s, 1)); transform-origin: 50% 0; box-shadow: 0 60px 140px -60px rgba(211, 32, 58, .5); }
 .film-frame.wipe { clip-path: inset(100% 0 0 0); }
 .film-frame.wipe.go { clip-path: inset(0 0 0 0); transition: clip-path 1.3s var(--ease); }
 .film-video { display: block; width: 100%; height: 100%; object-fit: cover; }
-.film-rail { position: relative; margin-top: 30px; transform: translateY(var(--grow, 0px)); }
+.film-rail { position: relative; max-width: 1200px; margin: 30px auto 0; transform: translateY(var(--grow, 0px)); }
 .chapters { position: relative; height: 40px; margin: 0; padding: 0; list-style: none; }
 .chapters li { position: absolute; top: 0; left: var(--at); }
 .chapters li::after { content: ""; position: absolute; left: 0; top: 30px; width: 1px; height: 10px; background: var(--line); }
@@ -392,7 +404,7 @@ main > .film { margin-top: clamp(44px, 5vw, 72px); }
 .film-toggle::before { content: ""; width: 9px; height: 10px; border-left: 3px solid currentColor; border-right: 3px solid currentColor; box-sizing: border-box; }
 .film-toggle[aria-pressed="true"]::before { width: 0; height: 0; border-style: solid; border-width: 5px 0 5px 9px; border-color: transparent transparent transparent currentColor; }
 .film-toggle:hover { border-color: var(--text); }
-.film-note { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; margin: 26px 0 0; color: var(--dim); font-size: 14px; transform: translateY(var(--grow, 0px)); }
+.film-note { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; max-width: 1200px; margin: 26px auto 0; color: var(--dim); font-size: 14px; transform: translateY(var(--grow, 0px)); }
 .film-note .read-link { margin-top: 0; font-size: 14px; }
 
 /* Motion. Content is visible by default, including without JavaScript. */
@@ -448,6 +460,7 @@ main > .film { margin-top: clamp(44px, 5vw, 72px); }
 .site-nav .nav-cta { color: var(--red-hot); }
 @media (max-width: 640px) {
   body { font-size: 16px; }
+  .logo-set { --k: .72; gap: 56px; padding: 0 28px; }
   .film-frame { aspect-ratio: 9 / 16; max-height: 82svh; margin-inline: auto; }
   .chapters { height: auto; margin-bottom: 14px; padding-right: 104px; }
   .chapters li { position: static; display: none; }
@@ -468,4 +481,6 @@ main > .film { margin-top: clamp(44px, 5vw, 72px); }
   .intro .site-header, .intro .hero-foot > * { opacity: 1; }
   .intro .headline .tx, .intro .headline .rule { transform: none; }
   .marquee-track { transform: none; }
+  .logo-marquee { overflow-x: auto; }
+  .logo-track { transform: none; }
 }
