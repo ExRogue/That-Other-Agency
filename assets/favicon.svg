@@ -1,16 +1,1 @@
-<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="stroke" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#6EF0D1"/>
-      <stop offset="0.56" stop-color="#52D4FF"/>
-      <stop offset="1" stop-color="#2F8CFF"/>
-    </linearGradient>
-    <linearGradient id="glyph" x1="16" y1="16" x2="46" y2="48" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#A9FFEE"/>
-      <stop offset="1" stop-color="#69B6FF"/>
-    </linearGradient>
-  </defs>
-
-  <rect x="3" y="3" width="58" height="58" rx="14" fill="#071426" stroke="url(#stroke)" stroke-width="2.8"/>
-  <path d="M16 18H48V25.2H36V46H28V25.2H16V18Z" fill="url(#glyph)"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#110c0d"/><path fill="#ffffff" d="M31.92 57.91Q27.65 57.91 24.74 56.93Q21.83 55.94 20.36 53.12Q18.88 50.29 18.88 44.96V26.83H11.91V17.24H18.88V6.09H30.36V17.24H40.36V26.83H30.36V43.56Q30.36 45.45 30.77 46.43Q31.18 47.42 32.29 47.79Q33.39 48.15 35.28 48.15H40.12V57.91Z"/><path fill="#d3203a" d="M37.99 57.91V44.79H52.09V57.91Z"/></svg>

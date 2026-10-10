@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="t" font-family="'Avenir Next','Helvetica Neue',Arial,sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="t" font-family="'Helvetica Neue',Arial,sans-serif">
   <title id="t">Example ad script: hook, story, proof and offer, shown beside a phone recording the founder to camera</title>
   <defs>
-    <radialGradient id="glow" cx=".72" cy=".5" r=".6"><stop offset="0" stop-color="#2b4a85" stop-opacity=".85"/><stop offset="1" stop-color="#0d131c" stop-opacity="0"/></radialGradient>
-    <linearGradient id="video" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3b4f7d"/><stop offset=".55" stop-color="#6a5a8a"/><stop offset="1" stop-color="#c08a6a"/></linearGradient>
-    <linearGradient id="shade" x1="0" y1="0" x2="0" y2="1"><stop offset=".45" stop-color="#0a0d12" stop-opacity="0"/><stop offset="1" stop-color="#0a0d12" stop-opacity=".88"/></linearGradient>
+    <radialGradient id="glow" cx=".72" cy=".5" r=".6"><stop offset="0" stop-color="#7a1626" stop-opacity=".85"/><stop offset="1" stop-color="#140e10" stop-opacity="0"/></radialGradient>
+    <linearGradient id="video" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3a1a20"/><stop offset=".55" stop-color="#7a1626"/><stop offset="1" stop-color="#d3203a"/></linearGradient>
+    <linearGradient id="shade" x1="0" y1="0" x2="0" y2="1"><stop offset=".45" stop-color="#110c0d" stop-opacity="0"/><stop offset="1" stop-color="#110c0d" stop-opacity=".88"/></linearGradient>
     <clipPath id="screen"><rect x="0" y="0" width="300" height="620" rx="38"/></clipPath>
     <style>
       .on { opacity: 0; animation: on 12s ease infinite; }
@@ -16,23 +16,23 @@
       @media (prefers-reduced-motion: reduce) { * { animation: none !important; } .first { opacity: 1; } }
     </style>
   </defs>
-  <rect width="1200" height="760" rx="18" fill="#0d131c"/>
+  <rect width="1200" height="760" rx="18" fill="#140e10"/>
   <rect width="1200" height="760" rx="18" fill="url(#glow)"/>
-  <rect x=".5" y=".5" width="1199" height="759" rx="18" fill="none" stroke="#2c3644"/>
+  <rect x=".5" y=".5" width="1199" height="759" rx="18" fill="none" stroke="#33252a"/>
 
-  <text x="64" y="92" font-size="15" font-weight="600" letter-spacing="2.5" fill="#8fa3c2">FOUNDER TO CAMERA · EXAMPLE</text>
+  <text x="64" y="92" font-size="15" font-weight="600" letter-spacing="2.5" fill="#b1a5a7">FOUNDER TO CAMERA · EXAMPLE</text>
   <g>
-    <g fill="#121a26" stroke="#29313d"><rect x="64" y="124" width="520" height="128" rx="14"/><rect x="64" y="270" width="520" height="128" rx="14"/><rect x="64" y="416" width="520" height="128" rx="14"/><rect x="64" y="562" width="520" height="128" rx="14"/></g>
-    <g fill="#182743" stroke="#a9c8ff" stroke-width="2">
+    <g fill="#1c1214" stroke="#3a2b2f"><rect x="64" y="124" width="520" height="128" rx="14"/><rect x="64" y="270" width="520" height="128" rx="14"/><rect x="64" y="416" width="520" height="128" rx="14"/><rect x="64" y="562" width="520" height="128" rx="14"/></g>
+    <g fill="#2a1519" stroke="#ff3b4e" stroke-width="2">
       <rect class="on first" x="64" y="124" width="520" height="128" rx="14"/><rect class="on d2" x="64" y="270" width="520" height="128" rx="14"/><rect class="on d3" x="64" y="416" width="520" height="128" rx="14"/><rect class="on d4" x="64" y="562" width="520" height="128" rx="14"/>
     </g>
     <g font-size="14" font-weight="700" letter-spacing="2">
-      <rect x="90" y="146" width="84" height="30" rx="15" fill="#3a3220"/><text x="132" y="166" text-anchor="middle" fill="#f0c674">HOOK</text>
-      <rect x="90" y="292" width="88" height="30" rx="15" fill="#1d2b44"/><text x="134" y="312" text-anchor="middle" fill="#a9c8ff">STORY</text>
+      <rect x="90" y="146" width="84" height="30" rx="15" fill="#4a1219"/><text x="132" y="166" text-anchor="middle" fill="#ff3b4e">HOOK</text>
+      <rect x="90" y="292" width="88" height="30" rx="15" fill="#2a1a1e"/><text x="134" y="312" text-anchor="middle" fill="#ff3b4e">STORY</text>
       <rect x="90" y="438" width="90" height="30" rx="15" fill="#1d3a2a"/><text x="135" y="458" text-anchor="middle" fill="#8fd6a8">PROOF</text>
       <rect x="90" y="584" width="88" height="30" rx="15" fill="#3a2433"/><text x="134" y="604" text-anchor="middle" fill="#e9a3c9">OFFER</text>
     </g>
-    <g font-size="25" fill="#e6ebf3">
+    <g font-size="25" fill="#f2ecec">
       <text x="90" y="222">“In one night you’ll feel it.”</text>
       <text x="90" y="368">“I made this because nothing worked.”</text>
       <text x="90" y="514">“Here’s what the testing showed.”</text>
@@ -42,17 +42,17 @@
 
   <g class="float">
     <g transform="translate(760 70) rotate(4 150 310)">
-      <rect x="-10" y="-10" width="320" height="640" rx="46" fill="#05070b" stroke="#3b4657" stroke-width="2"/>
+      <rect x="-10" y="-10" width="320" height="640" rx="46" fill="#0b0708" stroke="#4a3b3e" stroke-width="2"/>
       <g clip-path="url(#screen)">
         <rect width="300" height="620" fill="url(#video)"/>
-        <circle cx="150" cy="250" r="62" fill="#1b2236" opacity=".55"/>
-        <path d="M30 620 C30 440 90 350 150 350 C210 350 270 440 270 620 Z" fill="#1b2236" opacity=".55"/>
+        <circle cx="150" cy="250" r="62" fill="#241719" opacity=".55"/>
+        <path d="M30 620 C30 440 90 350 150 350 C210 350 270 440 270 620 Z" fill="#241719" opacity=".55"/>
         <rect width="300" height="620" fill="url(#shade)"/>
-        <rect x="22" y="26" width="92" height="34" rx="17" fill="#0a0d12" opacity=".7"/>
+        <rect x="22" y="26" width="92" height="34" rx="17" fill="#110c0d" opacity=".7"/>
         <circle class="rec" cx="42" cy="43" r="7" fill="#ff5a5a"/><text x="58" y="50" font-size="17" font-weight="700" letter-spacing="1.5" fill="#ffffff">REC</text>
         <g font-size="22" font-weight="600" fill="#ffffff">
-          <g class="on first"><rect x="22" y="448" width="84" height="28" rx="14" fill="#f0c674"/><text x="64" y="468" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="2" fill="#2a2110">HOOK</text><text x="22" y="516">In one night</text><text x="22" y="546">you’ll feel it.</text></g>
-          <g class="on d2"><rect x="22" y="448" width="88" height="28" rx="14" fill="#a9c8ff"/><text x="66" y="468" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="2" fill="#0b172a">STORY</text><text x="22" y="516">I made this because</text><text x="22" y="546">nothing worked.</text></g>
+          <g class="on first"><rect x="22" y="448" width="84" height="28" rx="14" fill="#ff3b4e"/><text x="64" y="468" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="2" fill="#3a0f15">HOOK</text><text x="22" y="516">In one night</text><text x="22" y="546">you’ll feel it.</text></g>
+          <g class="on d2"><rect x="22" y="448" width="88" height="28" rx="14" fill="#ff3b4e"/><text x="66" y="468" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="2" fill="#160b0d">STORY</text><text x="22" y="516">I made this because</text><text x="22" y="546">nothing worked.</text></g>
           <g class="on d3"><rect x="22" y="448" width="90" height="28" rx="14" fill="#8fd6a8"/><text x="67" y="468" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="2" fill="#0d2417">PROOF</text><text x="22" y="516">Here’s what the</text><text x="22" y="546">testing showed.</text></g>
           <g class="on d4"><rect x="22" y="448" width="88" height="28" rx="14" fill="#e9a3c9"/><text x="66" y="468" text-anchor="middle" font-size="13" font-weight="700" letter-spacing="2" fill="#2b1021">OFFER</text><text x="22" y="516">Try it for 30 days.</text><text x="22" y="546">Send it back if not.</text></g>
         </g>

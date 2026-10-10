@@ -12,26 +12,23 @@
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=3" />
-    <link rel="shortcut icon" href="/assets/favicon.svg?v=3" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=4" />
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
     <title>Contact | That Other Agency</title>
     <meta
       name="description"
       content="Contact That Other Agency to discuss offer positioning, paid acquisition execution, creative testing, and conversion optimisation."
     />
     <link rel="canonical" href="https://www.thatotheragency.co.uk/contact.html" />
-    <link rel="stylesheet" href="styles.css?v=20261007-reviews" />
+    <link rel="preload" href="/assets/fonts/host-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="styles.css?v=20261010-rebrand" />
   </head>
   <body>
     <a class="skip-link" href="#content">Skip to content</a>
-    <div class="noise" aria-hidden="true"></div>
 
     <header class="site-header">
       <div class="container">
-        <a class="brand" href="index.html" aria-label="That Other Agency home">
-          <img src="assets/logo.svg" alt="That Other Agency logo" />
-          <span>That Other Agency</span>
-        </a>
+        <a class="brand" href="index.html" aria-label="That Other Agency, home">that other agency<i>.</i></a>
         <button class="menu-toggle" aria-controls="site-nav" type="button" aria-expanded="false" aria-label="Open navigation">
           <span></span>
           <span></span>
@@ -42,18 +39,19 @@
           <a href="about.html">About</a>
           <a href="blog/index.html">Blog</a>
           <a class="current" aria-current="page" href="contact.html">Contact</a>
+          <a class="nav-cta" href="contact.html">Book a consultation</a>
         </nav>
-        <a class="btn btn-ghost header-cta" href="contact.html">Book a strategy call</a>
+        <a class="btn btn-primary header-cta" href="contact.html">Book a consultation</a>
       </div>
     </header>
 
     <main id="content">
       <section class="page-hero reveal">
         <p class="eyebrow">Contact</p>
-        <h1>Let’s talk about<br><span class="ink-mark">what’s next.</span></h1>
+        <h1>Book a <span class="ink-mark">consultation.</span></h1>
         <p class="lead">
-          Complete the form and we will respond within one business day with practical next steps. If preferred, email
-          us directly and we can continue there.
+          Every project starts with a consultation. Tell us a little about your brand below and we’ll reply within one
+          business day to arrange a call. If you would rather, email us directly.
         </p>
       </section>
 
@@ -111,32 +109,6 @@
               </div>
 
               <label>
-                What are you interested in?
-                <select name="interest" required>
-                  <option value="Ongoing growth support">Ongoing growth support</option>
-                  <option value="A new website">A new website</option>
-                  <option value="An online store">An online store</option>
-                  <option value="Ad script system">Ad script system</option>
-                  <option value="Performance dashboard">Performance dashboard</option>
-                  <option value="Not sure yet">Not sure yet</option>
-                </select>
-              </label>
-
-              <label>
-                Primary challenge
-                <select name="challenge" required>
-                  <option value="Profitable acquisition">Profitable acquisition</option>
-                  <option value="Paid acquisition performance">Paid acquisition performance</option>
-                  <option value="Conversion rate">Conversion rate</option>
-                  <option value="Offer positioning and messaging">Offer positioning and messaging</option>
-                  <option value="Creative testing system">Creative testing system</option>
-                  <option value="Ad creative and scripts">Ad creative and scripts</option>
-                  <option value="Reporting and visibility">Reporting and visibility</option>
-                  <option value="No website, or one that needs replacing">No website, or one that needs replacing</option>
-                </select>
-              </label>
-
-              <label>
                 Project details
                 <textarea
                   name="message"
@@ -155,18 +127,25 @@
     </main>
 
     <footer>
-      <p>© <span id="year">2026</span> That Other Agency. All rights reserved.</p>
-      <nav class="footer-nav" aria-label="Footer navigation">
-        <a href="website-design.html">Website design</a>
-        <a href="ad-script-system.html">Ad script system</a>
-        <a href="performance-dashboard.html">Performance dashboard</a>
-        <a href="services.html">Services</a>
-        <a href="work.html">Work</a>
-        <a href="blog/index.html">Blog</a>
-        <a href="contact.html">Contact</a>
-      </nav>
+      <div class="footer-cols">
+        <div>
+          <b>That Other Agency</b>
+          <p>Websites, ad scripts, dashboards and growth for brands that sell online. London based, working UK wide.</p>
+          <a href="mailto:hello@thatotheragency.co.uk">hello@thatotheragency.co.uk</a>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <div><b>Services</b><a href="website-design.html">Website design</a><a href="ad-script-system.html">Ad script system</a><a href="performance-dashboard.html">Performance dashboard</a><a href="services.html">All services</a></div>
+          <div><b>Agency</b><a href="work.html">Work</a><a href="about.html">About</a><a href="blog/index.html">Blog</a></div>
+          <div><b>Start here</b><a href="contact.html">Book a consultation</a><a href="/demo">Dashboard demo</a></div>
+        </nav>
+      </div>
+      <p class="footer-giant" aria-hidden="true">that other agency<i>.</i></p>
+      <div class="footer-legal">
+        <p>© <span id="year">2026</span> That Other Agency Ltd. Registered in England and Wales, company number 16799053.</p>
+        <p>London, United Kingdom</p>
+      </div>
     </footer>
 
-    <script src="script.js?v=20261005" defer></script>
+    <script src="script.js?v=20261010-rebrand" defer></script>
   </body>
 </html>

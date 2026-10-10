@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="t" font-family="'Avenir Next','Helvetica Neue',Arial,sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="t" font-family="'Helvetica Neue',Arial,sans-serif">
   <title id="t">Example performance dashboard: a sales chart drawing itself, with each shipped change marked on the line</title>
   <defs>
-    <linearGradient id="area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a9c8ff" stop-opacity=".38"/><stop offset="1" stop-color="#a9c8ff" stop-opacity="0"/></linearGradient>
-    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7aa5f5"/><stop offset="1" stop-color="#d6e4ff"/></linearGradient>
-    <radialGradient id="glow" cx=".8" cy=".1" r=".9"><stop offset="0" stop-color="#27406e" stop-opacity=".9"/><stop offset="1" stop-color="#0d131c" stop-opacity="0"/></radialGradient>
+    <linearGradient id="area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff3b4e" stop-opacity=".38"/><stop offset="1" stop-color="#ff3b4e" stop-opacity="0"/></linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#d3203a"/><stop offset="1" stop-color="#ffd9dd"/></linearGradient>
+    <radialGradient id="glow" cx=".8" cy=".1" r=".9"><stop offset="0" stop-color="#5a1420" stop-opacity=".9"/><stop offset="1" stop-color="#140e10" stop-opacity="0"/></radialGradient>
     <style>
       .draw { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 10s cubic-bezier(.4,.1,.2,1) infinite; }
       .spark { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 10s ease-out infinite; }
@@ -20,18 +20,18 @@
       @media (prefers-reduced-motion: reduce) { * { animation: none !important; } .draw, .spark { stroke-dashoffset: 0; } .area, .m { opacity: 1; } .pulse { opacity: 0; } }
     </style>
   </defs>
-  <rect width="1200" height="760" rx="18" fill="#0d131c"/>
+  <rect width="1200" height="760" rx="18" fill="#140e10"/>
   <rect width="1200" height="760" rx="18" fill="url(#glow)"/>
-  <rect x=".5" y=".5" width="1199" height="759" rx="18" fill="none" stroke="#2c3644"/>
-  <circle cx="40" cy="38" r="7" fill="#3b4657"/><circle cx="64" cy="38" r="7" fill="#3b4657"/><circle cx="88" cy="38" r="7" fill="#3b4657"/>
-  <rect x="410" y="20" width="380" height="36" rx="18" fill="#141c28" stroke="#29313d"/>
-  <text x="600" y="44" text-anchor="middle" font-size="16" fill="#8897ac">yourbrand · performance</text>
-  <line x1="0" y1="76" x2="1200" y2="76" stroke="#232c39"/>
+  <rect x=".5" y=".5" width="1199" height="759" rx="18" fill="none" stroke="#33252a"/>
+  <circle cx="40" cy="38" r="7" fill="#4a3b3e"/><circle cx="64" cy="38" r="7" fill="#4a3b3e"/><circle cx="88" cy="38" r="7" fill="#4a3b3e"/>
+  <rect x="410" y="20" width="380" height="36" rx="18" fill="#1f1517" stroke="#3a2b2f"/>
+  <text x="600" y="44" text-anchor="middle" font-size="16" fill="#a89a9c">yourbrand · performance</text>
+  <line x1="0" y1="76" x2="1200" y2="76" stroke="#2a1d20"/>
 
   <g>
-    <g fill="#121a26" stroke="#29313d"><rect x="44" y="104" width="356" height="124" rx="12"/><rect x="422" y="104" width="356" height="124" rx="12"/><rect x="800" y="104" width="356" height="124" rx="12"/></g>
-    <g font-size="21" fill="#c3cddb"><text x="70" y="146">Sales</text><text x="448" y="146">New customers</text><text x="826" y="146">Return on ad spend</text></g>
-    <g fill="none" stroke="#a9c8ff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <g fill="#1c1214" stroke="#3a2b2f"><rect x="44" y="104" width="356" height="124" rx="12"/><rect x="422" y="104" width="356" height="124" rx="12"/><rect x="800" y="104" width="356" height="124" rx="12"/></g>
+    <g font-size="21" fill="#d8cfd0"><text x="70" y="146">Sales</text><text x="448" y="146">New customers</text><text x="826" y="146">Return on ad spend</text></g>
+    <g fill="none" stroke="#ff3b4e" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
       <polyline class="spark" pathLength="1" points="70,200 104,194 138,198 172,184 206,188 240,172 274,176 300,164"/>
       <polyline class="spark" pathLength="1" points="448,198 482,200 516,188 550,192 584,178 618,182 652,168 678,170"/>
       <polyline class="spark" pathLength="1" points="826,196 860,186 894,192 928,180 962,184 996,170 1030,174 1056,160"/>
@@ -43,26 +43,26 @@
     </g>
   </g>
 
-  <rect x="44" y="252" width="1112" height="464" rx="12" fill="#121a26" stroke="#29313d"/>
-  <g stroke="#1f2835"><line x1="68" y1="370" x2="1132" y2="370"/><line x1="68" y1="460" x2="1132" y2="460"/><line x1="68" y1="550" x2="1132" y2="550"/><line x1="68" y1="640" x2="1132" y2="640"/></g>
-  <polyline fill="none" stroke="#4a586e" stroke-width="3" stroke-dasharray="6 9" points="68,610 144,598 220,604 296,588 372,594 448,578 524,584 600,568 676,574 752,556 828,562 904,546 980,552 1056,536 1132,540"/>
+  <rect x="44" y="252" width="1112" height="464" rx="12" fill="#1c1214" stroke="#3a2b2f"/>
+  <g stroke="#261a1d"><line x1="68" y1="370" x2="1132" y2="370"/><line x1="68" y1="460" x2="1132" y2="460"/><line x1="68" y1="550" x2="1132" y2="550"/><line x1="68" y1="640" x2="1132" y2="640"/></g>
+  <polyline fill="none" stroke="#5c4b4e" stroke-width="3" stroke-dasharray="6 9" points="68,610 144,598 220,604 296,588 372,594 448,578 524,584 600,568 676,574 752,556 828,562 904,546 980,552 1056,536 1132,540"/>
   <path class="area" d="M68,600 L144,584 220,592 296,548 372,536 448,516 524,526 600,470 676,452 752,464 828,412 904,384 980,398 1056,342 1132,318 L1132,690 68,690 Z" fill="url(#area)"/>
   <polyline class="draw" pathLength="1" fill="none" stroke="url(#line)" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" points="68,600 144,584 220,592 296,548 372,536 448,516 524,526 600,470 676,452 752,464 828,412 904,384 980,398 1056,342 1132,318"/>
   <g font-size="19" font-weight="600">
     <g class="m">
-      <line x1="296" y1="548" x2="296" y2="690" stroke="#f0c674" stroke-width="2" stroke-dasharray="4 7"/><circle cx="296" cy="548" r="9" fill="#f0c674" stroke="#121a26" stroke-width="4"/>
-      <rect x="206" y="486" width="180" height="40" rx="20" fill="#3a3220"/><text x="296" y="512" text-anchor="middle" fill="#f0c674">New page live</text>
+      <line x1="296" y1="548" x2="296" y2="690" stroke="#ff3b4e" stroke-width="2" stroke-dasharray="4 7"/><circle cx="296" cy="548" r="9" fill="#ff3b4e" stroke="#1c1214" stroke-width="4"/>
+      <rect x="206" y="486" width="180" height="40" rx="20" fill="#4a1219"/><text x="296" y="512" text-anchor="middle" fill="#ff3b4e">New page live</text>
     </g>
     <g class="m m2">
-      <line x1="600" y1="470" x2="600" y2="690" stroke="#f0c674" stroke-width="2" stroke-dasharray="4 7"/><circle cx="600" cy="470" r="9" fill="#f0c674" stroke="#121a26" stroke-width="4"/>
-      <rect x="498" y="408" width="204" height="40" rx="20" fill="#3a3220"/><text x="600" y="434" text-anchor="middle" fill="#f0c674">New ads launched</text>
+      <line x1="600" y1="470" x2="600" y2="690" stroke="#ff3b4e" stroke-width="2" stroke-dasharray="4 7"/><circle cx="600" cy="470" r="9" fill="#ff3b4e" stroke="#1c1214" stroke-width="4"/>
+      <rect x="498" y="408" width="204" height="40" rx="20" fill="#4a1219"/><text x="600" y="434" text-anchor="middle" fill="#ff3b4e">New ads launched</text>
     </g>
     <g class="m m3">
-      <line x1="904" y1="384" x2="904" y2="690" stroke="#f0c674" stroke-width="2" stroke-dasharray="4 7"/><circle cx="904" cy="384" r="9" fill="#f0c674" stroke="#121a26" stroke-width="4"/>
-      <rect x="824" y="322" width="160" height="40" rx="20" fill="#3a3220"/><text x="904" y="348" text-anchor="middle" fill="#f0c674">Offer test</text>
+      <line x1="904" y1="384" x2="904" y2="690" stroke="#ff3b4e" stroke-width="2" stroke-dasharray="4 7"/><circle cx="904" cy="384" r="9" fill="#ff3b4e" stroke="#1c1214" stroke-width="4"/>
+      <rect x="824" y="322" width="160" height="40" rx="20" fill="#4a1219"/><text x="904" y="348" text-anchor="middle" fill="#ff3b4e">Offer test</text>
     </g>
   </g>
-  <g class="m m3"><circle class="pulse" cx="1132" cy="318" r="8" fill="#d6e4ff"/><circle cx="1132" cy="318" r="8" fill="#d6e4ff"/></g>
-  <text x="70" y="296" font-size="21" fill="#c3cddb">Sales by day</text>
-  <text x="1130" y="296" text-anchor="end" font-size="14" font-weight="600" letter-spacing="2" fill="#6f7d92">EXAMPLE</text>
+  <g class="m m3"><circle class="pulse" cx="1132" cy="318" r="8" fill="#ffd9dd"/><circle cx="1132" cy="318" r="8" fill="#ffd9dd"/></g>
+  <text x="70" y="296" font-size="21" fill="#d8cfd0">Sales by day</text>
+  <text x="1130" y="296" text-anchor="end" font-size="14" font-weight="600" letter-spacing="2" fill="#85787a">EXAMPLE</text>
 </svg>

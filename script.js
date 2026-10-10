@@ -18,7 +18,7 @@
     document.addEventListener('click', (event) => {
       if (!nav.contains(event.target) && !toggle.contains(event.target)) setOpen(false);
     });
-    window.matchMedia('(min-width: 761px)').addEventListener('change', () => setOpen(false));
+    window.matchMedia('(min-width: 901px)').addEventListener('change', () => setOpen(false));
     // Enhance navigation only once its controls are ready. Without JS, links remain visible.
     document.documentElement.classList.add('js');
   }
@@ -76,7 +76,7 @@
         if (!response.ok || ![true, 'true'].includes(result.success)) throw new Error('Enquiry not accepted');
         form.reset();
         status.className = 'form-status ok';
-        status.textContent = 'Thanks — your enquiry has been submitted. We’ll get back to you within one business day.';
+        status.textContent = 'Thanks, your enquiry has been sent. We’ll get back to you within one business day.';
       } catch {
         status.className = 'form-status err';
         status.textContent = 'We couldn’t confirm your enquiry was sent. Your details are still here. Please try again or email hello@thatotheragency.co.uk.';
@@ -92,9 +92,18 @@
 
   const root = document.documentElement;
   const canMove = root && window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Homepage intro: the rules draw, then the headline steps in line by line.
+  // The page adds the intro class in its head; this starts it once the font is ready.
+  if (root && root.classList.contains('intro')) {
+    const go = () => root.classList.add('go');
+    (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => window.requestAnimationFrame(go));
+    window.setTimeout(go, 1200);
+  }
+
   if (canMove && 'IntersectionObserver' in window) {
     // Reveal on scroll. Content stays visible if this never runs.
-    const targets = document.querySelectorAll('.hero-copy > *, .hero-media, .page-hero > *, .partner-strip, .section-head, .section-heading-row > .lead, .section-heading-row > .text-link, .services-grid, .card, .system-card, .work-card, .approach-cards article, .split > *, .closing-cta, .marquee, main > section > details');
+    const targets = document.querySelectorAll('.page-hero > *, .section-head, .section-heading-row > :not(.section-head), .card, .work-card, .system-card, .review, .split > *, .closing-cta > *, .service-row, .statement > *, .quote-big, .quote-small, .brand-list, .post-image, main > section > details');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
@@ -102,24 +111,16 @@
         observer.unobserve(el);
         el.classList.add('in');
         // Hand the element back to its own hover transitions once it has settled.
-        window.setTimeout(() => { el.classList.remove('rv', 'in'); el.style.removeProperty('--d'); }, 1500 + (Number(el.dataset.delay) || 0));
+        window.setTimeout(() => { el.classList.remove('rv', 'in'); el.style.removeProperty('--d'); }, 1600 + (Number(el.dataset.delay) || 0));
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+    }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
     targets.forEach((el) => {
-      const delay = Math.min([...el.parentElement.children].indexOf(el), 5) * 90;
+      const delay = Math.min([...el.parentElement.children].indexOf(el), 5) * 80;
       el.dataset.delay = String(delay);
       el.style.setProperty('--d', `${delay}ms`);
       el.classList.add('rv');
       observer.observe(el);
     });
     root.classList.add('motion');
-
-    document.addEventListener('pointermove', (event) => {
-      const card = event.target.closest && event.target.closest('.card, .system-card');
-      if (!card) return;
-      const box = card.getBoundingClientRect();
-      card.style.setProperty('--mx', `${event.clientX - box.left}px`);
-      card.style.setProperty('--my', `${event.clientY - box.top}px`);
-    }, { passive: true });
   }
 })();
