@@ -167,7 +167,7 @@ main > .page-hero + section { margin-top: clamp(64px, 8vw, 120px); }
 /* Screenshots */
 .shot { position: relative; overflow: hidden; background: var(--ink-2); }
 .shot::before { content: ""; display: block; height: 30px; background: radial-gradient(circle at 18px 50%, #4a3b3e 4.5px, transparent 5px), radial-gradient(circle at 34px 50%, #4a3b3e 4.5px, transparent 5px), radial-gradient(circle at 50px 50%, #4a3b3e 4.5px, transparent 5px), #231719; }
-.shot img { width: 100%; aspect-ratio: 1200 / 730; object-fit: cover; object-position: top; }
+.shot img { width: 100%; aspect-ratio: 1440 / 900; object-fit: cover; object-position: top; }
 .case-shot { margin: 0; box-shadow: 0 60px 120px -60px rgba(211, 32, 58, .35); }
 .case-shot img { aspect-ratio: 1440 / 900; }
 .live-link { display: inline-flex; align-items: center; gap: 10px; margin-top: 28px; color: var(--text); font-size: 15px; font-weight: 600; }
@@ -178,7 +178,8 @@ main > .page-hero + section { margin-top: clamp(64px, 8vw, 120px); }
 .work-card { display: flex; flex-direction: column; min-width: 0; }
 .work-art { position: relative; display: grid; place-items: center; aspect-ratio: 4 / 3; overflow: hidden; background: var(--ink-2); }
 .work-art img { width: 64%; height: 90px; object-fit: contain; transition: transform 1s var(--ease); }
-.work-art.has-shot { place-items: stretch; }
+.work-art.has-shot { place-items: stretch; aspect-ratio: 1440 / 900; }
+.work-art-cta { place-items: stretch; aspect-ratio: 1440 / 900; }
 .work-art.has-shot img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
 .work-card:hover .work-art img { transform: scale(1.045); }
 .work-art > span { position: absolute; right: 0; bottom: 0; display: grid; place-items: center; width: 60px; height: 60px; background: var(--red); color: var(--white); font-size: 24px; transform: translateY(100%); transition: transform .45s var(--ease); }
@@ -241,8 +242,9 @@ details > p { max-width: 72ch; margin: 0 0 26px; }
 /* Closing call to action: a red band */
 .closing-cta { position: relative; padding-block: clamp(90px, 11vw, 170px); background: var(--red); box-shadow: 0 0 0 100vmax var(--red); clip-path: inset(0 -100vmax); --text: #110c0d; --muted: rgba(17, 12, 13, .78); --dim: rgba(17, 12, 13, .55); color: var(--text); }
 .closing-cta .eyebrow::before { background: var(--ink); }
+.closing-cta .eyebrow, .book .eyebrow { color: var(--white); }
 .closing-cta h2 { max-width: 15ch; color: var(--ink); font-size: clamp(3.2rem, 10vw, 10rem); line-height: .92; letter-spacing: -.06em; }
-.closing-cta > p:not(.eyebrow) { max-width: 46ch; margin-top: 32px; color: rgba(17, 12, 13, .82); font-size: clamp(1.1rem, 1.5vw, 1.35rem); }
+.closing-cta > p:not(.eyebrow) { max-width: 46ch; margin-top: 32px; color: var(--white); font-size: clamp(1.1rem, 1.5vw, 1.35rem); }
 .closing-cta .btn { margin-top: 18px; }
 .closing-cta .btn-primary { background: var(--ink); color: var(--white); }
 .closing-cta .btn-primary:hover { background: #2a1d20; }
@@ -430,9 +432,9 @@ main:has(> .book:last-child) { padding-bottom: 0; }
 .book-grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: start; gap: clamp(36px, 5vw, 80px); }
 .book h2 { color: var(--ink); font-size: clamp(3rem, 7vw, 6.6rem); line-height: .94; letter-spacing: -.055em; }
 .book h2 span { color: var(--white); }
-.book-copy > p:not(.eyebrow) { max-width: 40ch; margin-top: 28px; color: rgba(17, 12, 13, .82); font-size: clamp(1.1rem, 1.4vw, 1.3rem); }
+.book-copy > p:not(.eyebrow) { max-width: 40ch; margin-top: 28px; color: var(--white); font-size: clamp(1.1rem, 1.4vw, 1.3rem); }
 .book-points { margin: 28px 0 0; padding: 0; list-style: none; }
-.book-points li { position: relative; margin-top: 10px; padding-left: 24px; color: var(--ink); font-weight: 600; }
+.book-points li { position: relative; margin-top: 10px; padding-left: 24px; color: var(--white); font-weight: 600; }
 .book-points li::before { content: ""; position: absolute; left: 0; top: .5em; width: 9px; height: 9px; background: var(--ink); }
 .form-card { padding: clamp(24px, 3vw, 44px); background: var(--ink); color: var(--text); box-shadow: 0 40px 100px -40px rgba(17, 12, 13, .6); --text: #f6f1f1; --muted: #b1a5a7; --dim: #948789; --line: rgba(255, 240, 240, .16); }
 .form-card .btn-primary { justify-self: stretch; }
