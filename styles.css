@@ -367,6 +367,34 @@ main > .home-hero { margin-top: 0; }
 .brand-list a:hover { color: var(--red); }
 .brand-list > :not(:last-child)::after { content: "/"; margin-left: 30px; color: #d8d2d3; }
 
+/* Film hero (dashboard page): the promo grows to full width as you scroll, with a chapter rail */
+.video-hero { padding-bottom: 0; border-bottom: 0; }
+.video-hero::after { display: none; }
+.video-hero h1 { max-width: 18ch; }
+.hero-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 24px 48px; margin-top: 28px; }
+.hero-row .lead { margin: 0; }
+.hero-row .hero-actions { margin-top: 0; }
+main > .film { margin-top: clamp(44px, 5vw, 72px); }
+.film-frame { position: relative; overflow: hidden; aspect-ratio: 16 / 9; background: var(--ink-2); border-radius: var(--r, 14px); transform: scale(var(--s, 1)); transform-origin: 50% 0; box-shadow: 0 60px 140px -60px rgba(211, 32, 58, .5); }
+.film-frame.wipe { clip-path: inset(100% 0 0 0); }
+.film-frame.wipe.go { clip-path: inset(0 0 0 0); transition: clip-path 1.3s var(--ease); }
+.film-video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.film-rail { position: relative; margin-top: 30px; transform: translateY(var(--grow, 0px)); }
+.chapters { position: relative; height: 40px; margin: 0; padding: 0; list-style: none; }
+.chapters li { position: absolute; top: 0; left: var(--at); }
+.chapters li::after { content: ""; position: absolute; left: 0; top: 30px; width: 1px; height: 10px; background: var(--line); }
+.chapters button { padding: 2px 0; border: 0; background: none; color: var(--dim); font-size: 14px; font-weight: 600; white-space: nowrap; transition: color .25s; }
+.chapters button:hover, .chapters li.on button { color: var(--text); }
+.track { position: relative; height: 1px; background: var(--line); }
+.track b { position: absolute; left: 0; top: 0; width: 100%; height: 1px; background: var(--red-hot); transform: scaleX(var(--p, 0)); transform-origin: left; }
+.track i { position: absolute; top: -5px; left: calc(var(--p, 0) * 100%); width: 11px; height: 11px; margin-left: -5px; background: var(--red); }
+.film-toggle { position: absolute; right: 0; top: -8px; display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 14px; border: 1.5px solid var(--line); border-radius: 999px; background: var(--ink); color: var(--text); font-size: 14px; font-weight: 600; }
+.film-toggle::before { content: ""; width: 9px; height: 10px; border-left: 3px solid currentColor; border-right: 3px solid currentColor; box-sizing: border-box; }
+.film-toggle[aria-pressed="true"]::before { width: 0; height: 0; border-style: solid; border-width: 5px 0 5px 9px; border-color: transparent transparent transparent currentColor; }
+.film-toggle:hover { border-color: var(--text); }
+.film-note { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; margin: 26px 0 0; color: var(--dim); font-size: 14px; transform: translateY(var(--grow, 0px)); }
+.film-note .read-link { margin-top: 0; font-size: 14px; }
+
 /* Motion. Content is visible by default, including without JavaScript. */
 .motion .rv { opacity: 0; transform: translateY(36px); transition: opacity .9s var(--ease) var(--d, 0ms), transform 1.1s var(--ease) var(--d, 0ms); }
 .motion .rv.in { opacity: 1; transform: none; }
@@ -393,6 +421,7 @@ main > .home-hero { margin-top: 0; }
   .footer-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 900px) {
+  .hero-row { grid-template-columns: minmax(0, 1fr); }
   .site-header .container { min-height: 76px; gap: 16px; }
   .brand { font-size: 21px; }
   .header-cta { display: none !important; }
@@ -419,6 +448,12 @@ main > .home-hero { margin-top: 0; }
 .site-nav .nav-cta { color: var(--red-hot); }
 @media (max-width: 640px) {
   body { font-size: 16px; }
+  .film-frame { aspect-ratio: 9 / 16; max-height: 82svh; margin-inline: auto; }
+  .chapters { height: auto; margin-bottom: 14px; padding-right: 104px; }
+  .chapters li { position: static; display: none; }
+  .chapters li.on { display: block; }
+  .chapters li::after { display: none; }
+  .film-toggle { top: -6px; }
   .headline { font-size: clamp(44px, 15vw, 80px); }
   .grid-3, .case-grid, .systems-grid.three, .grid-4, .process-grid, .kpi-grid, .form-row { grid-template-columns: minmax(0, 1fr); }
   .footer-cols { grid-template-columns: minmax(0, 1fr); }

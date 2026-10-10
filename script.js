@@ -101,6 +101,80 @@
     window.setTimeout(go, 1200);
   }
 
+  // The dashboard film: grows to full width as it scrolls in, with a chapter rail and a pause button.
+  const film = document.querySelector('.film');
+  if (film) {
+    const frame = film.querySelector('.film-frame');
+    const video = film.querySelector('video');
+    const rail = film.querySelector('.film-rail');
+    const note = film.querySelector('.film-note');
+    const toggle = film.querySelector('.film-toggle');
+    const chapters = [...film.querySelectorAll('.chapters li')];
+    const small = window.matchMedia('(max-width: 640px)');
+    if (small.matches) video.poster = 'assets/video/dashboard-promo-poster-9x16.jpg';
+    let userPaused = !canMove, visible = true;
+    const setToggle = () => {
+      toggle.setAttribute('aria-pressed', String(video.paused));
+      toggle.textContent = video.paused ? 'Play' : 'Pause';
+    };
+    const play = () => { const p = video.play(); if (p && p.catch) p.catch(() => setToggle()); };
+    if (!canMove) { video.removeAttribute('autoplay'); video.pause(); }
+    video.addEventListener('play', setToggle);
+    video.addEventListener('pause', setToggle);
+    toggle.addEventListener('click', () => {
+      if (video.paused) { userPaused = false; play(); } else { userPaused = true; video.pause(); }
+    });
+    chapters.forEach((li) => li.querySelector('button').addEventListener('click', (event) => {
+      video.currentTime = Number(event.currentTarget.dataset.t);
+      userPaused = false;
+      play();
+    }));
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([entry]) => {
+        visible = entry.isIntersecting;
+        if (!visible) video.pause();
+        else if (!userPaused) play();
+      }, { threshold: 0.15 }).observe(frame);
+    }
+    // Progress marker and current chapter
+    const tick = () => {
+      const d = video.duration || 37;
+      film.style.setProperty('--p', String(Math.min(1, video.currentTime / d)));
+      let on = 0;
+      chapters.forEach((li, i) => { if (video.currentTime >= Number(li.querySelector('button').dataset.t)) on = i; });
+      chapters.forEach((li, i) => li.classList.toggle('on', i === on));
+      window.requestAnimationFrame(tick);
+    };
+    window.requestAnimationFrame(tick);
+    if (canMove) {
+      // Wipe in, like the headlines
+      frame.classList.add('wipe');
+      window.requestAnimationFrame(() => window.requestAnimationFrame(() => frame.classList.add('go')));
+      // Grow from a framed screen to full width as its middle reaches the middle of the screen
+      let queued = false;
+      const grow = () => {
+        queued = false;
+        const h = frame.offsetHeight, w = frame.offsetWidth;
+        const top = film.getBoundingClientRect().top;
+        const vh = window.innerHeight;
+        const p = Math.max(0, Math.min(1, 1 - (top + h / 2 - vh / 2) / (vh * 0.55)));
+        const eased = 1 - Math.pow(1 - p, 3);
+        const start = 0.94, full = small.matches ? 1 : document.documentElement.clientWidth / w;
+        const s = start + (full - start) * eased;
+        frame.style.setProperty('--s', s.toFixed(4));
+        frame.style.setProperty('--r', `${(14 * (1 - eased)).toFixed(1)}px`);
+        const shift = `${((s - 1) * h).toFixed(1)}px`;
+        rail.style.setProperty('--grow', shift);
+        note.style.setProperty('--grow', shift);
+      };
+      const ask = () => { if (!queued) { queued = true; window.requestAnimationFrame(grow); } };
+      window.addEventListener('scroll', ask, { passive: true });
+      window.addEventListener('resize', ask);
+      grow();
+    }
+    setToggle();
+  }
+
   if (canMove && 'IntersectionObserver' in window) {
     // Reveal on scroll. Content stays visible if this never runs.
     const targets = document.querySelectorAll('.page-hero > *, .section-head, .section-heading-row > :not(.section-head), .card, .work-card, .system-card, .review, .split > *, .closing-cta > *, .service-row, .statement > *, .quote-big, .quote-small, .brand-list, .post-image, main > section > details');
