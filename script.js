@@ -49,7 +49,21 @@
   if (form) {
     const status = form.querySelector('[data-form-status]');
     const button = form.querySelector('[type="submit"]');
+    const idleLabel = button.textContent;
     let sending = false;
+    // Note where an enquiry came from (ad tags and click ids), first visit wins within the session
+    const tracked = typeof form.querySelectorAll === 'function' ? form.querySelectorAll('[data-track]') : [];
+    if (tracked.length) {
+      const read = (key) => { try { return window.sessionStorage.getItem('toa-' + key); } catch { return null; } };
+      const keep = (key, value) => { try { window.sessionStorage.setItem('toa-' + key, value); } catch { /* storage blocked */ } };
+      const params = new URLSearchParams(window.location.search);
+      tracked.forEach((input) => {
+        const key = input.name;
+        let value = key === 'landing_page' ? window.location.pathname : key === 'referrer' ? document.referrer : params.get(key);
+        if (value) { if (!read(key)) keep(key, value); } else value = read(key) || '';
+        input.value = read(key) || value;
+      });
+    }
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
       if (sending || !form.reportValidity()) return;
@@ -75,6 +89,7 @@
         // A 200 response alone does not mean FormSubmit accepted the enquiry.
         if (!response.ok || ![true, 'true'].includes(result.success)) throw new Error('Enquiry not accepted');
         form.reset();
+        if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead', { form_name: form.dataset.formName || 'contact' });
         status.className = 'form-status ok';
         status.textContent = 'Thanks, your enquiry has been sent. We’ll get back to you within one business day.';
       } catch {
@@ -84,7 +99,7 @@
         window.clearTimeout(timeout);
         sending = false;
         button.disabled = false;
-        button.textContent = 'Send enquiry';
+        button.textContent = idleLabel;
         form.removeAttribute('aria-busy');
       }
     });
@@ -176,9 +191,28 @@
     setToggle();
   }
 
+  // Landing page: a booking bar on phones once the hero has gone, hidden again at the form
+  const sticky = document.querySelector('.sticky-cta');
+  const hero = document.querySelector('.lp-hero');
+  const book = document.querySelector('#book');
+  if (sticky && hero && book && 'IntersectionObserver' in window) {
+    let heroSeen = true, bookSeen = false;
+    const update = () => sticky.classList.toggle('show', !heroSeen && !bookSeen);
+    new IntersectionObserver(([entry]) => { heroSeen = entry.isIntersecting; update(); }).observe(hero);
+    new IntersectionObserver(([entry]) => { bookSeen = entry.isIntersecting; update(); }, { threshold: 0.05 }).observe(book);
+  }
+  // Small signals for ads: someone heads for the booking form or opens the live demo
+  if (document.addEventListener) {
+    document.addEventListener('click', (event) => {
+      const link = event.target.closest && event.target.closest('a[href="#book"], a[href="/demo"]');
+      if (!link || typeof window.gtag !== 'function') return;
+      window.gtag('event', link.getAttribute('href') === '/demo' ? 'demo_click' : 'book_click', { page_path: window.location.pathname });
+    });
+  }
+
   if (canMove && 'IntersectionObserver' in window) {
     // Reveal on scroll. Content stays visible if this never runs.
-    const targets = document.querySelectorAll('.page-hero > *, .section-head, .section-heading-row > :not(.section-head), .card, .work-card, .system-card, .review, .split > *, .closing-cta > *, .service-row, .statement > *, .quote-big, .quote-small, .brand-list, .post-image, main > section > details');
+    const targets = document.querySelectorAll('.page-hero > *, .section-head, .section-heading-row > :not(.section-head), .card, .work-card, .system-card, .review, .split > *, .closing-cta > *, .service-row, .statement > *, .quote-big, .quote-small, .brand-list, .post-image, main > section > details, .feature, .tool-chips, .book-copy, .form-card');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
