@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RZKD9WTJYR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-RZKD9WTJYR');
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=5" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <title>Getting Started | That Other Agency</title>
+    <meta name="description" content="Welcome aboard. Set up your Direct Debit, give us access to your tools, and see what happens next." />
+    <!-- Client onboarding page: sent by link after a client signs, kept out of search, the nav and the sitemap -->
+    <link rel="canonical" href="https://www.thatotheragency.co.uk/start" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="That Other Agency" />
+    <meta property="og:title" content="Welcome aboard | That Other Agency" />
+    <meta property="og:description" content="Set up your Direct Debit, give us access to your tools, and see what happens next." />
+    <meta property="og:url" content="https://www.thatotheragency.co.uk/start" />
+    <meta property="og:image" content="https://www.thatotheragency.co.uk/assets/og.png?v=20261010" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#110c0d" />
+    <link rel="preload" href="/assets/fonts/host-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="styles.css?v=20261011-thread" />
+  </head>
+  <body class="lp">
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="/" aria-label="That Other Agency, home">that other agency<i>.</i></a>
+        <nav class="lp-nav" aria-label="On this page">
+          <a href="#pay">1. Direct Debit</a>
+          <a href="#access">2. Access</a>
+          <a href="#next">3. What happens next</a>
+        </nav>
+        <a class="btn btn-primary header-cta" href="#pay">Set up Direct Debit</a>
+      </div>
+    </header>
+
+    <main id="content">
+      <section class="page-hero reveal">
+        <p class="eyebrow">Welcome aboard</p>
+        <h1>Three steps, then <em>we start building.</em></h1>
+        <p class="lead">Thanks for choosing us. This page gets everything ready so we can get going. It takes about ten minutes, and you only do it once.</p>
+      </section>
+
+      <section class="band-paper" id="pay">
+        <div class="section-head">
+          <p class="eyebrow">Step 1</p>
+          <h2>Set up your <em>Direct Debit.</em></h2>
+        </div>
+        <div class="grid-2">
+          <article class="card">
+            <h3>Two minutes on a secure form</h3>
+            <p>We take payments by Direct Debit through GoCardless. You fill in your bank details on their secure form, never on our site, and we never see your full account number.</p>
+            <p>The amounts are the ones in your proposal: the setup fee once, then your monthly fee.</p>
+            <div class="card-actions">
+              <a class="btn btn-primary" id="dd-link" href="mailto:hello@thatotheragency.co.uk" target="_blank" rel="noopener">Set up Direct Debit <span aria-hidden="true">↗︎</span></a>
+            </div>
+            <p id="dd-none" style="display: none">Your Direct Debit link is in the email we sent with your proposal. Can't find it? Email hello@thatotheragency.co.uk and we'll send it again.</p>
+            <script>
+              (function () {
+                // Clients are sent /start?plan=<name>. Each name opens that plan's GoCardless sign up form,
+                // which shows the amount; this page shows none. Plans are set up in the GoCardless dashboard.
+                var plans = {
+                  standard: 'https://pay.gocardless.com/BRT01M4PG54K19GXQM5TJ28JTMJZR',
+                  plus: 'https://pay.gocardless.com/BRT01M4PG8B3G6XBVQV4YS4E8NSBN',
+                  core: 'https://pay.gocardless.com/BRT01M4DN8ZFP2SWCGVAZJBB0BTVS'
+                };
+                var name = (new URLSearchParams(window.location.search).get('plan') || '').toLowerCase();
+                if (plans[name]) {
+                  document.getElementById('dd-link').href = plans[name];
+                } else {
+                  document.getElementById('dd-link').style.display = 'none';
+                  document.getElementById('dd-none').style.display = '';
+                }
+              })();
+            </script>
+          </article>
+          <article class="card">
+            <h3>What to expect</h3>
+            <ul>
+              <li>GoCardless emails you before every payment, so nothing is ever a surprise.</li>
+              <li>In the UK, every payment is covered by the Direct Debit Guarantee.</li>
+              <li>Outside the UK? GoCardless covers Direct Debit in several other countries. If yours isn't one of them, email us and we'll arrange another way to pay.</li>
+              <li>Setting it up means you agree to our <a href="/terms" style="text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: 3px">terms</a>.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="access">
+        <div class="section-head">
+          <p class="eyebrow">Step 2</p>
+          <h2>Give us access to <em>the tools in your proposal.</em></h2>
+          <p class="lead">We do all the setup. All we need is a way in. Everything the dashboard connects to is read only, and private to your team.</p>
+        </div>
+        <div class="grid-2">
+          <article class="card">
+            <p class="client-chip">Shopify</p>
+            <h3>Add us as staff</h3>
+            <p>In Shopify, go to Settings, then Users, and add hello@thatotheragency.co.uk as a staff member with permission to manage and develop apps. The dashboard uses a private app that only reads your data.</p>
+          </article>
+          <article class="card">
+            <p class="client-chip">Meta</p>
+            <h3>Add us to your business</h3>
+            <p>In Meta Business Settings, add hello@thatotheragency.co.uk as a person with full control, so we can set up the read only connection inside your business. You can lower it to partial access once your dashboard is live.</p>
+          </article>
+          <article class="card">
+            <p class="client-chip">Google Ads</p>
+            <h3>Add one read only user</h3>
+            <p>We'll email you a dashboard address. In Google Ads, go to Admin, then Access and security, and add it as a user with Read only access.</p>
+          </article>
+          <article class="card">
+            <p class="client-chip">Klaviyo</p>
+            <h3>Add us as a user</h3>
+            <p>Add hello@thatotheragency.co.uk as a user with the Manager role, so we can create a read only key for the dashboard.</p>
+          </article>
+        </div>
+        <p class="lead">Using Recharge, TikTok or something else? We'll email you the steps for those. If anything looks different on your screen, send us a screenshot and we'll guide you through it.</p>
+      </section>
+
+      <section class="band-paper" id="next">
+        <div class="section-head">
+          <p class="eyebrow">Step 3</p>
+          <h2>What happens <em>next.</em></h2>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <span class="step-number">01</span>
+            <h3>We build it</h3>
+            <p>As soon as access comes through, we connect your tools and build your dashboard around the numbers we agreed.</p>
+          </article>
+          <article class="card">
+            <span class="step-number">02</span>
+            <h3>We check every figure</h3>
+            <p>Each number is checked against its source before you rely on it. You get your private link and password, usually within a week of the last access arriving.</p>
+          </article>
+          <article class="card">
+            <span class="step-number">03</span>
+            <h3>We keep it running</h3>
+            <p>Your monthly fee covers hosting, keeping every connection working when the platforms change, and fixing anything that breaks. New panels are quoted first, and only built once you say yes.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="closing-cta"><p class="eyebrow">Stuck on a step?</p><h2>Ask us <span>anything.</span></h2><p>Email hello@thatotheragency.co.uk and a real person will reply, usually the same day.</p><a class="btn btn-primary" href="mailto:hello@thatotheragency.co.uk">Email us <span aria-hidden="true">↗︎</span></a></section>
+    </main>
+
+    <footer class="lp-footer">
+      <p class="footer-giant" aria-hidden="true">that other agency<i>.</i></p>
+      <div class="footer-legal">
+        <p>© <span id="year">2026</span> That Other Agency Ltd. Registered in England and Wales, company number 16799053.</p>
+        <p><a href="/">thatotheragency.co.uk</a> · <a href="mailto:hello@thatotheragency.co.uk">hello@thatotheragency.co.uk</a> · <a href="/terms">Terms</a> · <a href="/privacy">Privacy</a></p>
+      </div>
+    </footer>
+
+    <script src="script.js?v=20261011-thread" defer></script>
+  </body>
+</html>
