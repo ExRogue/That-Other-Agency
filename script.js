@@ -116,6 +116,160 @@
     window.setTimeout(go, 1200);
   }
 
+  // The red thread (homepage): a line down the left margin that draws as you scroll, ticks off
+  // each section label as it passes and lands as the full stop of the footer logo.
+  const homeHero = document.querySelector('.home-hero');
+  const stop = document.querySelector('.footer-giant i');
+  const main = document.querySelector('main');
+  if (canMove && homeHero && stop && main && window.CSS && CSS.supports('clip-path', 'inset(0 0 1px 0)')) {
+    const wide = window.matchMedia('(min-width: 720px)');
+    const thread = document.createElement('div');
+    thread.className = 'thread';
+    thread.setAttribute('aria-hidden', 'true');
+    const part = (name) => thread.appendChild(Object.assign(document.createElement('span'), { className: name }));
+    const origin = part('thread-o');
+    const line = part('thread-v');
+    const base = part('thread-h');
+    const head = part('thread-head');
+    // A zero size mark on the baseline, just before the full stop, to measure where it sits.
+    const probe = Object.assign(document.createElement('span'), { style: 'display:inline-block;width:0;height:0' });
+    stop.prepend(probe);
+    const pen = document.createElement('canvas').getContext('2d');
+    const weight = 1.5;
+    const half = weight / 2;
+    // Layout positions ignore transforms, so the scroll reveals don't throw the measurements off.
+    const at = (el) => { let x = 0; let y = 0; for (let n = el; n; n = n.offsetParent) { x += n.offsetLeft; y += n.offsetTop; } return { x, y }; };
+    let geo = null;
+    let shown = 0;
+    let wanted = 0;
+    let frame = 0;
+    let last = 0;
+
+    const measure = () => {
+      const x = Math.round(at(main).x + (parseFloat(getComputedStyle(main).paddingLeft) || 0) / 2);
+      const rule = homeHero.querySelector('.rule');
+      const top = at(rule);
+      const y0 = Math.round(top.y);
+      const mark = at(probe);
+      const font = getComputedStyle(stop);
+      pen.font = `${font.fontWeight} ${font.fontSize} ${font.fontFamily}`;
+      const m = pen.measureText('.');
+      const dot = { x: mark.x - m.actualBoundingBoxLeft, y: mark.y - m.actualBoundingBoxAscent, w: m.actualBoundingBoxLeft + m.actualBoundingBoxRight, h: m.actualBoundingBoxAscent + m.actualBoundingBoxDescent };
+      const y1 = Math.round(mark.y) - half;
+      const reds = [...main.querySelectorAll(':scope > .marquee, :scope > .closing-cta, :scope > .band-red')].map((el) => { const p = at(el); return [p.y, p.y + el.offsetHeight]; });
+      const stations = [...main.querySelectorAll('.eyebrow')].map((el) => { const p = at(el); return { x: p.x, y: Math.round(p.y + el.offsetHeight / 2) }; }).filter((s) => s.y > y0 + 40 && s.y < y1);
+      const vh = window.innerHeight;
+      const maxS = Math.max(0, document.documentElement.scrollHeight - vh);
+      const when = (y) => Math.min(Math.max(y - vh * .45, 0), maxS);
+      // Scroll position to length of thread: it meets each label as the label nears the middle of the
+      // screen and rests there briefly, then turns along the logo's baseline once the logo is in view.
+      const pts = [[0, 0]];
+      stations.forEach((s) => { const w = when(s.y); pts.push([w - 50, s.y - y0], [w + 50, s.y - y0]); });
+      const land = Math.min(Math.max(mark.y - vh * .96, 0), maxS - 1);
+      pts.push([land, y1 - y0]);
+      return { x, y0, y1, dot, reds, stations, pts, land, v: y1 - y0, h: Math.max(0, Math.round(dot.x) - x), g: Math.max(dot.w, 1), ruleX: Math.round(top.x) };
+    };
+
+    const red = (y) => geo.reds.some(([a, b]) => y >= a && y <= b);
+
+    const place = () => {
+      const { x, y0, y1, h, ruleX } = geo;
+      origin.style.cssText = `left:${x - half}px;top:${y0 - half}px;width:${Math.max(0, ruleX - x + half)}px;height:${weight}px`;
+      const stops = geo.reds.flatMap(([a, b]) => (b < y0 || a > y1) ? [] : [`var(--red) ${Math.max(a - y0, 0)}px`, `var(--ink) ${Math.max(a - y0, 0)}px`, `var(--ink) ${b - y0}px`, `var(--red) ${b - y0}px`]);
+      line.style.cssText = `left:${x - half}px;top:${y0 - half}px;width:${weight}px;height:${y1 - y0 + weight}px;background:${stops.length ? `linear-gradient(var(--red) 0, ${stops.join(', ')}, var(--red) 100%)` : 'var(--red)'}`;
+      base.style.cssText = `left:${x - half}px;top:${y1 - half}px;width:${h + half}px;height:${weight}px`;
+      thread.querySelectorAll('.thread-b').forEach((b) => b.remove());
+      geo.ticks = geo.stations.map((s) => {
+        const tick = document.createElement('span');
+        tick.className = `thread-b${red(s.y) ? ' on-red' : ''}`;
+        tick.style.cssText = `left:${x - half}px;top:${s.y - half}px;width:${Math.max(0, s.x - x + half)}px;height:${weight}px`;
+        thread.insertBefore(tick, head);
+        return { el: tick, d: s.y - y0 };
+      });
+    };
+
+    const target = (s) => {
+      if (s >= geo.land) return geo.v + geo.h + geo.g;
+      const p = geo.pts;
+      for (let i = 1; i < p.length; i += 1) {
+        if (s <= p[i][0]) {
+          const [s0, d0] = p[i - 1];
+          const [s1, d1] = p[i];
+          return s1 > s0 ? d0 + (d1 - d0) * (s - s0) / (s1 - s0) : d1;
+        }
+      }
+      return geo.v;
+    };
+
+    const draw = () => {
+      const { x, y0, y1, v, h, g, dot } = geo;
+      const d = shown;
+      line.style.clipPath = `inset(0 0 ${Math.max(0, v + half - Math.min(d, v))}px 0)`;
+      base.style.clipPath = `inset(0 ${h - Math.min(Math.max(d - v, 0), h)}px 0 0)`;
+      let cx = x;
+      let cy = y0 + d;
+      let w = 10;
+      let ht = 10;
+      if (d > v + h) {
+        // The last stretch: the square grows into the full stop.
+        const t = Math.min((d - v - h) / g, 1);
+        cx = dot.x + (dot.w / 2) * t;
+        cy = y1 + (dot.y + dot.h / 2 - y1) * t;
+        w = 10 + (dot.w - 10) * t;
+        ht = 10 + (dot.h - 10) * t;
+      } else if (d > v) {
+        cx = x + (d - v);
+        cy = y1;
+      }
+      head.classList.toggle('on-red', d <= v && red(cy));
+      head.style.transform = `translate(${cx - w / 2}px, ${cy - ht / 2}px) scale(${w / 10}, ${ht / 10})`;
+      geo.ticks.forEach((t) => t.el.classList.toggle('lit', d >= t.d - 1));
+    };
+
+    const tick = (now) => {
+      frame = 0;
+      const dt = last ? Math.min(now - last, 64) : 16.7;
+      last = now;
+      shown += (wanted - shown) * (1 - Math.pow(.84, dt / 16.7));
+      if (Math.abs(wanted - shown) < .4) shown = wanted;
+      draw();
+      if (shown !== wanted) frame = window.requestAnimationFrame(tick);
+      else last = 0;
+    };
+    const follow = () => {
+      if (!geo) return;
+      wanted = target(window.scrollY);
+      if (!frame) frame = window.requestAnimationFrame(tick);
+    };
+
+    let queued = false;
+    const build = () => {
+      queued = false;
+      if (!wide.matches) {
+        thread.remove();
+        root.classList.remove('has-thread');
+        geo = null;
+        return;
+      }
+      if (!thread.isConnected) {
+        root.classList.add('has-thread');
+        document.body.append(thread);
+        window.requestAnimationFrame(() => thread.classList.add('on'));
+      }
+      geo = measure();
+      place();
+      draw();
+      follow();
+    };
+    const rebuild = () => { if (!queued) { queued = true; window.requestAnimationFrame(build); } };
+    (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(build);
+    window.addEventListener('scroll', follow, { passive: true });
+    window.addEventListener('resize', rebuild);
+    window.addEventListener('load', rebuild);
+    wide.addEventListener('change', rebuild);
+    if ('ResizeObserver' in window) new ResizeObserver(rebuild).observe(document.body);
+  }
+
   // The dashboard film: settles into place as it scrolls in, with a chapter rail and a pause button.
   const film = document.querySelector('.film');
   if (film) {
