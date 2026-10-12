@@ -381,6 +381,287 @@
     });
   }
 
+  // Ads landing page hero: the tool names cycle, since the dashboard reads far more than three tools.
+  // Each word leaves upwards through its mask and the next rises in. Still under reduced motion.
+  const cyclers = document.querySelectorAll('[data-cycle]');
+  if (canMove && cyclers.length) {
+    let turn = 0, onScreen = true;
+    const heroCycle = cyclers[0].closest('section');
+    if (heroCycle && 'IntersectionObserver' in window) new IntersectionObserver(([entry]) => { onScreen = entry.isIntersecting; }).observe(heroCycle);
+    const swap = () => {
+      if (!onScreen || document.hidden) return;
+      turn++;
+      cyclers.forEach((el, k) => {
+        const words = el.dataset.cycle.split('|');
+        window.setTimeout(() => {
+          el.style.transition = 'transform .42s cubic-bezier(.7, 0, .84, 0)';
+          el.style.transform = 'translateY(-112%)';
+          window.setTimeout(() => {
+            el.textContent = words[turn % words.length];
+            el.style.transition = 'none';
+            el.style.transform = 'translateY(112%)';
+            void el.offsetWidth;
+            el.style.transition = 'transform .7s var(--ease)';
+            el.style.transform = '';
+          }, 430);
+        }, k * 150);
+      });
+    };
+    window.setTimeout(() => window.setInterval(swap, 2600), 3400);
+  }
+
+  // Live dashboard panels (landing page features and the dashboard page): working miniatures of the demo
+  // dashboard, built over the screenshots they replace, with the demo brand's made up numbers. They play while
+  // on screen; without motion they rest on their final state, and without JavaScript the screenshots stay.
+  const liveFigures = document.querySelectorAll('[data-live]');
+  if (liveFigures.length) {
+    const make = (html) => { const t = document.createElement('template'); t.innerHTML = html.trim(); return t.content.firstElementChild; };
+    const rand = (seed) => { let s = (seed * 16807) % 2147483647 || 1; return () => { s = (s * 16807) % 2147483647; return s / 2147483647; }; };
+    const tween = (ms, paint) => {
+      const start = performance.now();
+      const frame = (now) => {
+        const t = Math.min(1, (now - start) / ms);
+        paint(1 - Math.pow(1 - t, 3));
+        if (t < 1) window.requestAnimationFrame(frame);
+      };
+      window.requestAnimationFrame(frame);
+    };
+    const gbp = (v, dp = 0) => `£${v.toLocaleString('en-GB', { minimumFractionDigits: dp, maximumFractionDigits: dp })}`;
+    const legend = (items) => items.map(([name, colour, line]) => `<span><i class="${line ? 'ln' : ''}" style="--c:${colour}"></i>${name}</span>`).join('');
+    const dates = (n, every) => Array.from({ length: n }, (_, i) => `<span>${i % every === 0 ? `${i + 1} Oct` : ''}</span>`).join('');
+    // Keeps a floating label inside its chart, centred on x where it can be.
+    const place = (box, chart, x) => {
+      const w = box.offsetWidth, cw = chart.clientWidth;
+      box.style.setProperty('--cx', `${Math.max(0, Math.min(cw - w, x * cw - w / 2))}px`);
+    };
+
+    // 01: the headline numbers, cycling month to date, 7 days and today
+    const KPIS = [
+      ['Net sales', (v) => (v >= 10000 ? `£${(v / 1000).toFixed(1)}K` : gbp(Math.round(v)))],
+      ['Orders', (v) => Math.round(v).toLocaleString('en-GB')],
+      ['Average order value', (v) => gbp(v, 2)],
+      ['Conversion rate', (v) => `${v.toFixed(2)}%`],
+      ['Sessions', (v) => Math.round(v).toLocaleString('en-GB')],
+      ['MER', (v) => `${v.toFixed(2)}x`],
+      ['Returning customers', (v) => `${v.toFixed(1)}%`],
+      ['Subscription share', (v) => `${v.toFixed(1)}%`],
+    ];
+    const PERIODS = [
+      { pill: 2, range: '1 to 10 Oct 2026, against 1 to 10 Sep', v: [15900, 259, 61.45, 2.94, 8796, 2.21, 28.6, 8.1], d: [26.4, 18.3, 6.9, 3.0, 14.8, 20.0, 7.9, -1.4] },
+      { pill: 1, range: '4 to 10 Oct, against the 7 days before', v: [11240, 183, 61.42, 2.98, 6140, 2.26, 29.4, 8.3], d: [12.1, 9.6, 2.3, 4.2, 5.2, 8.7, 3.1, 0.6] },
+      { pill: 0, range: 'Today to 2pm, against yesterday to 2pm', v: [1742, 28, 62.21, 3.12, 897, 2.34, 31.0, 7.9], d: [18.0, 12.0, 5.4, 6.8, 4.9, 11.4, 2.0, -2.5] },
+    ];
+    const spark = (seed, trend) => {
+      const r = rand(seed);
+      let y = 11;
+      const pts = Array.from({ length: 12 }, (_, i) => {
+        y = Math.max(3, Math.min(19, y + (r() - 0.5) * 6 - Math.sign(trend) * 0.6));
+        return `${((i * 64) / 11).toFixed(1)},${y.toFixed(1)}`;
+      });
+      return `M${pts.join(' L')}`;
+    };
+    const kpis = () => {
+      const node = make(`<div class="lv lv-kpis"><div class="lv-bar"><span class="lv-title">Cross Street Coffee</span><span class="lv-pills"><i></i><span>Today</span><span>7 days</span><span>Month to date</span></span></div><p class="lv-note lv-range"></p><div class="lv-tiles">${KPIS.map(([label], i) => `<div class="lv-tile" style="--i:${i}"><div class="lv-tile-top"><span class="lv-label">${label}</span><svg class="lv-spark" viewBox="0 0 64 22" aria-hidden="true"><path/></svg></div><b class="lv-value"></b><span class="lv-delta"></span></div>`).join('')}</div></div>`);
+      const pills = [...node.querySelectorAll('.lv-pills span')];
+      const mark = node.querySelector('.lv-pills i');
+      const tiles = [...node.querySelectorAll('.lv-tile')];
+      let shown = KPIS.map(() => 0), at = 0, timer = 0, started = false;
+      const show = (p, animate) => {
+        const period = PERIODS[p];
+        pills.forEach((pill, i) => pill.classList.toggle('on', i === period.pill));
+        mark.style.setProperty('--x', `${pills[period.pill].offsetLeft}px`);
+        mark.style.setProperty('--w', `${pills[period.pill].offsetWidth}px`);
+        node.querySelector('.lv-range').textContent = period.range;
+        tiles.forEach((tile, i) => {
+          const d = period.d[i], delta = tile.querySelector('.lv-delta'), svg = tile.querySelector('svg');
+          delta.className = `lv-delta${d < 0 ? ' down' : ''}`;
+          delta.innerHTML = `${d < 0 ? '▼' : '▲'} ${Math.abs(d).toFixed(1)}%<small>vs last period</small>`;
+          svg.querySelector('path').setAttribute('d', spark(p * 10 + i + 1, d));
+          svg.classList.remove('lv-draw');
+          if (animate) { void svg.getBoundingClientRect(); svg.classList.add('lv-draw'); }
+        });
+        const from = shown, to = period.v;
+        const paint = (k) => tiles.forEach((tile, i) => { tile.querySelector('.lv-value').textContent = KPIS[i][1](from[i] + (to[i] - from[i]) * k); });
+        if (animate) tween(800, paint); else paint(1);
+        shown = to.slice();
+      };
+      const next = () => { at = (at + 1) % PERIODS.length; show(at, true); timer = window.setTimeout(next, 3600); };
+      return {
+        node,
+        rest: () => show(0, false),
+        play: () => {
+          if (!started) { started = true; node.classList.add('lv-play'); show(0, true); }
+          window.clearTimeout(timer);
+          timer = window.setTimeout(next, 3600);
+        },
+        pause: () => window.clearTimeout(timer),
+      };
+    };
+
+    // 02: sessions by channel, with each change marked and its result shown in turn
+    const DAYS = 14;
+    const SESSIONS = Array.from({ length: DAYS }, (_, i) => {
+      const r = rand(i + 101), quiz = i >= 4 && i <= 8;
+      return {
+        parts: [420 * (quiz ? 1.45 : 1) * (0.92 + r() * 0.16), 180 * (0.9 + r() * 0.2), 210 * (0.9 + r() * 0.2), (i === 2 || i === 11 ? 210 : 70) * (0.85 + r() * 0.3)],
+        conv: quiz ? 1.55 + r() * 0.25 : i === 9 ? 2.35 : 2.8 + r() * 0.3,
+      };
+    });
+    const CHANGES = [
+      { at: 2, until: 4, icon: '▲', date: '3 Oct', title: 'Checkout upsell: Cold Brew on bag orders', text: 'Average order value up about 6%, checkout completion steady. Kept.' },
+      { at: 4, until: 9, icon: '■', date: '5 Oct', title: 'Roast finder quiz as the Meta landing page', text: 'Sessions up 45%, but paid social conversion nearly halved.' },
+      { at: 9, until: 14, icon: '★', date: '10 Oct', title: 'Quiz pulled, ads back to Midnight Oil', text: 'Conversion recovered within two days.' },
+    ];
+    const bars = (rows, colours) => {
+      const max = Math.max(...rows.map((d) => d.parts.reduce((s, v) => s + v, 0)));
+      return rows.map((d, i) => `<div class="lv-col" style="--h:${((d.parts.reduce((s, v) => s + v, 0) / max) * 100).toFixed(1)}%;--i:${i}">${d.parts.map((v, k) => `<b style="--v:${Math.round(v)};background:${colours[k]}"></b>`).join('')}</div>`).join('');
+    };
+    const line = (values, lo, hi, cls = '') => `<polyline class="${cls}" points="${values.map((v, i) => `${(((i + 0.5) / values.length) * 100).toFixed(2)},${(96 - ((v - lo) / (hi - lo)) * 76).toFixed(2)}`).join(' ')}"/>`;
+    const changes = () => {
+      const node = make(`<div class="lv lv-changes"><div class="lv-bar"><span class="lv-title">Sessions by channel and conversion rate</span><span class="lv-legend">${legend([['Paid social', 'var(--lv-1)'], ['Paid search', 'var(--lv-2)'], ['Organic', 'var(--lv-3)'], ['Email', 'var(--lv-4)']])}</span></div><div class="lv-chart"><div class="lv-shade"></div><div class="lv-bars" style="--n:${DAYS}">${bars(SESSIONS, ['var(--lv-1)', 'var(--lv-2)', 'var(--lv-3)', 'var(--lv-4)'])}</div>${CHANGES.map((c, k) => `<span class="lv-mark" style="--x:${(((c.at + 0.5) / DAYS) * 100).toFixed(2)}%;--k:${k}"><i>${c.icon}</i></span>`).join('')}<div class="lv-callout"><b></b><span></span></div></div><div class="lv-line"><span class="lv-note">Conversion rate</span><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">${line(SESSIONS.map((d) => d.conv), 1, 3.5)}</svg></div><div class="lv-dates" style="--n:${DAYS}">${dates(DAYS, 3)}</div></div>`);
+      const chart = node.querySelector('.lv-chart'), callout = node.querySelector('.lv-callout'), shade = node.querySelector('.lv-shade');
+      const marks = [...node.querySelectorAll('.lv-mark')];
+      let at = 1, timer = 0, started = false;
+      const focus = (k) => {
+        const c = CHANGES[k];
+        marks.forEach((m, j) => m.classList.toggle('on', j === k));
+        shade.style.left = `${(c.at / DAYS) * 100}%`;
+        shade.style.width = `${((c.until - c.at) / DAYS) * 100}%`;
+        callout.querySelector('b').textContent = `${c.icon} ${c.date} · ${c.title}`;
+        callout.querySelector('span').textContent = c.text;
+        place(callout, chart, (c.at + 0.5) / DAYS);
+        node.classList.add('lv-focus');
+      };
+      const next = () => { at = (at + 1) % CHANGES.length; focus(at); timer = window.setTimeout(next, 4200); };
+      return {
+        node,
+        rest: () => focus(1),
+        play: () => {
+          window.clearTimeout(timer);
+          if (!started) { started = true; node.classList.add('lv-play'); timer = window.setTimeout(() => { focus(at); timer = window.setTimeout(next, 4200); }, 1700); return; }
+          timer = window.setTimeout(next, 2400);
+        },
+        pause: () => window.clearTimeout(timer),
+      };
+    };
+
+    // 03: ad spend by platform, with a cursor sweeping the days
+    const SPEND = Array.from({ length: 10 }, (_, i) => {
+      const r = rand(i + 301);
+      return { parts: [430 * (0.88 + r() * 0.24), 150 * (0.85 + r() * 0.3), 140 * (0.9 + r() * 0.2)], mer: 2.05 + r() * 0.35, roas: 1.48 + r() * 0.25 };
+    });
+    const STATS = [
+      ['Ad spend', 7204, (v) => gbp(Math.round(v)), 'prev £6,838'],
+      ['MER, blended', 2.21, (v) => `${v.toFixed(2)}x`, 'prev 1.84x'],
+      ['Cost per new customer', 38.94, (v) => gbp(v, 2), 'prev £42.47'],
+      ['Platform ROAS', 1.64, (v) => `${v.toFixed(2)}x`, 'prev 1.32x'],
+    ];
+    const ads = () => {
+      const node = make(`<div class="lv lv-ads"><div class="lv-bar"><span class="lv-title">Spend, MER, cost per new customer and ROAS</span><span class="lv-legend">${legend([['Meta', 'var(--lv-1)'], ['TikTok', 'var(--lv-2)'], ['Google', 'var(--lv-3)'], ['MER', '#1d1a1b', true], ['ROAS', 'var(--lv-4)', true]])}</span></div><div class="lv-stats">${STATS.map(([label, , , prev], i) => `<div style="--i:${i}"><span class="lv-label">${label}</span><b class="lv-value"></b><span class="lv-note">${prev}</span></div>`).join('')}</div><div class="lv-chart"><div class="lv-bars" style="--n:10">${bars(SPEND, ['var(--lv-1)', 'var(--lv-2)', 'var(--lv-3)'])}</div>${['▲', '■', '★'].map((icon, k) => `<span class="lv-mark" style="--x:${(((k * 3 + 0.5) / 10) * 100).toFixed(2)}%;--k:${k}"><i>${icon}</i></span>`).join('')}<span class="lv-cross"></span><div class="lv-tip"></div></div><div class="lv-line"><span class="lv-note">Efficiency, 7 day trailing</span><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">${line(SPEND.map((d) => d.mer), 0, 3)}${line(SPEND.map((d) => d.roas), 0, 3, 'alt')}</svg></div><div class="lv-dates" style="--n:10">${dates(10, 3)}</div></div>`);
+      const values = [...node.querySelectorAll('.lv-stats .lv-value')];
+      const chart = node.querySelector('.lv-chart'), cross = node.querySelector('.lv-cross'), tip = node.querySelector('.lv-tip');
+      let day = 0, timer = 0, started = false;
+      const count = (animate) => {
+        const paint = (k) => values.forEach((el, i) => { el.textContent = STATS[i][2](STATS[i][1] * k); });
+        if (animate) tween(1100, paint); else paint(1);
+      };
+      const sweep = () => {
+        const d = SPEND[day], x = (day + 0.5) / 10;
+        cross.style.setProperty('--x', `${(x * 100).toFixed(2)}%`);
+        tip.innerHTML = `<b>${day + 1} Oct</b>${['Meta', 'TikTok', 'Google'].map((name, k) => `<div><span>${name}</span>${gbp(Math.round(d.parts[k]))}</div>`).join('')}<div><span>MER</span>${d.mer.toFixed(2)}x</div>`;
+        place(tip, chart, x);
+        node.classList.add('lv-sweep');
+        day = (day + 1) % SPEND.length;
+        timer = window.setTimeout(sweep, 1300);
+      };
+      return {
+        node,
+        rest: () => count(false),
+        play: () => {
+          window.clearTimeout(timer);
+          if (!started) { started = true; node.classList.add('lv-play'); count(true); timer = window.setTimeout(sweep, 2000); return; }
+          sweep();
+        },
+        pause: () => { window.clearTimeout(timer); node.classList.remove('lv-sweep'); },
+      };
+    };
+
+    // 04: the board, where a change moves to closed and its result is written up
+    const card = ([title, icon, date, outcome], extra = '', i = 0) => `<div class="lv-card${extra}" style="--i:${i}"><p>${title}</p><span class="lv-tag">${icon} ${date}</span>${outcome ? `<div class="lv-out-wrap"><div class="lv-out"><span>${outcome}</span></div></div>` : ''}</div>`;
+    const LANES = [
+      ['Open', '#a39b9c', [['SMS welcome flow with the roast finder link', '▲', '18 Oct'], ['Split AI referral traffic out in GA4', '■', '16 Oct']]],
+      ['In progress', 'var(--lv-1)', [['Hook test: roastery film, two opening lines', '★', '11 Oct'], ['Single serve trial packs live', '▲', '12 Oct']]],
+      ['Blocked', 'var(--lv-down)', [['Build your own duo on product pages', '■', '14 Oct']]],
+      ['Closed', 'var(--lv-up)', [['Roast finder quiz as the Meta landing page', '■', '5 Oct', 'Sessions up 45%, conversion nearly halved. Pulled after 5 days.'], ['Checkout upsell: Cold Brew on bag orders', '▲', '3 Oct', 'Average order value up about 6%. Kept.']]],
+    ];
+    const MOVER = ['Pull the quiz, ads back to the Midnight Oil page', '★', '10 Oct', 'Conversion recovered within two days.'];
+    const board = () => {
+      const node = make(`<div class="lv lv-boardp"><div class="lv-bar"><span class="lv-title">Changes board</span><span class="lv-note">Every card is a marker on the charts</span></div><div class="lv-board">${LANES.map(([name, dot, cards], k) => `<div class="lv-lane"><p class="lv-lane-h" style="--dot:${dot}">${name} <em></em></p><div class="lv-stack">${cards.map((c, i) => card(c, k === 3 ? ' done' : '', k * 2 + i)).join('')}${k === 1 ? card(MOVER, ' lv-mover') : ''}</div></div>`).join('')}</div></div>`);
+      const stacks = [...node.querySelectorAll('.lv-stack')], mover = node.querySelector('.lv-mover');
+      let closed = false, timer = 0, started = false;
+      const counts = () => node.querySelectorAll('.lv-lane').forEach((lane) => { lane.querySelector('em').textContent = lane.querySelectorAll('.lv-card').length; });
+      // Moves the card and lets every card glide from where it was (first, last, invert, play).
+      const move = (toClosed, glide) => {
+        const cards = [...node.querySelectorAll('.lv-card')];
+        const first = new Map(cards.map((c) => [c, c.getBoundingClientRect()]));
+        if (toClosed) stacks[3].prepend(mover); else stacks[1].append(mover);
+        counts();
+        if (!glide) return;
+        cards.forEach((c) => {
+          const a = first.get(c), b = c.getBoundingClientRect();
+          if (a.left === b.left && a.top === b.top) return;
+          c.style.transition = 'none';
+          c.style.transform = `translate(${a.left - b.left}px, ${a.top - b.top}px)`;
+        });
+        void node.getBoundingClientRect();
+        cards.forEach((c) => { c.style.transition = ''; c.style.transform = ''; });
+      };
+      const step = () => {
+        if (!closed) {
+          closed = true;
+          mover.classList.add('moving');
+          move(true, true);
+          timer = window.setTimeout(() => { mover.classList.remove('moving'); mover.classList.add('done'); timer = window.setTimeout(step, 4200); }, 800);
+        } else {
+          closed = false;
+          mover.style.opacity = '0';
+          timer = window.setTimeout(() => {
+            mover.classList.remove('done');
+            move(false, false);
+            mover.style.opacity = '';
+            timer = window.setTimeout(step, 1600);
+          }, 350);
+        }
+      };
+      counts();
+      return {
+        node,
+        rest: () => { closed = true; move(true, false); mover.classList.add('done'); },
+        play: () => {
+          window.clearTimeout(timer);
+          if (!started) { started = true; node.classList.add('lv-play'); }
+          timer = window.setTimeout(step, closed ? 3000 : 1400);
+        },
+        pause: () => window.clearTimeout(timer),
+      };
+    };
+
+    const builders = { kpis, changes, ads, board };
+    liveFigures.forEach((figure) => {
+      const build = builders[figure.dataset.live];
+      if (!build) return;
+      const img = figure.querySelector('img');
+      const panel = build();
+      panel.node.setAttribute('role', 'img');
+      if (img && img.alt) panel.node.setAttribute('aria-label', img.alt);
+      if (img) img.replaceWith(panel.node); else figure.prepend(panel.node);
+      figure.classList.add('has-live');
+      if (!canMove || !('IntersectionObserver' in window)) { panel.rest(); return; }
+      panel.node.classList.add('lv-anim');
+      new IntersectionObserver(([entry]) => { if (entry.isIntersecting) panel.play(); else panel.pause(); }, { threshold: 0.35 }).observe(panel.node);
+    });
+  }
+
   if (canMove && 'IntersectionObserver' in window) {
     // Reveal on scroll. Content stays visible if this never runs.
     const targets = document.querySelectorAll('.page-hero > *, .section-head, .section-heading-row > :not(.section-head), .card, .work-card, .system-card, .review, .split > *, .closing-cta > *, .service-row, .statement > *, .quote-big, .quote-small, .brand-list, .post-image, main > section > details, .feature, .tool-chips, .book-copy, .form-card');

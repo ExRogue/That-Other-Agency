@@ -32,7 +32,7 @@
     <meta name="theme-color" content="#110c0d" />
     <link rel="preload" href="/assets/fonts/host-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/video/dashboard-promo-poster.jpg" as="image" media="(min-width: 641px)" />
-    <link rel="stylesheet" href="styles.css?v=20261011-thread" />
+    <link rel="stylesheet" href="styles.css?v=20261012-live" />
     <script>if (window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) { document.documentElement.classList.add('intro'); window.setTimeout(function () { document.documentElement.classList.add('go'); }, 2500); }</script>
   </head>
   <body class="lp">
@@ -54,8 +54,8 @@
         <p class="eyebrow">Performance dashboards for Shopify brands</p>
         <h1 class="headline">
           <span class="ln" style="--i:0"><span class="mask"><span class="tx">Shopify.</span></span><span class="rule"></span></span>
-          <span class="ln" style="--i:1"><span class="mask"><span class="tx">Meta.</span></span><span class="rule"></span></span>
-          <span class="ln" style="--i:2"><span class="mask"><span class="tx">Google.</span></span><span class="rule"></span></span>
+          <span class="ln" style="--i:1"><span class="mask"><span class="tx"><span class="cy" data-cycle="Meta.|TikTok.|Pinterest.|Snapchat.">Meta.</span></span></span><span class="rule"></span></span>
+          <span class="ln" style="--i:2"><span class="mask"><span class="tx"><span class="cy" data-cycle="Google.|Klaviyo.|Amazon.|Recharge.|GA4.|Xero.">Google.</span></span></span><span class="rule"></span></span>
           <span class="ln" style="--i:0"><span class="mask"><span class="tx pay">One dashboard<span class="dot" aria-hidden="true"></span><span class="sr-only">.</span></span></span><span class="rule" style="--i:3"></span></span>
         </h1>
         <div class="hero-foot">
@@ -107,28 +107,38 @@
         </div>
         <div class="features">
           <article class="feature">
-            <figure class="shot-light"><img src="assets/lp/kpis.png" width="1600" height="239" alt="Headline numbers: net sales, orders, average order value, conversion rate, sessions, MER, returning customers and subscriptions" loading="lazy" /></figure>
+            <figure class="shot-light" data-live="kpis"><img src="assets/lp/kpis.png" width="1600" height="239" alt="Headline numbers: net sales, orders, average order value, conversion rate, sessions, MER, returning customers and subscriptions" loading="lazy" /></figure>
             <div class="feature-copy"><p class="case-meta">01 · The headline numbers</p><h3>The numbers you run the business on</h3><p>Net sales, orders, conversion, MER, returning customers and subscriptions. Today, this week or this month, always against the period before.</p></div>
           </article>
           <article class="feature">
-            <figure class="shot-light"><img src="assets/lp/sessions.png" width="1600" height="593" alt="Sessions by channel with markers for each launch, email and site change" loading="lazy" /></figure>
+            <figure class="shot-light" data-live="changes"><img src="assets/lp/sessions.png" width="1600" height="593" alt="Sessions by channel with markers for each launch, email and site change" loading="lazy" /></figure>
             <div class="feature-copy"><p class="case-meta">02 · Every change marked</p><h3>See what each change actually did</h3><p>Log a launch, an offer, an email or a new page and it appears as a marker on every chart. Before and after, without the guesswork.</p></div>
           </article>
           <article class="feature">
-            <figure class="shot-light"><img src="assets/lp/spend.png" width="1600" height="557" alt="Ad spend by platform with MER, cost per new customer and platform ROAS" loading="lazy" /></figure>
+            <figure class="shot-light" data-live="ads"><img src="assets/lp/spend.png" width="1600" height="557" alt="Ad spend by platform with MER, cost per new customer and platform ROAS" loading="lazy" /></figure>
             <div class="feature-copy"><p class="case-meta">03 · Ads, all platforms</p><h3>Spend and return, worked out one way</h3><p>Meta, Google and TikTok side by side, with MER, cost per new customer and platform ROAS calculated the same way every day.</p></div>
           </article>
           <article class="feature">
-            <figure class="shot-light"><img src="assets/lp/board.png" width="1600" height="663" alt="A board of open, in progress, blocked and closed changes, each with its result" loading="lazy" /></figure>
+            <figure class="shot-light" data-live="board"><img src="assets/lp/board.png" width="1600" height="663" alt="A board of open, in progress, blocked and closed changes, each with its result" loading="lazy" /></figure>
             <div class="feature-copy"><p class="case-meta">04 · The board</p><h3>What you did, and what happened next</h3><p>A simple board and decision log for the changes you ship. When a change closes, its result is written up beside it.</p></div>
           </article>
         </div>
-        <p class="film-note">Screens from our live demo, with a made up coffee brand and made up numbers.</p>
+        <p class="film-note">Built from our live demo, with a made up coffee brand and made up numbers.</p>
       </section>
 
       <section class="band-paper" aria-label="Tools it connects to">
-        <div class="section-head"><p class="eyebrow">Connects to the tools you already use</p><h2>Read only. <em>Private to your team.</em></h2></div>
-        <ul class="tool-chips"><li>Shopify</li><li>Meta</li><li>Google Ads</li><li>TikTok</li><li>Klaviyo</li><li>Recharge</li></ul>
+        <div class="section-head"><p class="eyebrow">Connects to the tools you already use</p><h2>Read only. <em>Private to your team.</em></h2><p class="lead">The filled ones run for clients today. The rest all let us read your data, so we can add them as part of your build. A few need the platform to approve access, or a higher plan, first. We handle that.</p></div>
+        <div class="grid-4 tool-groups">
+          <div class="card tool-group"><p class="case-meta">Store and marketplaces</p><ul class="tool-chips"><li class="on">Shopify</li><li>Amazon</li><li>TikTok Shop</li><li>Etsy</li><li>eBay</li></ul></div>
+          <div class="card tool-group"><p class="case-meta">Ads</p><ul class="tool-chips"><li class="on">Meta</li><li class="on">Google Ads</li><li class="on">TikTok</li><li>Pinterest</li><li>Snapchat</li><li>Microsoft Ads</li><li>Reddit</li></ul></div>
+          <div class="card tool-group"><p class="case-meta">Email and SMS</p><ul class="tool-chips"><li class="on">Klaviyo</li><li>Omnisend</li><li>Mailchimp</li><li>Postscript</li></ul></div>
+          <div class="card tool-group"><p class="case-meta">Subscriptions</p><ul class="tool-chips"><li class="on">Recharge</li><li>Skio</li><li>Loop Subscriptions</li></ul></div>
+          <div class="card tool-group"><p class="case-meta">Site and search</p><ul class="tool-chips"><li>Google Analytics</li><li>Search Console</li><li>Microsoft Clarity</li></ul></div>
+          <div class="card tool-group"><p class="case-meta">Reviews, support and returns</p><ul class="tool-chips"><li>Judge.me</li><li>Okendo</li><li>Yotpo</li><li>Gorgias</li><li>Loop Returns</li></ul></div>
+          <div class="card tool-group"><p class="case-meta">Money</p><ul class="tool-chips"><li>Xero</li><li>QuickBooks</li><li>FreeAgent</li><li>Stripe</li><li>PayPal</li></ul></div>
+          <div class="card tool-group"><p class="case-meta">Stock and plans</p><ul class="tool-chips"><li>ShipBob</li><li>ShipStation</li><li>Google Sheets</li></ul></div>
+        </div>
+        <p class="tool-more">Using something else? If it has a read only API or a regular export, we can usually bring it in.</p>
       </section>
 
       <section id="how">
@@ -199,6 +209,6 @@
 
     <a class="sticky-cta" href="#book" aria-hidden="true" tabindex="-1">Book a demo call <span aria-hidden="true">↓</span></a>
 
-    <script src="script.js?v=20261011-thread" defer></script>
+    <script src="script.js?v=20261012-live" defer></script>
   </body>
 </html>

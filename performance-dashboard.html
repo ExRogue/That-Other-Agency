@@ -30,7 +30,7 @@
     <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Services", "item": "https://www.thatotheragency.co.uk/services"}, {"@type": "ListItem", "position": 2, "name": "Performance dashboard", "item": "https://www.thatotheragency.co.uk/performance-dashboard"}]}</script>
     <link rel="preload" href="/assets/fonts/host-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/video/dashboard-promo-poster.jpg" as="image" media="(min-width: 641px)" />
-    <link rel="stylesheet" href="styles.css?v=20261011-thread" />
+    <link rel="stylesheet" href="styles.css?v=20261012-live" />
   </head>
   <body>
     <a class="skip-link" href="#content">Skip to content</a>
@@ -93,7 +93,7 @@
 
       <section>
         <div class="split">
-          <figure class="split-art">
+          <figure class="split-art" data-live="changes">
             <img src="assets/systems/dashboard-demo.svg" width="1200" height="760" alt="Example performance dashboard with headline numbers and a sales chart that marks each shipped change" />
             <figcaption>An example with made up numbers. Client dashboards stay private.</figcaption>
           </figure>
@@ -112,6 +112,28 @@
         </div>
       </section>
 
+      <section aria-label="Inside the dashboard">
+        <div class="section-head">
+          <p class="eyebrow">Inside the dashboard</p>
+          <h2>Not a report. <em>A working view.</em></h2>
+        </div>
+        <div class="features">
+          <article class="feature">
+            <figure class="shot-light" data-live="kpis"><img src="assets/lp/kpis.png" width="1600" height="239" alt="Headline numbers: net sales, orders, average order value, conversion rate, sessions, MER, returning customers and subscriptions" loading="lazy" /></figure>
+            <div class="feature-copy"><p class="case-meta">01 · The headline numbers</p><h3>The numbers you run the business on</h3><p>Net sales, orders, conversion, MER, returning customers and subscriptions. Today, this week or this month, always against the period before.</p></div>
+          </article>
+          <article class="feature">
+            <figure class="shot-light" data-live="ads"><img src="assets/lp/spend.png" width="1600" height="557" alt="Ad spend by platform with MER, cost per new customer and platform ROAS" loading="lazy" /></figure>
+            <div class="feature-copy"><p class="case-meta">02 · Ads, all platforms</p><h3>Spend and return, worked out one way</h3><p>Meta, Google and TikTok side by side, with MER, cost per new customer and platform ROAS calculated the same way every day.</p></div>
+          </article>
+          <article class="feature">
+            <figure class="shot-light" data-live="board"><img src="assets/lp/board.png" width="1600" height="663" alt="A board of open, in progress, blocked and closed changes, each with its result" loading="lazy" /></figure>
+            <div class="feature-copy"><p class="case-meta">03 · The board</p><h3>What you did, and what happened next</h3><p>A simple board and decision log for the changes you ship. When a change closes, its result is written up beside it.</p></div>
+          </article>
+        </div>
+        <p class="film-note">Built from our live demo, with a made up coffee brand and made up numbers. <a class="read-link" href="/demo">Try the live demo</a></p>
+      </section>
+
       <section class="band-paper" id="included">
         <div class="section-head">
           <p class="eyebrow">What’s included</p>
@@ -128,7 +150,7 @@
           </article>
           <article class="card">
             <h3>Connected to your tools</h3>
-            <p>Shopify, Meta, Google Ads, Klaviyo and Recharge. It reads your data and never changes anything.</p>
+            <p>Shopify, Meta, Google Ads, TikTok, Klaviyo and Recharge today, and many more when you need them (see below). It reads your data and never changes anything.</p>
           </article>
           <article class="card">
             <h3>Pace against your plan</h3>
@@ -143,6 +165,22 @@
             <p>Campaign results beside sales, plus subscriptions started, cancelled and where people drop off.</p>
           </article>
         </div>
+        <div class="section-head tools-head">
+          <p class="eyebrow">Connects to the tools you already use</p>
+          <h2>Read only. <em>Private to your team.</em></h2>
+          <p class="lead">The filled ones run for clients today. The rest all let us read your data, so we can add them as part of your build. A few need the platform to approve access, or a higher plan, first. We handle that.</p>
+        </div>
+        <div class="grid-4 tool-groups">
+          <div class="card tool-group"><p class="case-meta">Store and marketplaces</p><ul class="tool-chips"><li class="on">Shopify</li><li>Amazon</li><li>TikTok Shop</li><li>Etsy</li><li>eBay</li></ul></div>
+          <div class="card tool-group"><p class="case-meta">Ads</p><ul class="tool-chips"><li class="on">Meta</li><li class="on">Google Ads</li><li class="on">TikTok</li><li>Pinterest</li><li>Snapchat</li><li>Microsoft Ads</li><li>Reddit</li></ul></div>
+          <div class="card tool-group"><p class="case-meta">Email and SMS</p><ul class="tool-chips"><li class="on">Klaviyo</li><li>Omnisend</li><li>Mailchimp</li><li>Postscript</li></ul></div>
+          <div class="card tool-group"><p class="case-meta">Subscriptions</p><ul class="tool-chips"><li class="on">Recharge</li><li>Skio</li><li>Loop Subscriptions</li></ul></div>
+          <div class="card tool-group"><p class="case-meta">Site and search</p><ul class="tool-chips"><li>Google Analytics</li><li>Search Console</li><li>Microsoft Clarity</li></ul></div>
+          <div class="card tool-group"><p class="case-meta">Reviews, support and returns</p><ul class="tool-chips"><li>Judge.me</li><li>Okendo</li><li>Yotpo</li><li>Gorgias</li><li>Loop Returns</li></ul></div>
+          <div class="card tool-group"><p class="case-meta">Money</p><ul class="tool-chips"><li>Xero</li><li>QuickBooks</li><li>FreeAgent</li><li>Stripe</li><li>PayPal</li></ul></div>
+          <div class="card tool-group"><p class="case-meta">Stock and plans</p><ul class="tool-chips"><li>ShipBob</li><li>ShipStation</li><li>Google Sheets</li></ul></div>
+        </div>
+        <p class="tool-more">Using something else? If it has a read only API or a regular export, we can usually bring it in.</p>
       </section>
 
       <section>
@@ -270,6 +308,6 @@
       </div>
     </footer>
 
-    <script src="script.js?v=20261011-thread" defer></script>
+    <script src="script.js?v=20261012-live" defer></script>
   </body>
 </html>
