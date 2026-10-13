@@ -9,5 +9,17 @@
       "source": "/demo/:path*",
       "destination": "https://dashboard-demo-iota-bice.vercel.app/demo/:path*"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/plainview",
+      "destination": "/that-other-dashboard",
+      "permanent": true
+    },
+    {
+      "source": "/plainview/:path*",
+      "destination": "/that-other-dashboard/:path*",
+      "permanent": true
+    }
   ]
 }
