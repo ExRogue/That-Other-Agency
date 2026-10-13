@@ -554,14 +554,16 @@
       const r = rand(i + 301);
       return { parts: [430 * (0.88 + r() * 0.24), 150 * (0.85 + r() * 0.3), 140 * (0.9 + r() * 0.2)], mer: 2.05 + r() * 0.35, roas: 1.48 + r() * 0.25 };
     });
-    const STATS = [
+    const STATS_ALL = [
       ['Ad spend', 7204, (v) => gbp(Math.round(v)), 'prev £6,838'],
       ['MER, blended', 2.21, (v) => `${v.toFixed(2)}x`, 'prev 1.84x'],
       ['Cost per new customer', 38.94, (v) => gbp(v, 2), 'prev £42.47'],
       ['Platform ROAS', 1.64, (v) => `${v.toFixed(2)}x`, 'prev 1.32x'],
     ];
-    const ads = () => {
-      const node = make(`<div class="lv lv-ads"><div class="lv-bar"><span class="lv-title">Spend, MER, cost per new customer and ROAS</span><span class="lv-legend">${legend([['Meta', 'var(--lv-1)'], ['TikTok', 'var(--lv-2)'], ['Google', 'var(--lv-3)'], ['MER', '#1d1a1b', true], ['ROAS', 'var(--lv-4)', true]])}</span></div><div class="lv-stats">${STATS.map(([label, , , prev], i) => `<div style="--i:${i}"><span class="lv-label">${label}</span><b class="lv-value"></b><span class="lv-note">${prev}</span></div>`).join('')}</div><div class="lv-chart"><div class="lv-bars" style="--n:10">${bars(SPEND, ['var(--lv-1)', 'var(--lv-2)', 'var(--lv-3)'])}</div>${['▲', '■', '★'].map((icon, k) => `<span class="lv-mark" style="--x:${(((k * 3 + 0.5) / 10) * 100).toFixed(2)}%;--k:${k}"><i>${icon}</i></span>`).join('')}<span class="lv-cross"></span><div class="lv-tip"></div></div><div class="lv-line"><span class="lv-note">Efficiency, 7 day trailing</span><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">${line(SPEND.map((d) => d.mer), 0, 3)}${line(SPEND.map((d) => d.roas), 0, 3, 'alt')}</svg></div><div class="lv-dates" style="--n:10">${dates(10, 3)}</div></div>`);
+    const ads = (figure) => {
+      // The app's page says cost per order, which is what the app shows
+      const STATS = figure && figure.dataset.metric === 'cpo' ? STATS_ALL.map((st, i) => (i === 2 ? ['Cost per order', 14.78, (v) => gbp(v, 2), 'prev £16.20'] : st)) : STATS_ALL;
+      const node = make(`<div class="lv lv-ads"><div class="lv-bar"><span class="lv-title">Spend, MER, ${STATS[2][0].toLowerCase()} and ROAS</span><span class="lv-legend">${legend([['Meta', 'var(--lv-1)'], ['TikTok', 'var(--lv-2)'], ['Google', 'var(--lv-3)'], ['MER', '#1d1a1b', true], ['ROAS', 'var(--lv-4)', true]])}</span></div><div class="lv-stats">${STATS.map(([label, , , prev], i) => `<div style="--i:${i}"><span class="lv-label">${label}</span><b class="lv-value"></b><span class="lv-note">${prev}</span></div>`).join('')}</div><div class="lv-chart"><div class="lv-bars" style="--n:10">${bars(SPEND, ['var(--lv-1)', 'var(--lv-2)', 'var(--lv-3)'])}</div>${['▲', '■', '★'].map((icon, k) => `<span class="lv-mark" style="--x:${(((k * 3 + 0.5) / 10) * 100).toFixed(2)}%;--k:${k}"><i>${icon}</i></span>`).join('')}<span class="lv-cross"></span><div class="lv-tip"></div></div><div class="lv-line"><span class="lv-note">Efficiency, 7 day trailing</span><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">${line(SPEND.map((d) => d.mer), 0, 3)}${line(SPEND.map((d) => d.roas), 0, 3, 'alt')}</svg></div><div class="lv-dates" style="--n:10">${dates(10, 3)}</div></div>`);
       const values = [...node.querySelectorAll('.lv-stats .lv-value')];
       const chart = node.querySelector('.lv-chart'), cross = node.querySelector('.lv-cross'), tip = node.querySelector('.lv-tip');
       let day = 0, timer = 0, started = false;
@@ -650,12 +652,106 @@
       };
     };
 
-    const builders = { kpis, changes, ads, board };
+
+    // 05: every ad, with the platform filter stepping through All, Meta, TikTok and Google
+    const ADS = [
+      ['S04 H01 | Founder story | 9:16', 'Prospecting', 'Meta', ['S04', 'H01'], 2579, 190, 2.23, '19.0%'],
+      ['S06 H02 | Morning routine POV', 'Prospecting', 'TikTok', ['S06', 'H02'], 2227, 140, 1.91, '31.0%'],
+      ['S03 H04 | Unboxing UGC', 'Creators', 'Meta', ['S03', 'H04'], 1758, 95, 1.63, '21.0%'],
+      ['Performance Max | All products', 'Shopping', 'Google', [], 1641, 115, 2.13, 'n/a'],
+      ['Static | Bestseller bundle', 'Retargeting', 'Meta', [], 1407, 44, 0.94, '33.0%'],
+      ['S08 H01 | 30 day review', 'Retargeting', 'TikTok', ['S08', 'H01'], 1172, 34, 0.88, '27.0%'],
+      ['S05 H03 | Five star reviews', 'Reviews', 'Meta', ['S05', 'H03'], 938, 69, 2.23, '33.0%'],
+    ];
+    const PLATFORM = { Meta: 'var(--lv-1)', TikTok: 'var(--lv-2)', Google: 'var(--lv-3)' };
+    const FILTERS = ['All', 'Meta', 'TikTok', 'Google'];
+    const creatives = () => {
+      const top = ADS[0][4];
+      const node = make(`<div class="lv lv-creatives"><div class="lv-bar"><span class="lv-title">Creative performance</span><span class="lv-pills"><i></i>${FILTERS.map((f) => `<span>${f}</span>`).join('')}</span></div><div class="lv-table"><div class="lv-row lv-head"><span>Ad</span><span>Script</span><span>Spend</span><span>Purchases</span><span>ROAS</span><span>Thumbstop</span></div>${ADS.map(([name, set, platform, tags, spend, buys, roas, thumb], i) => `<div class="lv-row" data-p="${platform}" style="--i:${i}"><span class="lv-ad"><b><i style="background:${PLATFORM[platform]}"></i>${name}</b><small>${platform} · ${set}</small></span><span>${tags.length ? tags.map((t) => `<em class="lv-pill">${t}</em>`).join('') : '<em class="lv-none">untagged</em>'}</span><span class="lv-spend"><s style="--w:${((spend / top) * 100).toFixed(1)}%;--c:${PLATFORM[platform]}"></s>${gbp(spend)}</span><span>${buys}</span><span class="${roas < 1 ? 'lv-low' : ''}">${roas.toFixed(2)}x</span><span>${thumb}</span></div>`).join('')}</div></div>`);
+      const pills = [...node.querySelectorAll('.lv-pills span')], mark = node.querySelector('.lv-pills i');
+      const rows = [...node.querySelectorAll('.lv-row[data-p]')];
+      let at = 0, timer = 0, started = false;
+      const show = (k, animate) => {
+        pills.forEach((pill, i) => pill.classList.toggle('on', i === k));
+        mark.style.setProperty('--x', `${pills[k].offsetLeft}px`);
+        mark.style.setProperty('--w', `${pills[k].offsetWidth}px`);
+        let n = 0;
+        rows.forEach((row) => {
+          const on = k === 0 || row.dataset.p === FILTERS[k];
+          row.classList.toggle('off', !on);
+          row.classList.remove('in');
+          if (on && animate) { row.style.setProperty('--i', n++); void row.offsetWidth; row.classList.add('in'); }
+        });
+      };
+      const next = () => { at = (at + 1) % FILTERS.length; show(at, true); timer = window.setTimeout(next, 3200); };
+      return {
+        node,
+        rest: () => show(0, false),
+        play: () => {
+          window.clearTimeout(timer);
+          if (!started) { started = true; node.classList.add('lv-play'); show(0, true); }
+          timer = window.setTimeout(next, 3400);
+        },
+        pause: () => window.clearTimeout(timer),
+      };
+    };
+
+    // 06: email and SMS revenue, with each send marked and its result shown in turn
+    const MAIL_DAYS = 14;
+    const MAIL = Array.from({ length: MAIL_DAYS }, (_, i) => {
+      const r = rand(i + 501);
+      return { parts: [i === 0 ? 645 : i === 6 ? 128.76 : 0, 54 * (0.75 + r() * 0.5)] };
+    });
+    const SENDS = [
+      { at: 0, icon: '■', date: '1 Oct', title: 'SMS · Back in stock: the bestsellers', text: '4,300 recipients, 21 orders, £645.' },
+      { at: 6, icon: '■', date: '7 Oct', title: 'Email · Brewing guide newsletter', text: '6,120 recipients, 5 orders, £128.76.' },
+      { at: 9, icon: '●', date: 'Flow', title: 'Abandoned checkout', text: 'The top flow this month: 29 orders, £867.' },
+    ];
+    const MAIL_STATS = [
+      ['Attributed revenue', 1530, (v) => gbp(Math.round(v)), '18.2% of net sales'],
+      ['From campaigns', 773.76, (v) => gbp(v, 2), '2 sends in this range'],
+      ['From flows', 755.9, (v) => gbp(v, 2), 'top: Abandoned checkout'],
+      ['Attributed orders', 19, (v) => Math.round(v).toString(), '6.8% of orders'],
+    ];
+    const email = () => {
+      const node = make(`<div class="lv lv-email"><div class="lv-bar"><span class="lv-title">Email and SMS</span><span class="lv-legend">${legend([['Campaigns', 'var(--lv-1)'], ['Flows', 'var(--lv-3)']])}</span></div><div class="lv-stats">${MAIL_STATS.map(([label, , , note], i) => `<div style="--i:${i}"><span class="lv-label">${label}</span><b class="lv-value"></b><span class="lv-note">${note}</span></div>`).join('')}</div><div class="lv-chart"><div class="lv-shade"></div><div class="lv-bars" style="--n:${MAIL_DAYS}">${bars(MAIL, ['var(--lv-1)', 'var(--lv-3)'])}</div>${SENDS.map((c, k) => `<span class="lv-mark" style="--x:${(((c.at + 0.5) / MAIL_DAYS) * 100).toFixed(2)}%;--k:${k}"><i>${c.icon}</i></span>`).join('')}<div class="lv-callout"><b></b><span></span></div></div><div class="lv-dates" style="--n:${MAIL_DAYS}">${dates(MAIL_DAYS, 3)}</div></div>`);
+      const values = [...node.querySelectorAll('.lv-stats .lv-value')];
+      const chart = node.querySelector('.lv-chart'), callout = node.querySelector('.lv-callout'), shade = node.querySelector('.lv-shade');
+      const marks = [...node.querySelectorAll('.lv-mark')];
+      let at = 0, timer = 0, started = false;
+      const count = (animate) => {
+        const paint = (k) => values.forEach((el, i) => { el.textContent = MAIL_STATS[i][2](MAIL_STATS[i][1] * k); });
+        if (animate) tween(1100, paint); else paint(1);
+      };
+      const focus = (k) => {
+        const c = SENDS[k];
+        marks.forEach((m, j) => m.classList.toggle('on', j === k));
+        shade.style.left = `${(c.at / MAIL_DAYS) * 100}%`;
+        shade.style.width = `${(1 / MAIL_DAYS) * 100}%`;
+        callout.querySelector('b').textContent = `${c.icon} ${c.date} · ${c.title}`;
+        callout.querySelector('span').textContent = c.text;
+        place(callout, chart, (c.at + 0.5) / MAIL_DAYS);
+        node.classList.add('lv-focus');
+      };
+      const next = () => { at = (at + 1) % SENDS.length; focus(at); timer = window.setTimeout(next, 3800); };
+      return {
+        node,
+        rest: () => { count(false); focus(0); },
+        play: () => {
+          window.clearTimeout(timer);
+          if (!started) { started = true; node.classList.add('lv-play'); count(true); timer = window.setTimeout(() => { focus(at); timer = window.setTimeout(next, 3800); }, 1700); return; }
+          timer = window.setTimeout(next, 2400);
+        },
+        pause: () => window.clearTimeout(timer),
+      };
+    };
+
+    const builders = { kpis, changes, ads, board, creatives, email };
     liveFigures.forEach((figure) => {
       const build = builders[figure.dataset.live];
       if (!build) return;
       const img = figure.querySelector('img');
-      const panel = build();
+      const panel = build(figure);
       panel.node.setAttribute('role', 'img');
       if (img && img.alt) panel.node.setAttribute('aria-label', img.alt);
       if (img) img.replaceWith(panel.node); else figure.prepend(panel.node);

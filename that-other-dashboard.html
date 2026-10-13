@@ -30,7 +30,18 @@
     <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "That Other Dashboard", "description": "A Shopify app that puts sales, ad spend, MER, every ad and email revenue on one screen, with every change marked on the chart.", "url": "https://www.thatotheragency.co.uk/that-other-dashboard", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "image": "https://www.thatotheragency.co.uk/assets/that-other-dashboard/hero.webp", "publisher": {"@type": "Organization", "name": "That Other Agency", "url": "https://www.thatotheragency.co.uk"}}</script>
     <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.thatotheragency.co.uk/"}, {"@type": "ListItem", "position": 2, "name": "That Other Dashboard", "item": "https://www.thatotheragency.co.uk/that-other-dashboard"}]}</script>
     <link rel="preload" href="/assets/fonts/host-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="styles.css?v=20261012-live" />
+    <link rel="stylesheet" href="styles.css?v=20261014" />
+    <style>
+      /* This page only: the header wordmark turns from "agency" to "dashboard" once the intro has
+         played, and back to "agency" while hovered, since it links home. Without JavaScript it stays
+         "agency"; under reduced motion it changes without moving. */
+      .bm { position: relative; display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .22em; margin-bottom: -.22em; transition: width .8s cubic-bezier(.16, 1, .3, 1); }
+      .bm-a, .bm-d { display: inline-block; transition: transform .8s cubic-bezier(.16, 1, .3, 1), opacity .5s; }
+      .bm-d { position: absolute; left: 0; top: 0; transform: translateY(115%); opacity: 0; }
+      .brand-morph.is-dash .bm-a { transform: translateY(-115%); opacity: 0; }
+      .brand-morph.is-dash .bm-d { transform: none; opacity: 1; }
+      @media (prefers-reduced-motion: reduce) { .bm, .bm-a, .bm-d { transition: none; } }
+    </style>
     <script>if (window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) { document.documentElement.classList.add('intro'); window.setTimeout(function () { document.documentElement.classList.add('go'); }, 2500); }</script>
   </head>
   <body>
@@ -38,7 +49,7 @@
 
     <header class="site-header">
       <div class="container">
-        <a class="brand" href="/" aria-label="That Other Agency, home">that other agency<i>.</i></a>
+        <a class="brand brand-morph" href="/" aria-label="That Other Agency, home">that other <span class="bm"><span class="bm-a">agency</span><span class="bm-d">dashboard</span></span><i>.</i></a>
         <button class="menu-toggle" aria-controls="site-nav" type="button" aria-expanded="false" aria-label="Open navigation">
           <span></span>
           <span></span>
@@ -108,19 +119,19 @@
         </div>
         <div class="features">
           <article class="feature">
-            <figure class="shot-light"><img src="/assets/that-other-dashboard/spend.webp" width="1600" height="558" alt="Ad spend per day by platform for Meta, Google and TikTok, with MER, cost per order and platform ROAS" loading="lazy" /></figure>
+            <figure class="shot-light" data-live="ads" data-metric="cpo"><img src="/assets/that-other-dashboard/spend.webp" width="1600" height="558" alt="Ad spend per day by platform for Meta, Google and TikTok, with MER, cost per order and platform ROAS" loading="lazy" /></figure>
             <div class="feature-copy"><p class="case-meta">01 · Ads, all platforms</p><h3>Spend and return, worked out one way</h3><p>Meta, Google Ads and TikTok side by side, with MER, cost per order and platform ROAS calculated the same way every day.</p></div>
           </article>
           <article class="feature">
-            <figure class="shot-light"><img src="/assets/that-other-dashboard/creatives.webp" width="1600" height="551" alt="A table of every ad with spend, purchases, CPA, ROAS, click rate and thumbstop, and results grouped by script" loading="lazy" /></figure>
+            <figure class="shot-light" data-live="creatives"><img src="/assets/that-other-dashboard/creatives.webp" width="1600" height="551" alt="A table of every ad with spend, purchases, CPA, ROAS, click rate and thumbstop, and results grouped by script" loading="lazy" /></figure>
             <div class="feature-copy"><p class="case-meta">02 · Every ad</p><h3>See which ideas actually sell</h3><p>Spend, purchases, CPA, ROAS, click rate and thumbstop for every ad. Put a script and hook code in the ad name and results roll up by idea, not just by ad.</p></div>
           </article>
           <article class="feature">
-            <figure class="shot-light"><img src="/assets/that-other-dashboard/email.webp" width="1600" height="775" alt="Klaviyo campaign and flow revenue by day under Shopify sales, with each send marked, and tables of campaigns and flows" loading="lazy" /></figure>
+            <figure class="shot-light" data-live="email"><img src="/assets/that-other-dashboard/email.webp" width="1600" height="775" alt="Klaviyo campaign and flow revenue by day under Shopify sales, with each send marked, and tables of campaigns and flows" loading="lazy" /></figure>
             <div class="feature-copy"><p class="case-meta">03 · Email and SMS</p><h3>What email really brings in</h3><p>Klaviyo campaign and flow revenue beside your Shopify sales, with every send marked on the chart.</p></div>
           </article>
           <article class="feature">
-            <figure class="shot-light"><img src="/assets/that-other-dashboard/board.webp" width="1600" height="496" alt="A board of open, in progress, blocked and closed changes, each closed change showing what net sales did in the week after" loading="lazy" /></figure>
+            <figure class="shot-light" data-live="board"><img src="/assets/that-other-dashboard/board.webp" width="1600" height="496" alt="A board of open, in progress, blocked and closed changes, each closed change showing what net sales did in the week after" loading="lazy" /></figure>
             <div class="feature-copy"><p class="case-meta">04 · The board</p><h3>What you did, and what happened next</h3><p>Every change is a card. When it goes live it’s a marker on every chart, and when it closes its result sits beside it. Free on every plan.</p></div>
           </article>
         </div>
@@ -265,6 +276,31 @@
       </div>
     </footer>
 
-    <script src="script.js?v=20261013-pv" defer></script>
+    <script>
+      (function () {
+        var brand = document.querySelector('.brand-morph');
+        if (!brand) return;
+        var box = brand.querySelector('.bm'), a = brand.querySelector('.bm-a'), d = brand.querySelector('.bm-d');
+        var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        function show(dash) {
+          box.style.width = (dash ? d : a).offsetWidth + 'px';
+          brand.classList.toggle('is-dash', dash);
+        }
+        var ready = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
+        ready.then(function () {
+          show(false);
+          // After the headline's intro (about 2.5 seconds), or straight away without motion
+          window.setTimeout(function () { show(true); }, still ? 0 : 3200);
+          if (window.matchMedia && window.matchMedia('(hover: hover)').matches) {
+            brand.addEventListener('mouseenter', function () { show(false); });
+            brand.addEventListener('mouseleave', function () { show(true); });
+          }
+          brand.addEventListener('focus', function () { show(false); });
+          brand.addEventListener('blur', function () { show(true); });
+          window.addEventListener('resize', function () { show(brand.classList.contains('is-dash')); });
+        });
+      })();
+    </script>
+    <script src="script.js?v=20261014" defer></script>
   </body>
 </html>

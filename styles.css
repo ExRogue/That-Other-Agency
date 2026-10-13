@@ -545,10 +545,35 @@ main:has(> .book:last-child) { padding-bottom: 0; }
   .lv-tiles, .lv-stats, .lv-board { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .lv-pills span { padding: 4px 8px; }
 }
+/* The app page's extra panels: every ad (a table with a platform filter) and email and SMS */
+.lv-creatives .lv-pills { margin-left: auto; }
+.lv-table { margin-top: 12px; }
+.lv-row { display: grid; grid-template-columns: minmax(0, 2.6fr) minmax(0, 1fr) minmax(0, 1.5fr) minmax(0, .8fr) minmax(0, .6fr) minmax(0, .8fr); align-items: center; gap: 10px; padding: 7px 4px; border-bottom: 1px solid var(--lv-rule); font-variant-numeric: tabular-nums; }
+.lv-row > :nth-child(n+4) { text-align: right; }
+.lv-head { padding-top: 0; color: var(--lv-muted); font-size: 9.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; }
+.lv-ad { min-width: 0; }
+.lv-ad b { display: block; overflow: hidden; font-size: 11.5px; font-weight: 600; white-space: nowrap; text-overflow: ellipsis; }
+.lv-ad b i { display: inline-block; width: 7px; height: 7px; margin-right: 6px; border-radius: 50%; vertical-align: 1px; }
+.lv-ad small { display: block; margin-left: 13px; color: var(--lv-muted); font-size: 10px; }
+.lv-pill { display: inline-block; margin-right: 3px; padding: 1px 6px; border-radius: 999px; background: var(--lv-soft); box-shadow: inset 0 0 0 1px var(--lv-rule); font-size: 10px; font-style: normal; }
+.lv-none { color: var(--lv-muted); font-style: normal; }
+.lv-spend { display: flex; align-items: center; gap: 8px; }
+.lv-spend s { position: relative; flex: 1; height: 6px; overflow: hidden; border-radius: 3px; background: var(--lv-soft); }
+.lv-spend s::after { content: ""; position: absolute; inset: 0 auto 0 0; width: var(--w); border-radius: 3px; background: var(--c); transform-origin: left; transition: transform .9s var(--ease) .2s; }
+.lv-low { color: var(--lv-down); }
+.lv-row.off { display: none; }
+.lv-row.in { animation: lvUp .5s var(--ease) calc(var(--i, 0) * 55ms) backwards; }
+.lv-email .lv-bars { height: clamp(90px, 22cqi, 150px); }
+@container (max-width: 540px) {
+  .lv-row { grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.3fr) minmax(0, .7fr); }
+  .lv-row > :nth-child(2), .lv-row > :nth-child(4), .lv-row > :nth-child(6) { display: none; }
+  .lv-creatives .lv-pills { margin-left: 0; }
+}
 /* Entrances, only once script.js has started the panel */
 @keyframes lvUp { from { opacity: 0; transform: translateY(10px); } }
 @keyframes lvWipe { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
-.lv-anim:not(.lv-play) :is(.lv-tile, .lv-stats > div, .lv-card, .lv-mark) { opacity: 0; }
+.lv-anim:not(.lv-play) :is(.lv-tile, .lv-stats > div, .lv-card, .lv-mark, .lv-row) { opacity: 0; }
+.lv-anim:not(.lv-play) .lv-spend s::after { transform: scaleX(0); }
 .lv-anim.lv-play :is(.lv-tile, .lv-stats > div, .lv-card) { animation: lvUp .6s var(--ease) calc(var(--i, 0) * 60ms) backwards; }
 .lv-anim:not(.lv-play) .lv-col { transform: scaleY(0); }
 .lv-anim.lv-play .lv-col { transition: transform .9s var(--ease) calc(var(--i, 0) * 45ms); }
