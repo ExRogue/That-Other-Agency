@@ -91,7 +91,7 @@
         form.reset();
         if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead', { form_name: form.dataset.formName || 'contact' });
         status.className = 'form-status ok';
-        status.textContent = 'Thanks, your enquiry has been sent. We’ll get back to you within one business day.';
+        status.textContent = form.dataset.ok || 'Thanks, your enquiry has been sent. We’ll get back to you within one business day.';
       } catch {
         status.className = 'form-status err';
         status.textContent = 'We couldn’t confirm your enquiry was sent. Your details are still here. Please try again or email hello@thatotheragency.co.uk.';
@@ -248,6 +248,10 @@
       if (!wide.matches) {
         thread.remove();
         root.classList.remove('has-thread');
+        // Stop a frame already queued, or it would draw with no measurements
+        if (frame) window.cancelAnimationFrame(frame);
+        frame = 0;
+        last = 0;
         geo = null;
         return;
       }
