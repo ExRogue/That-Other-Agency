@@ -120,13 +120,17 @@
   // and winds back as you scroll up. It walks down the steps of the headline, then does something different in
   // each section (underlines, a ticker under the logos, a bar chart across the services, a line joining the
   // three steps, a selection box round the first project, a last underline) and lands as the full stop of the
-  // footer logo. Short branches draw out from it at set points. Off on phones and under reduced motion.
+  // footer logo. Short branches draw out from it at set points. On phones (under 720px) the same line runs a
+  // thinner spine down the narrow margin and swaps the moves that need width for ticks. Off under reduced motion.
   const homeHero = document.querySelector('.home-hero');
   const stop = document.querySelector('.footer-giant i');
   const main = document.querySelector('main');
   if (canMove && homeHero && stop && main && document.createElementNS) {
     const NS = 'http://www.w3.org/2000/svg';
     const wide = window.matchMedia('(min-width: 720px)');
+    // Phone browsers grow the window as their toolbar slides away, so the pen sits against the small viewport
+    // (it never moves) and the end of the page is worked out from the large one (where the scroll really ends).
+    const tall = Object.assign(document.createElement('div'), { style: 'position:absolute;top:0;left:0;width:0;visibility:hidden;pointer-events:none' });
     const el = (name, attrs = {}, parent) => {
       const node = document.createElementNS(NS, name);
       Object.entries(attrs).forEach(([k, v]) => node.setAttribute(k, v));
@@ -136,8 +140,9 @@
     const svg = el('svg', { class: 'thread', 'aria-hidden': 'true', width: '1', height: '1' });
     const defs = el('defs', {}, svg);
     const onRed = el('clipPath', { id: 'thread-on-red', clipPathUnits: 'userSpaceOnUse' }, defs);
-    const offRed = el('mask', { id: 'thread-off-red', maskUnits: 'userSpaceOnUse' }, defs);
-    const redLayer = el('g', { class: 'thread-red', mask: 'url(#thread-off-red)' }, svg);
+    // Both layers are cut by plain rectangles (clip paths, not masks, which phone browsers draw far more cheaply).
+    const offRed = el('clipPath', { id: 'thread-off-red', clipPathUnits: 'userSpaceOnUse' }, defs);
+    const redLayer = el('g', { class: 'thread-red', 'clip-path': 'url(#thread-off-red)' }, svg);
     const inkLayer = el('g', { class: 'thread-ink', 'clip-path': 'url(#thread-on-red)' }, svg);
     const head = el('rect', { class: 'thread-head', width: '10', height: '10' }, svg);
     // A zero size mark on the baseline, just before the full stop, to measure where it sits.
@@ -183,8 +188,14 @@
 
     const measure = () => {
       const vh = window.innerHeight;
-      const maxS = Math.max(0, document.documentElement.scrollHeight - vh);
-      const lead = vh * .55;
+      const size = (unit) => { tall.style.height = `100${unit}`; return tall.offsetHeight; };
+      document.body.append(tall);
+      const small = size('svh') || vh;
+      const large = Math.max(size('lvh') || vh, vh);
+      tall.remove();
+      const narrow = !wide.matches;
+      const maxS = Math.max(0, document.documentElement.scrollHeight - large);
+      const lead = small * .55;
       const key = (y) => y - lead;
       const m = box(main);
       const pad = parseFloat(getComputedStyle(main).paddingLeft) || 0;
@@ -205,7 +216,7 @@
       const label = (node) => {
         if (!node || cx !== M) return;
         const b = box(node);
-        const y = Math.round(b.y + b.h / 2);
+        const y = Math.round(node.classList.contains('card') ? b.y : b.y + b.h / 2);
         down(y);
         branch([[M, y], [b.x, y]], key(y) - 30, key(y) + 40);
         holds.push({ at: spine.length - 1, span: 80 });
@@ -253,11 +264,13 @@
           branch([[M, y], [reach, y]], key(y) - 120, key(y) + 160 + 60 * i);
         });
         // How we start: the thread itself runs along the tops of the three steps, through each red square.
+        // On phones the steps stack, so each one gets a tick to its square instead and the line pauses there.
         const consult = services.querySelector('.consult');
         if (consult) {
           label(consult.querySelector('.eyebrow'));
           const cards = [...consult.querySelectorAll('.card')];
-          if (cards.length) { const y = Math.round(box(cards[0]).y); down(y); across(R, .45); }
+          if (cards.length && narrow) cards.forEach(label);
+          else if (cards.length) { const y = Math.round(box(cards[0]).y); down(y); across(R, .45); }
         }
       }
 
@@ -269,6 +282,8 @@
         const top = prev ? box(prev).b : q.y - 80;
         down(Math.round((top + q.y) / 2));
         across(M, .45);
+      }
+      if (quotes && cx === M) {
         const section = quotes.parentElement;
         label(section.querySelector('.section-head .eyebrow'));
         // What clients hire us for: each row is ticked off.
@@ -361,13 +376,15 @@
     const dash = (paths, total, drawn) => paths.forEach((p) => { p.style.strokeDasharray = `${total} ${total + 2}`; p.style.strokeDashoffset = String(total - Math.max(0, Math.min(drawn, total))); });
 
     const place = () => {
-      [redLayer, inkLayer, onRed].forEach((g) => g.replaceChildren());
-      offRed.replaceChildren();
+      [redLayer, inkLayer, onRed, offRed].forEach((g) => g.replaceChildren());
       const { width, height, reds } = geo;
-      [offRed].forEach((mask) => { mask.setAttribute('x', '0'); mask.setAttribute('y', '0'); mask.setAttribute('width', width); mask.setAttribute('height', height); });
-      el('rect', { x: 0, y: 0, width, height, fill: '#fff' }, offRed);
-      reds.forEach(([a, b]) => { el('rect', { x: 0, y: a, width, height: b - a, fill: '#000' }, offRed); el('rect', { x: 0, y: a, width, height: b - a }, onRed); });
+      // The red layer shows in the gaps between the red bands, the ink layer only over them.
+      const band = (parent, a, b) => { if (b > a) el('rect', { x: -40, y: a, width: width + 80, height: b - a }, parent); };
+      let gap = -40;
+      [...reds].sort((p, q) => p[0] - q[0]).forEach(([a, b]) => { band(offRed, gap, a); band(onRed, a, b); gap = Math.max(gap, b); });
+      band(offRed, gap, height + 40);
       geo.spinePaths = pair(d(geo.spine.map((p) => [p.x, p.y])));
+      geo.spinePaths.forEach((p) => p.classList.add('spine'));
       geo.branches.forEach((b) => {
         b.len = b.pts.reduce((s, p, i) => (i ? s + Math.abs(p[0] - b.pts[i - 1][0]) + Math.abs(p[1] - b.pts[i - 1][1]) : 0), 0);
         b.paths = pair(d(b.pts));
@@ -446,16 +463,6 @@
     let queued = false;
     const build = () => {
       queued = false;
-      if (!wide.matches) {
-        svg.remove();
-        root.classList.remove('has-thread');
-        // Stop a frame already queued, or it would draw with no measurements
-        if (frame) window.cancelAnimationFrame(frame);
-        frame = 0;
-        last = 0;
-        geo = null;
-        return;
-      }
       const first = !svg.isConnected;
       if (first) { root.classList.add('has-thread'); document.body.append(svg); }
       // Measured with the drawing out of the way, then sized to the whole page.
@@ -475,7 +482,9 @@
     // The headline's own entrance plays first; then the line draws in to wherever the page is scrolled.
     window.setTimeout(() => { ready = true; follow(); }, 1250);
     window.addEventListener('scroll', follow, { passive: true });
-    window.addEventListener('resize', rebuild);
+    // A phone's toolbar sliding in or out only changes the height, which the measurements already allow for.
+    let seenWidth = window.innerWidth;
+    window.addEventListener('resize', () => { if (wide.matches || window.innerWidth !== seenWidth) { seenWidth = window.innerWidth; rebuild(); } });
     window.addEventListener('load', rebuild);
     wide.addEventListener('change', rebuild);
     if ('ResizeObserver' in window) new ResizeObserver(rebuild).observe(document.body);
