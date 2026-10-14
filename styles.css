@@ -599,16 +599,15 @@ main:has(> .book:last-child) { padding-bottom: 0; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
 @keyframes fadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: none; } }
 
-/* The red thread (homepage, built by script.js): a line down the left margin that draws as you scroll,
-   ticks off each section label and lands as the full stop of the footer logo. Off on phones and under reduced motion. */
-.thread { position: absolute; top: 0; left: 0; z-index: 3; width: 0; height: 0; pointer-events: none; }
-.thread > * { position: absolute; top: 0; left: 0; display: block; background: var(--red); }
-.thread .on-red { background: var(--ink); }
-.thread-o { transform: scaleX(0); transform-origin: right; transition: transform .7s var(--ease) 1.15s; }
-.thread-b { transform: scaleX(0); transform-origin: left; transition: transform .5s var(--ease); }
-.thread.on .thread-o, .thread-b.lit { transform: none; }
-.thread-head { width: 10px; height: 10px; opacity: 0; transform-origin: 0 0; transition: opacity .3s 1.7s; }
-.thread.on .thread-head { opacity: 1; }
+/* The red thread (homepage, built by script.js): one line drawn in step with the scroll, with a move in each
+   section, landing as the full stop of the footer logo. Turns ink over red bands. Off on phones and under reduced motion. */
+.thread { position: absolute; top: 0; left: 0; z-index: 3; overflow: visible; pointer-events: none; }
+.thread path { fill: none; stroke-width: 1.5; stroke-linecap: butt; stroke-linejoin: miter; }
+.thread-red path { stroke: var(--red); }
+.thread-ink path { stroke: var(--ink); }
+.thread-head { fill: var(--red); opacity: 0; transition: opacity .3s; }
+.thread-head.on-red { fill: var(--ink); }
+.thread.drawn .thread-head { opacity: 1; }
 .has-thread .footer-giant { position: relative; z-index: 4; }
 .has-thread .footer-giant i { color: transparent; }
 

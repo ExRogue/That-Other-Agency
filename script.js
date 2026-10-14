@@ -116,144 +116,338 @@
     window.setTimeout(go, 1200);
   }
 
-  // The red thread (homepage): a line down the left margin that draws as you scroll, ticks off
-  // each section label as it passes and lands as the full stop of the footer logo.
+  // The red thread (homepage): one line drawn in step with the scroll, so it moves forward as you scroll down
+  // and winds back as you scroll up. It walks down the steps of the headline, then does something different in
+  // each section (underlines, a ticker under the logos, a bar chart across the services, a line joining the
+  // three steps, a selection box round the first project, a last underline) and lands as the full stop of the
+  // footer logo. Short branches draw out from it at set points. Off on phones and under reduced motion.
   const homeHero = document.querySelector('.home-hero');
   const stop = document.querySelector('.footer-giant i');
   const main = document.querySelector('main');
-  if (canMove && homeHero && stop && main && window.CSS && CSS.supports('clip-path', 'inset(0 0 1px 0)')) {
+  if (canMove && homeHero && stop && main && document.createElementNS) {
+    const NS = 'http://www.w3.org/2000/svg';
     const wide = window.matchMedia('(min-width: 720px)');
-    const thread = document.createElement('div');
-    thread.className = 'thread';
-    thread.setAttribute('aria-hidden', 'true');
-    const part = (name) => thread.appendChild(Object.assign(document.createElement('span'), { className: name }));
-    const origin = part('thread-o');
-    const line = part('thread-v');
-    const base = part('thread-h');
-    const head = part('thread-head');
+    const el = (name, attrs = {}, parent) => {
+      const node = document.createElementNS(NS, name);
+      Object.entries(attrs).forEach(([k, v]) => node.setAttribute(k, v));
+      if (parent) parent.appendChild(node);
+      return node;
+    };
+    const svg = el('svg', { class: 'thread', 'aria-hidden': 'true', width: '1', height: '1' });
+    const defs = el('defs', {}, svg);
+    const onRed = el('clipPath', { id: 'thread-on-red', clipPathUnits: 'userSpaceOnUse' }, defs);
+    const offRed = el('mask', { id: 'thread-off-red', maskUnits: 'userSpaceOnUse' }, defs);
+    const redLayer = el('g', { class: 'thread-red', mask: 'url(#thread-off-red)' }, svg);
+    const inkLayer = el('g', { class: 'thread-ink', 'clip-path': 'url(#thread-on-red)' }, svg);
+    const head = el('rect', { class: 'thread-head', width: '10', height: '10' }, svg);
     // A zero size mark on the baseline, just before the full stop, to measure where it sits.
     const probe = Object.assign(document.createElement('span'), { style: 'display:inline-block;width:0;height:0' });
     stop.prepend(probe);
     const pen = document.createElement('canvas').getContext('2d');
-    const weight = 1.5;
-    const half = weight / 2;
     // Layout positions ignore transforms, so the scroll reveals don't throw the measurements off.
-    const at = (el) => { let x = 0; let y = 0; for (let n = el; n; n = n.offsetParent) { x += n.offsetLeft; y += n.offsetTop; } return { x, y }; };
+    const at = (node) => { let x = 0; let y = 0; for (let n = node; n; n = n.offsetParent) { x += n.offsetLeft; y += n.offsetTop; } return { x, y }; };
+    const box = (node) => { const p = at(node); return { x: p.x, y: p.y, w: node.offsetWidth, h: node.offsetHeight, r: p.x + node.offsetWidth, b: p.y + node.offsetHeight }; };
+    // The last line of a heading, measured against the heading itself so a reveal in progress doesn't skew it.
+    // Returns its left and right edges and where an underline sits: just below the lowest letter on that line.
+    const lastLine = (node) => {
+      const words = [];
+      const walk = document.createTreeWalker(node, NodeFilter.SHOW_TEXT);
+      for (let tn = walk.nextNode(); tn; tn = walk.nextNode()) {
+        const re = /\S+/g;
+        for (let mt = re.exec(tn.data); mt; mt = re.exec(tn.data)) {
+          const range = document.createRange();
+          range.setStart(tn, mt.index);
+          range.setEnd(tn, mt.index + mt[0].length);
+          const r = range.getBoundingClientRect();
+          if (r.width > 1) words.push({ text: mt[0], r });
+        }
+      }
+      if (!words.length) return null;
+      const bottom = Math.max(...words.map((w) => w.r.bottom));
+      const line = words.filter((w) => w.r.bottom > bottom - 4);
+      const frame = node.getBoundingClientRect();
+      const p = at(node);
+      const font = getComputedStyle(node);
+      pen.font = `${font.fontWeight} ${font.fontSize} ${font.fontFamily}`;
+      const t = pen.measureText(line.map((w) => w.text).join(' '));
+      const baseline = bottom - (t.fontBoundingBoxDescent || 0);
+      const size = parseFloat(font.fontSize) || 16;
+      return { x: p.x + Math.min(...line.map((w) => w.r.left)) - frame.left, r: p.x + Math.max(...line.map((w) => w.r.right)) - frame.left, u: p.y + baseline + Math.max(t.actualBoundingBoxDescent || 0, 0) + Math.max(6, size * .07) - frame.top };
+    };
+
     let geo = null;
-    let shown = 0;
-    let wanted = 0;
+    let seen = -1e6;
+    let ready = false;
     let frame = 0;
     let last = 0;
 
     const measure = () => {
-      const x = Math.round(at(main).x + (parseFloat(getComputedStyle(main).paddingLeft) || 0) / 2);
-      const rule = homeHero.querySelector('.rule');
-      const top = at(rule);
-      const y0 = Math.round(top.y);
+      const vh = window.innerHeight;
+      const maxS = Math.max(0, document.documentElement.scrollHeight - vh);
+      const lead = vh * .55;
+      const key = (y) => y - lead;
+      const m = box(main);
+      const pad = parseFloat(getComputedStyle(main).paddingLeft) || 0;
+      const M = Math.round(m.x + pad / 2);
+      const R = Math.round(m.r - pad / 2);
+
+      const spine = [];
+      const branches = [];
+      const holds = [];
+      let cx = 0;
+      let cy = 0;
+      const to = (x, y, budget) => { spine.push({ x, y, budget }); cx = x; cy = y; };
+      const down = (y) => { if (y > cy + .5) to(cx, y); };
+      // A horizontal run gets its own share of the scroll, centred on the moment its row meets the pen.
+      const across = (x, budget = .5) => { if (Math.abs(x - cx) > .5) to(x, cy, Math.abs(x - cx) * budget); };
+      const branch = (pts, k0, k1) => branches.push({ pts, k0, k1 });
+      // A label: the line pauses beside it and a short branch reaches its red square.
+      const label = (node) => {
+        if (!node || cx !== M) return;
+        const b = box(node);
+        const y = Math.round(b.y + b.h / 2);
+        down(y);
+        branch([[M, y], [b.x, y]], key(y) - 30, key(y) + 40);
+        holds.push({ at: spine.length - 1, span: 80 });
+      };
+
+      // The headline: across to the first red square, then down each step to the next square.
+      const rules = [...homeHero.querySelectorAll('.headline .rule')].map((r) => { const b = box(r); return { x: b.x + 4.5, y: b.y + .5 }; });
+      if (!rules.length) return null;
+      to(M, rules[0].y);
+      rules.forEach((r, i) => { if (i) down(r.y); across(r.x, 1.2); });
+      // Under "see." the square runs out to the full stop, while the thread drops and returns to the margin.
+      const last4 = rules[rules.length - 1];
+      const see = homeHero.querySelector('.headline .pay');
+      if (see) { const b = box(see); branch([[last4.x, last4.y], [b.r, last4.y]], key(last4.y) - 20, key(last4.y) + 160); }
+      const foot = homeHero.querySelector('.hero-foot');
+      down(Math.round(foot ? (last4.y + at(foot).y) / 2 : last4.y + 40));
+      across(M, .8);
+
+      // Who we are: the last line of the statement is underlined as it passes.
+      const about = document.getElementById('about');
+      if (about) {
+        label(about.querySelector('.eyebrow'));
+        const h2 = about.querySelector('h2');
+        const ln = h2 && lastLine(h2);
+        if (ln) { const y = Math.round(ln.u); down(y); branch([[M, y], [ln.r, y]], key(y) - 140, key(y) + 220); }
+      }
+
+      // The logo band: a ticker the logos ride along, drawn the full width.
+      const logos = document.querySelector('.logo-band');
+      if (logos) {
+        label(logos.querySelector('.eyebrow'));
+        const track = logos.querySelector('.logo-marquee');
+        if (track) { const b = box(track); const y = Math.round(b.b + Math.min(28, (box(logos).b - b.b) / 2)); down(y); branch([[M, y], [R, y]], key(y) - 220, key(y) + 380); }
+      }
+
+      // Services: each row's rule fills further than the last, a bar chart that ends at full width on Growth.
+      const services = document.getElementById('services');
+      if (services) {
+        label(services.querySelector('.section-head .eyebrow'));
+        const rows = [...services.querySelectorAll('.service-row')];
+        rows.forEach((row, i) => {
+          const y = Math.round(box(row).b - .5);
+          const reach = M + (R - M) * (rows.length > 1 ? .28 + (.72 * i) / (rows.length - 1) : 1);
+          down(y);
+          branch([[M, y], [reach, y]], key(y) - 120, key(y) + 160 + 60 * i);
+        });
+        // How we start: the thread itself runs along the tops of the three steps, through each red square.
+        const consult = services.querySelector('.consult');
+        if (consult) {
+          label(consult.querySelector('.eyebrow'));
+          const cards = [...consult.querySelectorAll('.card')];
+          if (cards.length) { const y = Math.round(box(cards[0]).y); down(y); across(R, .45); }
+        }
+      }
+
+      // Down the right margin through the marquee, then back across above the reviews.
+      const quotes = document.querySelector('.home-quotes');
+      if (quotes && cx === R) {
+        const q = box(quotes);
+        const prev = quotes.parentElement.previousElementSibling;
+        const top = prev ? box(prev).b : q.y - 80;
+        down(Math.round((top + q.y) / 2));
+        across(M, .45);
+        const section = quotes.parentElement;
+        label(section.querySelector('.section-head .eyebrow'));
+        // What clients hire us for: each row is ticked off.
+        section.querySelectorAll('.post-list a').forEach((row) => {
+          const y = Math.round(box(row).b - .5);
+          down(y);
+          branch([[M, y], [m.x + pad + 28, y]], key(y) - 40, key(y) + 40);
+        });
+      }
+      if (cx !== M) { down(cy + 40); across(M); }
+
+      // Selected work: a selection box closes round the first project as it scrolls past, drawn from its
+      // top left corner both ways at once.
+      const work = document.getElementById('work');
+      if (work) {
+        label(work.querySelector('.eyebrow'));
+        const art = work.querySelector('.work-art');
+        if (art) {
+          const b = box(art);
+          const o = 10;
+          const [l, t, r, btm] = [b.x - o, b.y - o, b.r + o, b.b + o];
+          down(t);
+          branch([[M, t], [l, t]], key(t) - 40, key(t));
+          branch([[l, t], [r, t], [r, btm]], key(t), key(btm) - 60);
+          branch([[l, t], [l, btm], [r, btm]], key(t), key(btm) - 60);
+        }
+      }
+
+      const thinking = document.getElementById('thinking');
+      if (thinking) label(thinking.querySelector('.eyebrow'));
+
+      // The closing band: the last line of the heading is underlined, a pair with the one under the statement.
+      const cta = document.querySelector('.closing-cta');
+      if (cta) {
+        label(cta.querySelector('.eyebrow'));
+        const h2 = cta.querySelector('h2');
+        const ln = h2 && lastLine(h2);
+        if (ln) { const y = Math.round(ln.u); down(y); branch([[M, y], [ln.r, y]], key(y) - 140, key(y) + 160); }
+      }
+
+      // The footer: along the logo's baseline, then the square grows into the full stop.
       const mark = at(probe);
       const font = getComputedStyle(stop);
       pen.font = `${font.fontWeight} ${font.fontSize} ${font.fontFamily}`;
-      const m = pen.measureText('.');
-      const dot = { x: mark.x - m.actualBoundingBoxLeft, y: mark.y - m.actualBoundingBoxAscent, w: m.actualBoundingBoxLeft + m.actualBoundingBoxRight, h: m.actualBoundingBoxAscent + m.actualBoundingBoxDescent };
-      const y1 = Math.round(mark.y) - half;
-      // Every red band in the page (marquee, closing call to action, waitlist, .band-red), found by its
-      // painted colour so a new red section is never missed.
+      const t = pen.measureText('.');
+      const dot = { x: mark.x - t.actualBoundingBoxLeft, y: mark.y - t.actualBoundingBoxAscent, w: t.actualBoundingBoxLeft + t.actualBoundingBoxRight, h: t.actualBoundingBoxAscent + t.actualBoundingBoxDescent };
+      const y1 = Math.round(mark.y) - .75;
+      down(y1);
+      across(Math.round(dot.x), .3);
+
+      // Lengths along the line, then the scroll position at which each corner is reached.
+      let len = 0;
+      spine.forEach((p, i) => { if (i) len += Math.abs(p.x - spine[i - 1].x) + Math.abs(p.y - spine[i - 1].y); p.len = len; p.k = key(p.y); });
+      spine.forEach((p, i) => {
+        if (!i || p.budget == null) return;
+        const mid = key(p.y);
+        spine[i - 1].k = Math.min(spine[i - 1].k, mid - p.budget / 2);
+        p.k = mid + p.budget / 2;
+      });
+      // Pauses beside the labels: the corner is held for a moment of scroll.
+      const hold = new Set(holds.map((h) => h.at));
+      const pts = [];
+      spine.forEach((p, i) => {
+        pts.push([p.k, p.len]);
+        if (hold.has(i)) pts.push([p.k + 80, p.len]);
+      });
+      for (let i = 1; i < pts.length; i += 1) pts[i][0] = Math.max(pts[i][0], pts[i - 1][0]);
+      const grow = Math.max(dot.w, 1);
+      pts.push([pts[pts.length - 1][0] + 140, len + grow]);
+      // The page ends before the footer logo can reach the pen, so the last stretch is squeezed into the
+      // scroll that is left: the full stop lands exactly at the bottom of the page.
+      const end = pts[pts.length - 1][0];
+      const from = Math.min(key(cta ? box(cta).y : y1 - vh), maxS - 500);
+      const squeeze = (k) => (end > maxS && k > from ? from + (k - from) * (maxS - from) / (end - from) : k);
+      pts.forEach((p) => { p[0] = squeeze(p[0]); });
+      branches.forEach((b) => { b.k0 = squeeze(b.k0); b.k1 = Math.max(squeeze(b.k1), b.k0 + 1); });
+
+      // Every red band in the page, found by its painted colour so a new red section is never missed.
       const redPaint = getComputedStyle(root).getPropertyValue('--red').trim();
       const probeRed = Object.assign(document.createElement('i'), { style: `color:${redPaint}` });
       document.body.append(probeRed);
       const redRgb = getComputedStyle(probeRed).color;
       probeRed.remove();
-      const reds = [...main.children].filter((el) => getComputedStyle(el).backgroundColor === redRgb).map((el) => { const p = at(el); return [p.y, p.y + el.offsetHeight]; });
-      const stations = [...main.querySelectorAll('.eyebrow')].map((el) => { const p = at(el); return { x: p.x, y: Math.round(p.y + el.offsetHeight / 2) }; }).filter((s) => s.y > y0 + 40 && s.y < y1);
-      const vh = window.innerHeight;
-      const maxS = Math.max(0, document.documentElement.scrollHeight - vh);
-      const when = (y) => Math.min(Math.max(y - vh * .45, 0), maxS);
-      // Scroll position to length of thread: it meets each label as the label nears the middle of the
-      // screen and rests there briefly, then turns along the logo's baseline once the logo is in view.
-      const pts = [[0, 0]];
-      stations.forEach((s) => { const w = when(s.y); pts.push([w - 50, s.y - y0], [w + 50, s.y - y0]); });
-      const land = Math.min(Math.max(mark.y - vh * .96, 0), maxS - 1);
-      pts.push([land, y1 - y0]);
-      return { x, y0, y1, dot, reds, stations, pts, land, v: y1 - y0, h: Math.max(0, Math.round(dot.x) - x), g: Math.max(dot.w, 1), ruleX: Math.round(top.x) };
+      const reds = [...main.children].filter((n) => getComputedStyle(n).backgroundColor === redRgb).map((n) => { const b = box(n); return [b.y, b.b]; });
+      return { spine, pts, len, grow, branches, reds, dot, y1, start: pts[0][0] - 1, width: document.documentElement.clientWidth, height: document.documentElement.scrollHeight };
     };
 
-    const red = (y) => geo.reds.some(([a, b]) => y >= a && y <= b);
+    const d = (pts) => pts.map((p, i) => `${i ? 'L' : 'M'}${p[0]} ${p[1]}`).join('');
+    const pair = (path) => [el('path', { d: path }, redLayer), el('path', { d: path }, inkLayer)];
+    const dash = (paths, total, drawn) => paths.forEach((p) => { p.style.strokeDasharray = `${total} ${total + 2}`; p.style.strokeDashoffset = String(total - Math.max(0, Math.min(drawn, total))); });
 
     const place = () => {
-      const { x, y0, y1, h, ruleX } = geo;
-      origin.style.cssText = `left:${x - half}px;top:${y0 - half}px;width:${Math.max(0, ruleX - x + half)}px;height:${weight}px`;
-      const stops = geo.reds.flatMap(([a, b]) => (b < y0 || a > y1) ? [] : [`var(--red) ${Math.max(a - y0, 0)}px`, `var(--ink) ${Math.max(a - y0, 0)}px`, `var(--ink) ${b - y0}px`, `var(--red) ${b - y0}px`]);
-      line.style.cssText = `left:${x - half}px;top:${y0 - half}px;width:${weight}px;height:${y1 - y0 + weight}px;background:${stops.length ? `linear-gradient(var(--red) 0, ${stops.join(', ')}, var(--red) 100%)` : 'var(--red)'}`;
-      base.style.cssText = `left:${x - half}px;top:${y1 - half}px;width:${h + half}px;height:${weight}px`;
-      thread.querySelectorAll('.thread-b').forEach((b) => b.remove());
-      geo.ticks = geo.stations.map((s) => {
-        const tick = document.createElement('span');
-        tick.className = `thread-b${red(s.y) ? ' on-red' : ''}`;
-        tick.style.cssText = `left:${x - half}px;top:${s.y - half}px;width:${Math.max(0, s.x - x + half)}px;height:${weight}px`;
-        thread.insertBefore(tick, head);
-        return { el: tick, d: s.y - y0 };
+      [redLayer, inkLayer, onRed].forEach((g) => g.replaceChildren());
+      offRed.replaceChildren();
+      const { width, height, reds } = geo;
+      [offRed].forEach((mask) => { mask.setAttribute('x', '0'); mask.setAttribute('y', '0'); mask.setAttribute('width', width); mask.setAttribute('height', height); });
+      el('rect', { x: 0, y: 0, width, height, fill: '#fff' }, offRed);
+      reds.forEach(([a, b]) => { el('rect', { x: 0, y: a, width, height: b - a, fill: '#000' }, offRed); el('rect', { x: 0, y: a, width, height: b - a }, onRed); });
+      geo.spinePaths = pair(d(geo.spine.map((p) => [p.x, p.y])));
+      geo.branches.forEach((b) => {
+        b.len = b.pts.reduce((s, p, i) => (i ? s + Math.abs(p[0] - b.pts[i - 1][0]) + Math.abs(p[1] - b.pts[i - 1][1]) : 0), 0);
+        b.paths = pair(d(b.pts));
       });
     };
 
-    const target = (s) => {
-      if (s >= geo.land) return geo.v + geo.h + geo.g;
+    // Scroll position to length of line drawn.
+    const along = (s) => {
       const p = geo.pts;
+      if (s <= p[0][0]) return 0;
       for (let i = 1; i < p.length; i += 1) {
         if (s <= p[i][0]) {
-          const [s0, d0] = p[i - 1];
-          const [s1, d1] = p[i];
-          return s1 > s0 ? d0 + (d1 - d0) * (s - s0) / (s1 - s0) : d1;
+          const [s0, l0] = p[i - 1];
+          const [s1, l1] = p[i];
+          return s1 > s0 ? l0 + (l1 - l0) * (s - s0) / (s1 - s0) : l1;
         }
       }
-      return geo.v;
+      return p[p.length - 1][1];
     };
+    // The point that far along the line.
+    const point = (l) => {
+      const sp = geo.spine;
+      for (let i = 1; i < sp.length; i += 1) {
+        if (l <= sp[i].len) {
+          const a = sp[i - 1];
+          const b = sp[i];
+          const f = b.len > a.len ? (l - a.len) / (b.len - a.len) : 1;
+          return { x: a.x + (b.x - a.x) * f, y: a.y + (b.y - a.y) * f };
+        }
+      }
+      const z = sp[sp.length - 1];
+      return { x: z.x, y: z.y };
+    };
+    const isRed = (y) => geo.reds.some(([a, b]) => y >= a && y <= b);
 
     const draw = () => {
-      const { x, y0, y1, v, h, g, dot } = geo;
-      const d = shown;
-      line.style.clipPath = `inset(0 0 ${Math.max(0, v + half - Math.min(d, v))}px 0)`;
-      base.style.clipPath = `inset(0 ${h - Math.min(Math.max(d - v, 0), h)}px 0 0)`;
-      let cx = x;
-      let cy = y0 + d;
+      const s = seen;
+      const l = along(s);
+      dash(geo.spinePaths, geo.len, l);
+      geo.branches.forEach((b) => dash(b.paths, b.len, b.len * Math.max(0, Math.min(1, (s - b.k0) / (b.k1 - b.k0)))));
+      let { x, y } = point(Math.min(l, geo.len));
       let w = 10;
-      let ht = 10;
-      if (d > v + h) {
+      let h = 10;
+      if (l > geo.len) {
         // The last stretch: the square grows into the full stop.
-        const t = Math.min((d - v - h) / g, 1);
-        cx = dot.x + (dot.w / 2) * t;
-        cy = y1 + (dot.y + dot.h / 2 - y1) * t;
-        w = 10 + (dot.w - 10) * t;
-        ht = 10 + (dot.h - 10) * t;
-      } else if (d > v) {
-        cx = x + (d - v);
-        cy = y1;
+        const { dot, y1 } = geo;
+        const f = Math.min((l - geo.len) / geo.grow, 1);
+        x = dot.x + (dot.w / 2) * f;
+        y = y1 + (dot.y + dot.h / 2 - y1) * f;
+        w = 10 + (dot.w - 10) * f;
+        h = 10 + (dot.h - 10) * f;
       }
-      head.classList.toggle('on-red', d <= v && red(cy));
-      head.style.transform = `translate(${cx - w / 2}px, ${cy - ht / 2}px) scale(${w / 10}, ${ht / 10})`;
-      geo.ticks.forEach((t) => t.el.classList.toggle('lit', d >= t.d - 1));
+      head.setAttribute('x', (x - w / 2).toFixed(2));
+      head.setAttribute('y', (y - h / 2).toFixed(2));
+      head.setAttribute('width', w.toFixed(2));
+      head.setAttribute('height', h.toFixed(2));
+      head.classList.toggle('on-red', l <= geo.len && isRed(y));
+      svg.classList.toggle('drawn', l > 0);
     };
 
+    // The line follows the scroll closely, eased over a few frames so a jump of the wheel still reads as drawing.
     const tick = (now) => {
       frame = 0;
+      if (!geo) return;
       const dt = last ? Math.min(now - last, 64) : 16.7;
       last = now;
-      shown += (wanted - shown) * (1 - Math.pow(.84, dt / 16.7));
-      if (Math.abs(wanted - shown) < .4) shown = wanted;
+      const want = ready ? window.scrollY : geo.start;
+      seen += (want - seen) * (1 - Math.pow(ready && Math.abs(want - seen) < 400 ? .78 : .9, dt / 16.7));
+      if (Math.abs(want - seen) < .3) seen = want;
       draw();
-      if (shown !== wanted) frame = window.requestAnimationFrame(tick);
+      if (seen !== want) frame = window.requestAnimationFrame(tick);
       else last = 0;
     };
-    const follow = () => {
-      if (!geo) return;
-      wanted = target(window.scrollY);
-      if (!frame) frame = window.requestAnimationFrame(tick);
-    };
+    const follow = () => { if (geo && !frame) frame = window.requestAnimationFrame(tick); };
 
     let queued = false;
     const build = () => {
       queued = false;
       if (!wide.matches) {
-        thread.remove();
+        svg.remove();
         root.classList.remove('has-thread');
         // Stop a frame already queued, or it would draw with no measurements
         if (frame) window.cancelAnimationFrame(frame);
@@ -262,18 +456,24 @@
         geo = null;
         return;
       }
-      if (!thread.isConnected) {
-        root.classList.add('has-thread');
-        document.body.append(thread);
-        window.requestAnimationFrame(() => thread.classList.add('on'));
-      }
+      const first = !svg.isConnected;
+      if (first) { root.classList.add('has-thread'); document.body.append(svg); }
+      // Measured with the drawing out of the way, then sized to the whole page.
+      svg.style.display = 'none';
       geo = measure();
+      svg.style.display = '';
+      if (!geo) return;
+      svg.setAttribute('width', geo.width);
+      svg.setAttribute('height', geo.height);
       place();
+      if (first) seen = geo.start;
       draw();
       follow();
     };
     const rebuild = () => { if (!queued) { queued = true; window.requestAnimationFrame(build); } };
     (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(build);
+    // The headline's own entrance plays first; then the line draws in to wherever the page is scrolled.
+    window.setTimeout(() => { ready = true; follow(); }, 1250);
     window.addEventListener('scroll', follow, { passive: true });
     window.addEventListener('resize', rebuild);
     window.addEventListener('load', rebuild);
