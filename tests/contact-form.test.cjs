@@ -4,12 +4,13 @@ const { readFileSync } = require('node:fs');
 const vm = require('node:vm');
 const source = readFileSync(require('node:path').join(__dirname, '../script.js'), 'utf8');
 
-function setup(fetchImpl, { valid = true, honey = '' } = {}) {
+function setup(fetchImpl, { valid = true, honey = '', dataset = {} } = {}) {
   let submit, timeout, calls = 0, resets = 0;
   const status = { className: '', textContent: '' };
   const button = { disabled: false, textContent: 'Send enquiry' };
   const form = {
     action: 'https://formsubmit.co/hello@thatotheragency.co.uk',
+    dataset, // real forms always have one; the waitlist sets data-ok for its own thank you text
     querySelector: (selector) => selector === '[type="submit"]' ? button : status,
     reportValidity: () => valid,
     addEventListener: (_, handler) => { submit = handler; },
@@ -34,7 +35,13 @@ test('accepted enquiries reset the form and report success', async () => {
     });
     await s.submit();
     assert.equal(s.resets, 1); assert.equal(s.status.className, 'form-status ok'); assert.equal(s.button.disabled, false);
+    assert.match(s.status.textContent, /enquiry has been sent/);
   }
+});
+test('a form with data-ok shows its own thank you text', async () => {
+  const s = setup(async () => ({ ok: true, json: async () => ({ success: true }) }), { dataset: { ok: 'You are on the list.' } });
+  await s.submit();
+  assert.equal(s.status.className, 'form-status ok'); assert.equal(s.status.textContent, 'You are on the list.');
 });
 test('HTTP 200 rejection must not claim success or erase the enquiry', async () => {
   const s = setup(async () => ({ ok: true, json: async () => ({ success: 'false', message: 'Not activated' }) }));
