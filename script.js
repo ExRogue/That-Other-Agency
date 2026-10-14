@@ -117,11 +117,10 @@
   }
 
   // The red thread (homepage): one line drawn in step with the scroll, so it moves forward as you scroll down
-  // and winds back as you scroll up. It walks down the steps of the headline, then does something different in
-  // each section (underlines, a ticker under the logos, a bar chart across the services, a line joining the
-  // three steps, a selection box round the first project, a last underline) and lands as the full stop of the
-  // footer logo. Short branches draw out from it at set points. On phones (under 720px) the same line runs a
-  // thinner spine down the narrow margin and swaps the moves that need width for ticks. Off under reduced motion.
+  // and winds back as you scroll up. It walks down the steps of the headline, underlines the statement, fills
+  // the services out as a bar chart, closes a selection box round the first project and lands as the full stop
+  // of the footer logo. In between it runs quietly down the margin. On phones (under 720px) the spine is thinner
+  // and the statement underline is left out. Off under reduced motion.
   const homeHero = document.querySelector('.home-hero');
   const stop = document.querySelector('.footer-giant i');
   const main = document.querySelector('main');
@@ -204,7 +203,6 @@
 
       const spine = [];
       const branches = [];
-      const holds = [];
       let cx = 0;
       let cy = 0;
       const to = (x, y, budget) => { spine.push({ x, y, budget }); cx = x; cy = y; };
@@ -212,15 +210,6 @@
       // A horizontal run gets its own share of the scroll, centred on the moment its row meets the pen.
       const across = (x, budget = .5) => { if (Math.abs(x - cx) > .5) to(x, cy, Math.abs(x - cx) * budget); };
       const branch = (pts, k0, k1) => branches.push({ pts, k0, k1 });
-      // A label: the line pauses beside it and a short branch reaches its red square.
-      const label = (node) => {
-        if (!node || cx !== M) return;
-        const b = box(node);
-        const y = Math.round(node.classList.contains('card') ? b.y : b.y + b.h / 2);
-        down(y);
-        branch([[M, y], [b.x, y]], key(y) - 30, key(y) + 40);
-        holds.push({ at: spine.length - 1, span: 80 });
-      };
 
       // The headline: across to the first red square, then down each step to the next square.
       const rules = [...homeHero.querySelectorAll('.headline .rule')].map((r) => { const b = box(r); return { x: b.x + 4.5, y: b.y + .5 }; });
@@ -235,27 +224,17 @@
       down(Math.round(foot ? (last4.y + at(foot).y) / 2 : last4.y + 40));
       across(M, .8);
 
-      // Who we are: the last line of the statement is underlined as it passes.
+      // Who we are: the last line of the statement is underlined as it passes (not on phones).
       const about = document.getElementById('about');
-      if (about) {
-        label(about.querySelector('.eyebrow'));
+      if (about && !narrow) {
         const h2 = about.querySelector('h2');
         const ln = h2 && lastLine(h2);
         if (ln) { const y = Math.round(ln.u); down(y); branch([[M, y], [ln.r, y]], key(y) - 140, key(y) + 220); }
       }
 
-      // The logo band: a ticker the logos ride along, drawn the full width.
-      const logos = document.querySelector('.logo-band');
-      if (logos) {
-        label(logos.querySelector('.eyebrow'));
-        const track = logos.querySelector('.logo-marquee');
-        if (track) { const b = box(track); const y = Math.round(b.b + Math.min(28, (box(logos).b - b.b) / 2)); down(y); branch([[M, y], [R, y]], key(y) - 220, key(y) + 380); }
-      }
-
       // Services: each row's rule fills further than the last, a bar chart that ends at full width on Growth.
       const services = document.getElementById('services');
       if (services) {
-        label(services.querySelector('.section-head .eyebrow'));
         const rows = [...services.querySelectorAll('.service-row')];
         rows.forEach((row, i) => {
           const y = Math.round(box(row).b - .5);
@@ -263,66 +242,22 @@
           down(y);
           branch([[M, y], [reach, y]], key(y) - 120, key(y) + 160 + 60 * i);
         });
-        // How we start: the thread itself runs along the tops of the three steps, through each red square.
-        // On phones the steps stack, so each one gets a tick to its square instead and the line pauses there.
-        const consult = services.querySelector('.consult');
-        if (consult) {
-          label(consult.querySelector('.eyebrow'));
-          const cards = [...consult.querySelectorAll('.card')];
-          if (cards.length && narrow) cards.forEach(label);
-          else if (cards.length) { const y = Math.round(box(cards[0]).y); down(y); across(R, .45); }
-        }
       }
-
-      // Down the right margin through the marquee, then back across above the reviews.
-      const quotes = document.querySelector('.home-quotes');
-      if (quotes && cx === R) {
-        const q = box(quotes);
-        const prev = quotes.parentElement.previousElementSibling;
-        const top = prev ? box(prev).b : q.y - 80;
-        down(Math.round((top + q.y) / 2));
-        across(M, .45);
-      }
-      if (quotes && cx === M) {
-        const section = quotes.parentElement;
-        label(section.querySelector('.section-head .eyebrow'));
-        // What clients hire us for: each row is ticked off.
-        section.querySelectorAll('.post-list a').forEach((row) => {
-          const y = Math.round(box(row).b - .5);
-          down(y);
-          branch([[M, y], [m.x + pad + 28, y]], key(y) - 40, key(y) + 40);
-        });
-      }
-      if (cx !== M) { down(cy + 40); across(M); }
 
       // Selected work: a selection box closes round the first project as it scrolls past, drawn from its
       // top left corner both ways at once.
       const work = document.getElementById('work');
-      if (work) {
-        label(work.querySelector('.eyebrow'));
-        const art = work.querySelector('.work-art');
-        if (art) {
-          const b = box(art);
-          const o = 10;
-          const [l, t, r, btm] = [b.x - o, b.y - o, b.r + o, b.b + o];
-          down(t);
-          branch([[M, t], [l, t]], key(t) - 40, key(t));
-          branch([[l, t], [r, t], [r, btm]], key(t), key(btm) - 60);
-          branch([[l, t], [l, btm], [r, btm]], key(t), key(btm) - 60);
-        }
+      const art = work && work.querySelector('.work-art');
+      if (art) {
+        const b = box(art);
+        const o = 10;
+        const [l, t, r, btm] = [b.x - o, b.y - o, b.r + o, b.b + o];
+        down(t);
+        branch([[M, t], [l, t]], key(t) - 40, key(t));
+        branch([[l, t], [r, t], [r, btm]], key(t), key(btm) - 60);
+        branch([[l, t], [l, btm], [r, btm]], key(t), key(btm) - 60);
       }
-
-      const thinking = document.getElementById('thinking');
-      if (thinking) label(thinking.querySelector('.eyebrow'));
-
-      // The closing band: the last line of the heading is underlined, a pair with the one under the statement.
       const cta = document.querySelector('.closing-cta');
-      if (cta) {
-        label(cta.querySelector('.eyebrow'));
-        const h2 = cta.querySelector('h2');
-        const ln = h2 && lastLine(h2);
-        if (ln) { const y = Math.round(ln.u); down(y); branch([[M, y], [ln.r, y]], key(y) - 140, key(y) + 160); }
-      }
 
       // The footer: along the logo's baseline, then the square grows into the full stop.
       const mark = at(probe);
@@ -343,13 +278,7 @@
         spine[i - 1].k = Math.min(spine[i - 1].k, mid - p.budget / 2);
         p.k = mid + p.budget / 2;
       });
-      // Pauses beside the labels: the corner is held for a moment of scroll.
-      const hold = new Set(holds.map((h) => h.at));
-      const pts = [];
-      spine.forEach((p, i) => {
-        pts.push([p.k, p.len]);
-        if (hold.has(i)) pts.push([p.k + 80, p.len]);
-      });
+      const pts = spine.map((p) => [p.k, p.len]);
       for (let i = 1; i < pts.length; i += 1) pts[i][0] = Math.max(pts[i][0], pts[i - 1][0]);
       const grow = Math.max(dot.w, 1);
       pts.push([pts[pts.length - 1][0] + 140, len + grow]);

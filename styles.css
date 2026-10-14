@@ -599,8 +599,8 @@ main:has(> .book:last-child) { padding-bottom: 0; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
 @keyframes fadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: none; } }
 
-/* The red thread (homepage, built by script.js): one line drawn in step with the scroll, with a move in each
-   section, landing as the full stop of the footer logo. Turns ink over red bands. On phones the spine down the
+/* The red thread (homepage, built by script.js): one line drawn in step with the scroll, with a few moves on
+   the way, landing as the full stop of the footer logo. Turns ink over red bands. On phones the spine down the
    narrow margin is thinner, so it stays out of the way of the text. Off under reduced motion. */
 .thread { position: absolute; top: 0; left: 0; z-index: 3; overflow: visible; pointer-events: none; }
 .thread path { fill: none; stroke-width: 1.5; stroke-linecap: butt; stroke-linejoin: miter; }
