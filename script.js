@@ -156,7 +156,14 @@
       const m = pen.measureText('.');
       const dot = { x: mark.x - m.actualBoundingBoxLeft, y: mark.y - m.actualBoundingBoxAscent, w: m.actualBoundingBoxLeft + m.actualBoundingBoxRight, h: m.actualBoundingBoxAscent + m.actualBoundingBoxDescent };
       const y1 = Math.round(mark.y) - half;
-      const reds = [...main.querySelectorAll(':scope > .marquee, :scope > .closing-cta, :scope > .band-red')].map((el) => { const p = at(el); return [p.y, p.y + el.offsetHeight]; });
+      // Every red band in the page (marquee, closing call to action, waitlist, .band-red), found by its
+      // painted colour so a new red section is never missed.
+      const redPaint = getComputedStyle(root).getPropertyValue('--red').trim();
+      const probeRed = Object.assign(document.createElement('i'), { style: `color:${redPaint}` });
+      document.body.append(probeRed);
+      const redRgb = getComputedStyle(probeRed).color;
+      probeRed.remove();
+      const reds = [...main.children].filter((el) => getComputedStyle(el).backgroundColor === redRgb).map((el) => { const p = at(el); return [p.y, p.y + el.offsetHeight]; });
       const stations = [...main.querySelectorAll('.eyebrow')].map((el) => { const p = at(el); return { x: p.x, y: Math.round(p.y + el.offsetHeight / 2) }; }).filter((s) => s.y > y0 + 40 && s.y < y1);
       const vh = window.innerHeight;
       const maxS = Math.max(0, document.documentElement.scrollHeight - vh);
