@@ -429,7 +429,8 @@
     const toggle = film.querySelector('.film-toggle');
     const chapters = [...film.querySelectorAll('.chapters li')];
     const small = window.matchMedia('(max-width: 640px)');
-    if (small.matches) video.poster = 'assets/video/dashboard-promo-poster-9x16.jpg';
+    // Phones get the tall poster that sits beside the page's own (name-9x16.jpg)
+    if (small.matches && video.getAttribute('poster')) video.poster = video.getAttribute('poster').replace(/\.jpg$/, '-9x16.jpg');
     // Choose the cut here as well: some phone browsers ignore the media query on <source> and play the wide film,
     // which a tall frame would crop. The frame then takes the shape of whichever film actually loads.
     const sources = [...video.querySelectorAll('source')];
@@ -459,6 +460,37 @@
     toggle.addEventListener('click', () => {
       if (video.paused) { userPaused = false; play(); } else { userPaused = true; video.pause(); }
     });
+    // Sound (the dashboard page's film has a voiceover): turning it on starts the current chapter again, so
+    // the voice begins at the top of a sentence, and plays once through; at the end it goes quiet and loops again.
+    const sound = film.querySelector('.film-sound');
+    if (sound) {
+      const setSound = () => {
+        sound.setAttribute('aria-pressed', String(!video.muted));
+        sound.textContent = video.muted ? 'Sound on' : 'Sound off';
+      };
+      sound.addEventListener('click', () => {
+        if (video.muted) {
+          let from = 0;
+          chapters.forEach((li) => { const t = Number(li.querySelector('button').dataset.t); if (video.currentTime >= t) from = t; });
+          video.currentTime = from;
+          video.loop = false;
+          video.muted = false;
+          userPaused = false;
+          play();
+        } else {
+          video.muted = true;
+          video.loop = true;
+        }
+      });
+      video.addEventListener('ended', () => {
+        video.muted = true;
+        video.loop = true;
+        video.currentTime = 0;
+        if (!userPaused && canMove) play();
+      });
+      video.addEventListener('volumechange', setSound);
+      setSound();
+    }
     chapters.forEach((li) => li.querySelector('button').addEventListener('click', (event) => {
       video.currentTime = Number(event.currentTarget.dataset.t);
       userPaused = false;

@@ -414,6 +414,19 @@ main > .film { margin-top: clamp(44px, 5vw, 72px); }
 .film-toggle::before { content: ""; width: 9px; height: 10px; border-left: 3px solid currentColor; border-right: 3px solid currentColor; box-sizing: border-box; }
 .film-toggle[aria-pressed="true"]::before { width: 0; height: 0; border-style: solid; border-width: 5px 0 5px 9px; border-color: transparent transparent transparent currentColor; }
 .film-toggle:hover { border-color: var(--text); }
+.film-controls { position: absolute; right: 0; top: -8px; display: flex; gap: 8px; }
+.film-controls .film-toggle { position: static; }
+.film-sound { display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 14px; border: 1.5px solid var(--line); border-radius: 999px; background: var(--ink); color: var(--text); font-size: 14px; font-weight: 600; }
+.film-sound::before { content: ""; width: 10px; height: 10px; background: var(--red); }
+.film-sound[aria-pressed="true"]::before { background: currentColor; }
+.film-sound:hover { border-color: var(--text); }
+@media (max-width: 900px) {
+  .film-controls { position: static; justify-content: flex-end; margin-top: 14px; }
+  .film-rail:has(.film-controls) .chapters { height: auto; margin-bottom: 14px; padding-right: 0; }
+  .film-rail:has(.film-controls) .chapters li { position: static; display: none; }
+  .film-rail:has(.film-controls) .chapters li.on { display: block; }
+  .film-rail:has(.film-controls) .chapters li::after { display: none; }
+}
 .film-note { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; max-width: 1200px; margin: 26px auto 0; color: var(--dim); font-size: 14px; transform: translateY(var(--grow, 0px)); }
 .film-note .read-link { margin-top: 0; font-size: 14px; }
 
