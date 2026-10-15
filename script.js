@@ -481,6 +481,7 @@
           video.muted = false;
           userPaused = false;
           play();
+          if (typeof window.gtag === 'function') window.gtag('event', 'film_sound_on', { page_path: window.location.pathname });
         } else {
           video.muted = true;
           video.loop = true;
