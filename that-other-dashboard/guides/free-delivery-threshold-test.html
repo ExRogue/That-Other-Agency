@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RZKD9WTJYR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-RZKD9WTJYR');
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=5" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <title>Testing a Free Delivery Threshold on Shopify | That Other Agency</title>
+    <meta name="description" content="Choose a free delivery (free shipping) threshold, set it up in Shopify, and test whether it raises profit, not just order value. With a worked example in pounds." />
+    <link rel="canonical" href="https://www.thatotheragency.co.uk/that-other-dashboard/guides/free-delivery-threshold-test" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="That Other Agency" />
+    <meta property="og:title" content="Testing a Free Delivery Threshold on Shopify | That Other Agency" />
+    <meta property="og:description" content="Choose a free delivery (free shipping) threshold, set it up in Shopify, and test whether it raises profit, not just order value. With a worked example in pounds." />
+    <meta property="og:url" content="https://www.thatotheragency.co.uk/that-other-dashboard/guides/free-delivery-threshold-test" />
+    <meta property="og:image" content="https://www.thatotheragency.co.uk/assets/that-other-dashboard/og.png?v=20261013" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to test a free delivery threshold, properly.","description":"Choose a free delivery (free shipping) threshold, set it up in Shopify, and test whether it raises profit, not just order value. With a worked example in pounds.","datePublished":"2026-10-16","dateModified":"2026-10-16","author":{"@type":"Organization","name":"That Other Agency","url":"https://www.thatotheragency.co.uk/"},"publisher":{"@type":"Organization","name":"That Other Agency","url":"https://www.thatotheragency.co.uk/","logo":{"@type":"ImageObject","url":"https://www.thatotheragency.co.uk/assets/logo.svg"}},"mainEntityOfPage":"https://www.thatotheragency.co.uk/that-other-dashboard/guides/free-delivery-threshold-test","image":"https://www.thatotheragency.co.uk/assets/that-other-dashboard/og.png?v=20261013"}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.thatotheragency.co.uk/"},{"@type":"ListItem","position":2,"name":"That Other Dashboard","item":"https://www.thatotheragency.co.uk/that-other-dashboard"},{"@type":"ListItem","position":3,"name":"Guides","item":"https://www.thatotheragency.co.uk/that-other-dashboard/guides"},{"@type":"ListItem","position":4,"name":"How to test a free delivery threshold","item":"https://www.thatotheragency.co.uk/that-other-dashboard/guides/free-delivery-threshold-test"}]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a good free delivery threshold?","acceptedAnswer":{"@type":"Answer","text":"Usually a little above your current average order value, at a level one more typical product would reach. Too close to your average order and you give delivery away on orders you'd have had anyway; too far above and few people bother."}},{"@type":"Question","name":"Should I offer free delivery on everything instead?","acceptedAnswer":{"@type":"Answer","text":"It can lift conversion, but you pay the courier on every order, including small ones. Test it the same way, and price it into your products if you keep it."}},{"@type":"Question","name":"Does free delivery count in net sales?","acceptedAnswer":{"@type":"Answer","text":"No. Shopify's net sales leave out delivery charges, so free delivery doesn't lower net sales directly. The cost shows up in your courier bill and the delivery income you no longer take."}}]}</script>
+    <link rel="preload" href="/assets/fonts/host-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../../../styles.css?v=20261015a" />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="/" aria-label="That Other Agency, home">that other agency<i>.</i></a>
+        <button class="menu-toggle" aria-controls="site-nav" type="button" aria-expanded="false" aria-label="Open navigation">
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+          <a href="/services">Services</a>
+          <a href="/work">Work</a>
+          <a href="/about">About</a>
+          <a href="/blog">Blog</a>
+          <a href="/contact">Contact</a>
+          <a class="nav-cta" href="/that-other-dashboard#access">Join the waitlist</a>
+        </nav>
+        <a class="btn btn-primary header-cta" href="/that-other-dashboard#access">Join the waitlist</a>
+      </div>
+    </header>
+
+    <main id="content">
+      <section class="reveal blog-post">
+        <div class="post-layout">
+          <article>
+            <p class="eyebrow"><a href="/that-other-dashboard">That Other Dashboard</a> · <a href="/that-other-dashboard/guides">Guides</a></p>
+            <h1>How to test a free delivery threshold, <em>properly.</em></h1>
+            <p class="post-meta">Updated 16 October 2026 · 5 min read</p>
+            <p>
+              "Free delivery over £40" is one of the most common changes a Shopify store makes, and one of the
+              least often checked. It usually lifts average order value. Whether it makes you more money depends on
+              what it does to the number of orders and to your delivery costs. Here is how to test one so you know.
+            </p>
+
+            <div class="insight-box">
+              The short version: set the threshold a little above your current average order value, at a level
+              one more typical item would reach. Log the day it goes live, run it for two to four full weeks, then
+              compare average order value, orders, net sales and delivery costs with the weeks before. Keep it
+              only if profit goes up, not just sales.
+            </div>
+
+            <h2 id="why">What a threshold is for</h2>
+            <p>
+              A free delivery threshold works by giving people a reason to add one more thing. Someone with £32 in
+              their basket and free delivery at £40 will often find an £8 to £15 item rather than pay for delivery.
+              That lifts average order value. Delivery costs are also one of the most common reasons people give for
+              leaving at checkout, so a threshold can lift orders too.
+            </p>
+            <p>
+              The risks: customers below the threshold may now feel charged for delivery when they weren't before
+              (if you used to offer it free to all), some will leave rather than top up, and every order over the
+              threshold is one where you now pay the courier yourself.
+            </p>
+
+            <h2 id="pick">Pick a threshold</h2>
+            <ol>
+              <li><strong>Find your average order value.</strong> Use the last 28 days, after discounts and refunds. That Other Dashboard shows it on the free plan.</li>
+              <li><strong>Look at your prices.</strong> The threshold should be reachable by adding one typical product. If your average order is £34 and most items cost £10 to £20, somewhere around £40 to £45 is within reach. At £60 most people won't bother.</li>
+              <li><strong>Know your delivery cost.</strong> What you pay the courier per order, plus packaging. You'll need it for the maths below.</li>
+              <li><strong>Check what competitors offer.</strong> Not to copy them, but because your customers compare.</li>
+            </ol>
+
+            <h2 id="setup">Set it up in Shopify</h2>
+            <ol>
+              <li>In Shopify admin, go to <strong>Settings</strong>, then <strong>Shipping and delivery</strong>.</li>
+              <li>Open the shipping profile your products use and find the zone, such as United Kingdom.</li>
+              <li>Press <strong>Add rate</strong>, name it something clear like "Free delivery", and set the price to £0.</li>
+              <li>Add a condition <strong>based on order price</strong> with a minimum of your threshold, say £40.</li>
+              <li>Edit your paid rate and give it a maximum just under the threshold (£39.99), so customers over £40 only see the free option.</li>
+            </ol>
+            <p>
+              Then tell people. An announcement bar, a line on product pages and a note in the cart ("You're £8
+              away from free delivery") make a threshold work far harder than one buried in your delivery page.
+            </p>
+            <p>
+              You can do the same with a free shipping discount with a minimum purchase, under
+              <strong>Discounts</strong>. Either works; a delivery rate is simpler to keep track of.
+            </p>
+
+            <h2 id="run">Run the test</h2>
+            <p>
+              Shopify can't show different delivery rates to different visitors at the same time without extra
+              apps, so most stores test a threshold by comparing before and after. That works well if you're
+              careful:
+            </p>
+            <ul>
+              <li><strong>Log it the day it goes live.</strong> In That Other Dashboard, press Log a change, title it "Free delivery over £40", choose the type Offer or price, set the day it went live and note what you expect: "AOV up, orders flat or up". It marks every chart on that day, and the card shows net sales in the 7 days after against the 7 before.</li>
+              <li><strong>Run it for two to four full weeks.</strong> Average order value is noisy on small stores, and some customers need a visit or two to notice.</li>
+              <li><strong>Change nothing else.</strong> No sale, no big new campaign, no price changes during the test. If something unavoidable happens, log that too.</li>
+              <li><strong>Avoid peaks.</strong> Don't start it the week before Black Friday or Christmas, when everything changes at once.</li>
+            </ul>
+
+            <h2 id="maths">Check the maths, not just sales</h2>
+            <p>
+              One catch: Shopify's net sales leave out what customers pay for delivery. So when delivery becomes
+              free, the money you used to take for it doesn't show as a fall in net sales. You have to add it in
+              yourself. Here is a month before and after for a store with a 50% product margin, charging £3.95
+              delivery and paying the courier £3.50:
+            </p>
+            <ul>
+              <li><strong>Before:</strong> 500 orders at £36 average = £18,000 net sales. Product margin £9,000. Delivery charged on every order: £1,975 in, £1,750 out, so +£225.</li>
+              <li><strong>After:</strong> 480 orders at £43 average = £20,640 net sales. Product margin £10,320. 288 orders now go free, so delivery is charged on only 192: £758 in, £1,680 out, so −£922.</li>
+            </ul>
+            <p>
+              Net sales rose almost 15%. But product margin went up by £1,320 while delivery went from +£225 to
+              −£922, a swing of £1,147. Profit rose by about £170 a month. Still positive, but nowhere near what
+              the sales figure suggests, and with slightly thinner margins it would have lost money.
+            </p>
+            <p>So compare all of these between the weeks before and after:</p>
+            <ul>
+              <li><strong>Average order value</strong>, which should rise.</li>
+              <li><strong>Orders</strong>, which shouldn't fall much. If they drop, the threshold may be too high.</li>
+              <li><strong>Units per order</strong> (units divided by orders), which shows whether people are adding items.</li>
+              <li><strong>What sold.</strong> The products panel shows which items people added to reach the threshold. Cheaper add on items rising up the list is a good sign.</li>
+              <li><strong>Delivery cost and income</strong>, from your courier invoices and Shopify's shipping charges.</li>
+              <li><strong>Conversion rate</strong>, from Shopify's own analytics, if you have enough visits to read it.</li>
+            </ul>
+
+            <h2 id="decide">Decide and record it</h2>
+            <p>
+              If profit clearly rose, keep it. If average order value rose but profit didn't, try a slightly higher
+              threshold or check whether a cheaper courier service would make the sums work. If orders fell, try
+              lower. Each new threshold is its own test: log it as a new change.
+            </p>
+            <p>
+              When you're done, write the result in the card's Outcome and close it, so it joins the decision log.
+              Our guide to <a href="/that-other-dashboard/guides/test-a-change">testing a change</a> covers how to
+              read the result and what can fool you.
+            </p>
+
+            <h2 id="faq">Common questions</h2>
+            <details>
+              <summary>What is a good free delivery threshold?</summary>
+              <p>Usually a little above your current average order value, at a level one more typical product would reach. Too close to your average order and you give delivery away on orders you'd have had anyway; too far above and few people bother.</p>
+            </details>
+            <details>
+              <summary>Should I offer free delivery on everything instead?</summary>
+              <p>It can lift conversion, but you pay the courier on every order, including small ones. Test it the same way, and price it into your products if you keep it.</p>
+            </details>
+            <details>
+              <summary>Does free delivery count in net sales?</summary>
+              <p>No. Shopify's net sales leave out delivery charges, so free delivery doesn't lower net sales directly. The cost shows up in your courier bill and the delivery income you no longer take.</p>
+            </details>
+
+            <h2 id="related">Related guides</h2>
+            <nav class="post-list" aria-label="Related guides">
+              <a href="/that-other-dashboard/guides/test-a-change"><b>How to test a change and read its effect</b><span>5 min read</span></a>
+              <a href="/that-other-dashboard/guides/cost-per-order-vs-cac"><b>Cost per order against CAC</b><span>4 min read</span></a>
+              <a href="/that-other-dashboard/guides/what-is-mer"><b>What is MER, and what is a good MER?</b><span>5 min read</span></a>
+            </nav>
+
+            <div class="article-nav">
+              <a class="btn btn-ghost" href="/that-other-dashboard/guides">All guides</a>
+              <a class="btn btn-primary" href="/that-other-dashboard">About That Other Dashboard</a>
+            </div>
+          </article>
+
+          <aside class="toc">
+            <h2>On this page</h2>
+            <ol>
+              <li><a href="#why">What a threshold is for</a></li>
+              <li><a href="#pick">Pick a threshold</a></li>
+              <li><a href="#setup">Set it up in Shopify</a></li>
+              <li><a href="#run">Run the test</a></li>
+              <li><a href="#maths">Check the maths, not just sales</a></li>
+              <li><a href="#decide">Decide and record it</a></li>
+              <li><a href="#faq">Common questions</a></li>
+            </ol>
+          </aside>
+        </div>
+      </section>
+      <section class="closing-cta"><p class="eyebrow">That Other Dashboard</p><h2>Every number, <span>one screen.</span></h2><p>Your Shopify sales, ad spend, MER, every ad and your email revenue together, with each change you make marked on the chart. Free for your Shopify numbers.</p><a class="btn btn-primary" href="/that-other-dashboard">See the app <span aria-hidden="true">↗︎</span></a></section>
+    </main>
+
+    <footer>
+      <div class="footer-cols">
+        <div>
+          <b>That Other Agency</b>
+          <p>Websites, ad scripts, dashboards and growth for brands that sell online. London based, working UK wide.</p>
+          <a href="mailto:hello@thatotheragency.co.uk">hello@thatotheragency.co.uk</a>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <div><b>Services</b><a href="/website-design">Website design</a><a href="/shopify-website-design">Shopify websites</a><a href="/website-design-for-trades">Websites for trades</a><a href="/ad-script-system">Ad script system</a><a href="/performance-dashboard">Performance dashboard</a><a href="/services">All services</a></div>
+          <div><b>Agency</b><a href="/work">Work</a><a href="/about">About</a><a href="/blog">Blog</a><a href="https://www.linkedin.com/company/that-other-agency/" target="_blank" rel="noopener">LinkedIn</a></div>
+          <div><b>Dashboard app</b><a href="/that-other-dashboard">About the app</a><a href="/that-other-dashboard/guides">Guides</a><a href="/that-other-dashboard/privacy">Privacy policy</a><a href="/that-other-dashboard/terms">Terms</a><a href="/that-other-dashboard/data-deletion">Deleting your data</a></div>
+        </nav>
+      </div>
+      <p class="footer-giant" aria-hidden="true">that other agency<i>.</i></p>
+      <div class="footer-legal">
+        <p>© <span id="year">2026</span> That Other Agency Ltd. Registered in England and Wales, company number 16799053.</p>
+        <p>London, United Kingdom · <a href="/privacy">Privacy</a></p>
+      </div>
+    </footer>
+
+    <script src="../../../script.js?v=20261015b" defer></script>
+  </body>
+</html>
