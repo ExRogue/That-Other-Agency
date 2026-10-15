@@ -119,7 +119,7 @@
   // The red thread (homepage): one line drawn in step with the scroll, so it moves forward as you scroll down
   // and winds back as you scroll up. It walks down the steps of the headline, underlines the statement, fills
   // the services out as a bar chart, closes a selection box round the first project and lands as the full stop
-  // of the footer logo. In between it runs quietly down the margin. On phones (under 720px) the spine is thinner
+  // of the footer logo. In between it runs quietly down the margin, slipping behind the client logo band. On phones (under 720px) the spine is thinner
   // and the statement underline is left out. Off under reduced motion.
   const homeHero = document.querySelector('.home-hero');
   const stop = document.querySelector('.footer-giant i');
@@ -297,7 +297,9 @@
       const redRgb = getComputedStyle(probeRed).color;
       probeRed.remove();
       const reds = [...main.children].filter((n) => getComputedStyle(n).backgroundColor === redRgb).map((n) => { const b = box(n); return [b.y, b.b]; });
-      return { spine, pts, len, grow, branches, reds, dot, y1, start: pts[0][0] - 1, width: document.documentElement.clientWidth, height: document.documentElement.scrollHeight };
+      // Bands the thread passes behind: it slips under the client logo band and comes out the other side.
+      const behind = [...main.querySelectorAll(':scope > .logo-band')].map((n) => { const b = box(n); return [b.y, b.b]; });
+      return { spine, pts, len, grow, branches, reds, behind, dot, y1, start: pts[0][0] - 1, width: document.documentElement.clientWidth, height: document.documentElement.scrollHeight };
     };
 
     const d = (pts) => pts.map((p, i) => `${i ? 'L' : 'M'}${p[0]} ${p[1]}`).join('');
@@ -306,11 +308,12 @@
 
     const place = () => {
       [redLayer, inkLayer, onRed, offRed].forEach((g) => g.replaceChildren());
-      const { width, height, reds } = geo;
-      // The red layer shows in the gaps between the red bands, the ink layer only over them.
+      const { width, height, reds, behind } = geo;
+      // The red layer shows in the gaps between the bands, the ink layer only over the red ones, and neither
+      // over a band the thread passes behind.
       const band = (parent, a, b) => { if (b > a) el('rect', { x: -40, y: a, width: width + 80, height: b - a }, parent); };
       let gap = -40;
-      [...reds].sort((p, q) => p[0] - q[0]).forEach(([a, b]) => { band(offRed, gap, a); band(onRed, a, b); gap = Math.max(gap, b); });
+      [...reds.map((r) => [...r, true]), ...behind.map((r) => [...r, false])].sort((p, q) => p[0] - q[0]).forEach(([a, b, red]) => { band(offRed, gap, a); if (red) band(onRed, a, b); gap = Math.max(gap, b); });
       band(offRed, gap, height + 40);
       geo.spinePaths = pair(d(geo.spine.map((p) => [p.x, p.y])));
       geo.spinePaths.forEach((p) => p.classList.add('spine'));
@@ -371,6 +374,7 @@
       head.setAttribute('width', w.toFixed(2));
       head.setAttribute('height', h.toFixed(2));
       head.classList.toggle('on-red', l <= geo.len && isRed(y));
+      head.style.visibility = l <= geo.len && geo.behind.some(([a, b]) => y > a && y < b) ? 'hidden' : '';
       svg.classList.toggle('drawn', l > 0);
     };
 
