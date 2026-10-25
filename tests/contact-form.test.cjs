@@ -4,7 +4,7 @@ const { readFileSync } = require('node:fs');
 const vm = require('node:vm');
 const source = readFileSync(require('node:path').join(__dirname, '../script.js'), 'utf8');
 
-function setup(fetchImpl, { valid = true, honey = '', dataset = {} } = {}) {
+function setup(fetchImpl, { valid = true, honey = '', dataset = {}, gtag } = {}) {
   let submit, timeout, calls = 0, resets = 0;
   const status = { className: '', textContent: '' };
   const button = { disabled: false, textContent: 'Send enquiry' };
@@ -18,7 +18,7 @@ function setup(fetchImpl, { valid = true, honey = '', dataset = {} } = {}) {
   };
   vm.runInNewContext(source, {
     document: { querySelector: (s) => s === '[data-contact-form]' ? form : null, querySelectorAll: () => [] },
-    window: { setTimeout: (fn) => { timeout = fn; return 1; }, clearTimeout() {} },
+    window: { setTimeout: (fn) => { timeout = fn; return 1; }, clearTimeout() {}, gtag },
     URL, AbortController,
     FormData: class { get() { return honey; } },
     fetch: (...args) => { calls++; return fetchImpl(...args); },
@@ -42,6 +42,19 @@ test('a form with data-ok shows its own thank you text', async () => {
   const s = setup(async () => ({ ok: true, json: async () => ({ success: true }) }), { dataset: { ok: 'You are on the list.' } });
   await s.submit();
   assert.equal(s.status.className, 'form-status ok'); assert.equal(s.status.textContent, 'You are on the list.');
+});
+test('GA4 counts an enquiry only once FormSubmit accepts it, with the form name', async () => {
+  // generate_lead is the enquiry key event; GA4 renames the waitlist one to waitlist_signup
+  for (const [dataset, formName] of [[{}, 'contact'], [{ formName: 'dashboard_app_waitlist' }, 'dashboard_app_waitlist']]) {
+    const events = [];
+    const s = setup(async () => ({ ok: true, json: async () => ({ success: true }) }), { dataset, gtag: (...args) => events.push(args) });
+    await s.submit();
+    assert.deepEqual(events.map(([command, name, params]) => [command, name, { ...params }]), [['event', 'generate_lead', { form_name: formName }]]);
+  }
+  const events = [];
+  const s = setup(async () => ({ ok: true, json: async () => ({ success: 'false' }) }), { gtag: (...args) => events.push(args) });
+  await s.submit();
+  assert.equal(events.length, 0);
 });
 test('HTTP 200 rejection must not claim success or erase the enquiry', async () => {
   const s = setup(async () => ({ ok: true, json: async () => ({ success: 'false', message: 'Not activated' }) }));
