@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- GA4 leaves out our own visits: local previews, and browsers opened once with ?internal=on (?internal=off undoes it) -->
+    <script>
+      (function () {
+        var own = location.hostname !== 'www.thatotheragency.co.uk';
+        try {
+          var q = /[?&]internal=(on|off)\b/.exec(location.search);
+          if (q && q[1] === 'on') localStorage.setItem('toa-internal', '1');
+          if (q && q[1] === 'off') localStorage.removeItem('toa-internal');
+          own = own || localStorage.getItem('toa-internal') === '1';
+        } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        if (own) gtag('set', { traffic_type: 'internal' });
+      })();
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RZKD9WTJYR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-RZKD9WTJYR');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=5" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <title>Shopify Sales Don't Match Meta Ads Manager? | That Other Agency</title>
+    <meta name="description" content="Shopify sales don't match Meta Ads Manager? Five reasons the two never agree, which number to trust for each decision, and a worked example in pounds." />
+    <link rel="canonical" href="https://www.thatotheragency.co.uk/blog/shopify-sales-dont-match-meta-ads" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Shopify Sales Don't Match Meta Ads Manager? | That Other Agency" />
+    <meta property="og:description" content="Shopify sales don't match Meta Ads Manager? Five reasons the two never agree, which number to trust for each decision, and a worked example in pounds." />
+    <meta property="og:url" content="https://www.thatotheragency.co.uk/blog/shopify-sales-dont-match-meta-ads" />
+    <meta property="og:image" content="https://www.thatotheragency.co.uk/assets/blog/shopify-sales-dont-match-meta-ads.png?v=20261025" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Shopify sales don't match Meta Ads Manager? Here is why, and which to trust", "description": "Shopify sales don't match Meta Ads Manager? Five reasons the two never agree, which number to trust for each decision, and a worked example in pounds.", "datePublished": "2026-10-25", "dateModified": "2026-10-25", "author": {"@type": "Organization", "name": "That Other Agency", "url": "https://www.thatotheragency.co.uk/"}, "publisher": {"@type": "Organization", "name": "That Other Agency", "logo": {"@type": "ImageObject", "url": "https://www.thatotheragency.co.uk/assets/logo.svg"}}, "mainEntityOfPage": "https://www.thatotheragency.co.uk/blog/shopify-sales-dont-match-meta-ads", "image": "https://www.thatotheragency.co.uk/assets/blog/shopify-sales-dont-match-meta-ads.png?v=20261025"}</script>
+    <link rel="preload" href="/assets/fonts/host-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../styles.css?v=20261025a" />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="/" aria-label="That Other Agency, home">that other agency<i>.</i></a>
+        <button class="menu-toggle" aria-controls="site-nav" type="button" aria-expanded="false" aria-label="Open navigation">
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+          <a href="/services">Services</a>
+          <a href="/work">Work</a>
+          <a href="/that-other-dashboard">Apps</a>
+          <a href="/about">About</a>
+          <a class="nav-cta" href="/contact">Book a consultation</a>
+        </nav>
+        <a class="btn btn-primary header-cta" href="/contact">Book a consultation</a>
+      </div>
+    </header>
+
+    <main id="content">
+      <section class="reveal blog-post">
+        <div class="post-layout">
+          <article>
+            <p class="eyebrow">Dashboards</p>
+            <h1>Shopify sales don't match Meta Ads Manager? Here is why, <em>and which to trust</em></h1>
+            <p class="post-meta">Published 25 October 2026 · 6 min read</p>
+            <figure class="post-image">
+              <img src="../assets/blog/shopify-sales-dont-match-meta-ads.png" width="1600" height="900" alt="Cover reading: Neither number is lying." />
+            </figure>
+
+            <p>
+              If your Shopify sales don't match Meta Ads Manager, nothing is broken. The two tools answer different
+              questions, and they will never agree however carefully you set them up. This guide explains the five
+              reasons the numbers differ, which one to trust for each decision you make, and a twenty minute check
+              that shows how far apart yours really are.
+            </p>
+
+            <div class="insight-box">
+              The short answer: Shopify counts every order your store took. Ads Manager counts the orders it believes
+              an ad had a hand in, inside a window it chooses. Trust Shopify for how much you sold, Ads Manager for
+              comparing one ad with another, and total sales divided by total ad spend for whether the ads are paying.
+            </div>
+
+            <h2 id="why">Why your Shopify sales don't match Meta Ads Manager</h2>
+            <p>Five things are going on at once, and most stores have all five.</p>
+            <ol>
+              <li>
+                <strong>The attribution window.</strong> By default, Ads Manager counts a purchase if someone bought
+                within seven days of clicking an ad, or within one day of simply seeing one. Shopify's marketing
+                reports give an order to the last channel the customer clicked, and seeing an ad without clicking
+                counts for nothing. So a customer who sees your ad on Monday, searches for you on Tuesday and buys is
+                a Meta purchase in Ads Manager and a search or direct order in Shopify. Meta also reports some web
+                purchases a day or more late, so yesterday's figure in Ads Manager is often not finished.
+              </li>
+              <li>
+                <strong>Tracking gaps.</strong> Ad blockers, Safari, the iOS tracking prompt and cookie consent mean
+                the pixel never sees a share of your buyers. Meta fills part of that gap with modelled conversions,
+                which are estimates. Shopify sees every order, because it took the money.
+              </li>
+              <li>
+                <strong>Double counting.</strong> If the Meta pixel and the Conversions API both send the purchase
+                without matching event IDs, one order becomes two purchases. The same happens when an old pixel
+                snippet is still in the theme alongside the Meta sales channel app. If Events Manager shows far more
+                purchases than Shopify shows orders, this is usually why.
+              </li>
+              <li>
+                <strong>Different values.</strong> Ads Manager reports whatever value your tracking sends, which is
+                often the order total including VAT and sometimes shipping. Shopify's net sales take tax, shipping,
+                discounts and refunds out. Refunds and cancelled orders come off Shopify, and never off Ads Manager.
+                We covered the VAT side in <a href="/blog/roas-vat-uk-shopify">ROAS and VAT</a>.
+              </li>
+              <li>
+                <strong>Different questions.</strong> Shopify's marketing report is deliberately cautious: the last
+                click wins, views get no credit, and Direct catches everything it cannot place. Meta is deliberately
+                generous: any click or view inside the window gets credit, and Google and Klaviyo would claim the same
+                order if the customer touched them too. Add the platforms together and you get more than you sold.
+              </li>
+            </ol>
+
+            <h2 id="which">Which number to trust, for which decision</h2>
+            <ul>
+              <li><strong>How much did we sell?</strong> Shopify net sales. It is the only figure tied to money arriving in the bank.</li>
+              <li><strong>Which ad or audience is doing better?</strong> Ads Manager. Its counting is skewed, but it is skewed the same way for every ad in the account, so comparisons between ads hold up even when the totals do not.</li>
+              <li><strong>Are the ads paying for themselves?</strong> Neither on its own. Use MER: Shopify net sales divided by total ad spend across every platform. It cannot be flattered by attribution because it ignores attribution.</li>
+              <li><strong>How many new customers did we win?</strong> Shopify's first time versus returning customer split, and your ad spend divided by those new customers.</li>
+              <li><strong>Did a change work?</strong> Shopify sales before and after the change, with everything else that changed that week written down next to it.</li>
+            </ul>
+
+            <h2 id="example">A worked example in pounds</h2>
+            <p>
+              Take a made up store. In one week Shopify records net sales of £20,000 excluding VAT from 400 orders.
+              Meta spend is £3,000, and Ads Manager shows 160 purchases worth £9,600, a ROAS of 3.2. Meta is claiming
+              40% of the orders, and its purchase value includes VAT, so its £9,600 is really about £8,000 of the
+              £20,000. MER for the week is £20,000 ÷ £3,000, or 6.7.
+            </p>
+            <p>
+              The next week the founder halves spend to £1,500 because 3.2 "wasn't great". Ads Manager now shows a
+              ROAS of 3.9, since the ads left running are the best ones. Shopify net sales fall to £17,200. MER rises
+              to 11.5 and looks wonderful. But the store sold £2,800 less to save £1,500, and the ads that were cut
+              were also feeding the search and direct orders that Shopify never gave Meta credit for.
+            </p>
+            <p>
+              Ads Manager got better while the business got worse, and only Shopify said so. That is the whole
+              argument for judging ads on total sales, not on the number the ad platform reports about itself.
+            </p>
+
+            <h2 id="check">A twenty minute check</h2>
+            <ol>
+              <li><strong>Compare attribution settings.</strong> In Ads Manager, add the "Compare attribution settings" column and put 7 day click on its own next to the default. The gap is purchases from people who only saw an ad, which Shopify will never count.</li>
+              <li><strong>Open Shopify's marketing attribution report</strong> for the same week and put the Meta figure next to the 7 day click figure. Expect Shopify to be lower. If it is a fraction of Meta's number, your UTM tags are probably missing or inconsistent.</li>
+              <li><strong>Check Events Manager</strong> for the week's purchase events against Shopify's order count. Many more events than orders means duplicates.</li>
+              <li><strong>Place a test order</strong> and see what value lands in Ads Manager: VAT and shipping in or out. Then decide the basis you will report on and stick to it.</li>
+              <li><strong>Write down MER for the week.</strong> That becomes the number you judge the ads by. Ads Manager stays open for choosing between ads, not for deciding whether to spend.</li>
+            </ol>
+
+            <h2 id="ours">What we do on client dashboards</h2>
+            <p>
+              Every <a href="/performance-dashboard">custom dashboard</a> we build takes orders and net sales from
+              Shopify, spend from each ad platform, and shows them side by side with MER and cost per new customer
+              worked out from Shopify's numbers, not the platform's. Platform ROAS stays on the screen, labelled for
+              what it is. You can click around a working example with made up data in our
+              <a href="/demo">live dashboard demo</a>. If you want the same for your own store, every build starts
+              with a consultation and a fixed quote.
+            </p>
+
+            <h2 id="faq">Frequently asked questions</h2>
+            <details>
+              <summary>Why does Ads Manager show more purchases than I had orders?</summary>
+              <p>Usually duplicates: the pixel and the Conversions API sending the same purchase without matching event IDs, or two pixel setups on the store. Compare purchase events in Events Manager with Shopify's order count for the same week. If they are close, the rest of the gap is view through purchases and the seven day window.</p>
+            </details>
+            <details>
+              <summary>Should I change Meta's attribution setting to 7 day click only?</summary>
+              <p>Be careful. The attribution setting changes how Meta delivers ads as well as how it reports them, so it is not only a reporting choice. Most brands we work with keep the default for delivery and read the stricter figure from the compare column instead.</p>
+            </details>
+            <details>
+              <summary>Is Shopify's marketing attribution report accurate?</summary>
+              <p>It is cautious and consistent rather than complete. It gives ads no credit for views and sends anything it cannot place to Direct, so it undercounts what Meta did. Use it for direction, not for deciding to switch a channel off.</p>
+            </details>
+
+            <div class="article-nav">
+              <a class="btn btn-ghost" href="/blog">Back to blog</a>
+              <a class="btn btn-primary" href="/contact">Book a consultation</a>
+            </div>
+          </article>
+
+          <aside class="toc">
+            <h2>On this page</h2>
+            <ol>
+              <li><a href="#why">Why they never match</a></li>
+              <li><a href="#which">Which number to trust</a></li>
+              <li><a href="#example">A worked example</a></li>
+              <li><a href="#check">A twenty minute check</a></li>
+              <li><a href="#ours">Our dashboards</a></li>
+              <li><a href="#faq">FAQs</a></li>
+            </ol>
+          </aside>
+        </div>
+      </section>
+      <section class="closing-cta"><p class="eyebrow">Want a second pair of eyes?</p><h2>We’ll look at it <span>with you.</span></h2><p>Book a consultation and we’ll go through your site, ads and numbers together.</p><a class="btn btn-primary" href="/contact">Book a consultation <span aria-hidden="true">↗︎</span></a></section>
+    </main>
+
+    <footer>
+      <div class="footer-cols">
+        <div>
+          <b>That Other Agency</b>
+          <p>Growth, Shopify development, dashboards and websites for brands that sell online. London based, working UK wide.</p>
+          <a href="mailto:hello@thatotheragency.co.uk">hello@thatotheragency.co.uk</a>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <div><b>For Shopify brands</b><a href="/growth">Growth support</a><a href="/shopify-development">Shopify development</a><a href="/performance-dashboard">Custom dashboards</a><a href="/demo">Live demo</a><a href="/ad-script-system">Ad scripts</a><a href="/shopify-website-design">Shopify stores</a></div>
+          <div><b>Websites</b><a href="/website-design">Website design</a><a href="/website-design-london">Websites in London</a><a href="/website-design-for-trades">Websites for trades</a><a href="/website-for-plumbers-electricians">Plumbers and electricians</a></div>
+          <div><b>Apps</b><a href="/that-other-dashboard">That Other Dashboard</a><a href="/that-other-dashboard/guides">Guides</a></div>
+          <div><b>Agency</b><a href="/services">All services</a><a href="/work">Work</a><a href="/about">About</a><a href="/blog">Blog</a><a href="https://www.linkedin.com/company/that-other-agency/" target="_blank" rel="noopener">LinkedIn</a><a href="/contact">Book a consultation</a></div>
+        </nav>
+      </div>
+      <p class="footer-giant" aria-hidden="true">that other agency<i>.</i></p>
+      <div class="footer-legal">
+        <p>© <span id="year">2026</span> That Other Agency Ltd. Registered in England and Wales, company number 16799053.</p>
+        <p>London, United Kingdom · <a href="/privacy">Privacy</a></p>
+      </div>
+    </footer>
+
+    <script src="../script.js?v=20261025a" defer></script>
+  </body>
+</html>
