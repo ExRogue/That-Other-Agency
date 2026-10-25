@@ -524,6 +524,7 @@ main:has(> .book:last-child) { padding-bottom: 0; }
 details .include-list { margin: 0 0 26px; }
 .report-pages { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2.4vw, 32px); }
 .report-pages img { width: 100%; background: var(--paper); }
+.split-art figcaption a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
 .hero-actions .service-note { margin: 0; }
 .service-note + .service-note { margin-top: 10px; }
 @media (max-width: 900px) { .check-hero { grid-template-columns: minmax(0, 1fr); } }
