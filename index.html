@@ -1,6 +1,22 @@
 <!doctype html>
 <html lang="en-GB">
   <head>
+    <meta charset="UTF-8" />
+    <!-- GA4 leaves out our own visits: local previews, and browsers opened once with ?internal=on (?internal=off undoes it) -->
+    <script>
+      (function () {
+        var own = location.hostname !== 'www.thatotheragency.co.uk';
+        try {
+          var q = /[?&]internal=(on|off)\b/.exec(location.search);
+          if (q && q[1] === 'on') localStorage.setItem('toa-internal', '1');
+          if (q && q[1] === 'off') localStorage.removeItem('toa-internal');
+          own = own || localStorage.getItem('toa-internal') === '1';
+        } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        if (own) gtag('set', { traffic_type: 'internal' });
+      })();
+    </script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RZKD9WTJYR"></script>
     <script>
@@ -10,7 +26,6 @@
 
       gtag('config', 'G-RZKD9WTJYR');
     </script>
-    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=5" />
@@ -191,16 +206,16 @@
       <section id="thinking">
         <div class="section-heading-row"><div class="section-head"><p class="eyebrow">Our thinking</p><h2>A little perspective.</h2></div><a class="text-link" href="/blog">All articles <span aria-hidden="true">→</span></a></div>
         <div class="blog-grid">
+          <article class="card blog-card"><a class="blog-card-link" href="/blog/shopify-sales-dont-match-meta-ads"><img class="blog-thumb" src="assets/blog/shopify-sales-dont-match-meta-ads.png" width="1600" height="900" loading="lazy" alt="Cover reading: Neither number is lying." /><div class="card-body"><p class="case-meta">Dashboards · Meta ads</p><h3>Shopify sales don't match Meta Ads Manager? Here is why, and which to trust</h3><p>Five reasons the two never agree, and which number to use for each decision.</p><span class="read-link">Read article</span></div></a></article>
           <article class="card blog-card"><a class="blog-card-link" href="/blog/founder-video-ad-script-template"><img class="blog-thumb" src="assets/blog/founder-video-ad-script-template.png" width="1600" height="900" loading="lazy" alt="Cover reading: Write it the way you talk." /><div class="card-body"><p class="case-meta">Ad scripts · Founders</p><h3>How to write a founder video ad script (with a free template)</h3><p>A five part template, a worked example and six hook starters.</p><span class="read-link">Read article</span></div></a></article>
-          <article class="card blog-card"><a class="blog-card-link" href="/blog/roas-vat-uk-shopify"><img class="blog-thumb" src="assets/blog/roas-vat-uk-shopify.png" width="1600" height="900" loading="lazy" alt="Cover reading: Your ROAS is 20% too kind." /><div class="card-body"><p class="case-meta">Dashboards · Shopify</p><h3>ROAS and VAT: why your UK Shopify numbers can look better than they are</h3><p>Should ROAS include VAT? The UK rule, with a worked example in pounds.</p><span class="read-link">Read article</span></div></a></article>
         </div>
         <nav class="post-list" aria-label="More articles">
+          <a href="/blog/roas-vat-uk-shopify"><b>ROAS and VAT: why your UK Shopify numbers can look better than they are</b><span>Dashboards</span></a>
           <a href="/blog/how-much-does-a-small-business-website-cost-uk"><b>How much does a small business website cost in the UK?</b><span>Websites</span></a>
           <a href="/blog/website-conversion-checklist-london-smes"><b>Website conversion checklist for product brands</b><span>Conversion</span></a>
           <a href="/blog/london-service-brands-lower-lead-costs-2026"><b>How product brands can lower CAC in 2026</b><span>Paid media</span></a>
           <a href="/blog/meta-ads-london-dtc-creative-testing-framework"><b>Meta ads creative testing: a weekly framework for DTC brands</b><span>Paid social</span></a>
           <a href="/blog/offer-positioning-for-paid-acquisition"><b>Offer positioning for paid ads: turn clicks into profit</b><span>Positioning</span></a>
-          <a href="/blog/seo-for-london-agencies-7-fixes"><b>SEO for product brands: 7 fixes that pay off</b><span>SEO</span></a>
         </nav>
       </section>
 

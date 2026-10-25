@@ -1,6 +1,22 @@
 <!doctype html>
 <html lang="en-GB">
   <head>
+    <meta charset="UTF-8" />
+    <!-- GA4 leaves out our own visits: local previews, and browsers opened once with ?internal=on (?internal=off undoes it) -->
+    <script>
+      (function () {
+        var own = location.hostname !== 'www.thatotheragency.co.uk';
+        try {
+          var q = /[?&]internal=(on|off)\b/.exec(location.search);
+          if (q && q[1] === 'on') localStorage.setItem('toa-internal', '1');
+          if (q && q[1] === 'off') localStorage.removeItem('toa-internal');
+          own = own || localStorage.getItem('toa-internal') === '1';
+        } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        if (own) gtag('set', { traffic_type: 'internal' });
+      })();
+    </script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RZKD9WTJYR"></script>
     <script>
@@ -10,7 +26,6 @@
 
       gtag('config', 'G-RZKD9WTJYR');
     </script>
-    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=5" />
@@ -74,6 +89,18 @@
       <section class="reveal">
         <h2 class="sr-only">Articles</h2>
         <div class="blog-grid">
+          <article class="card blog-card" data-blog-card data-search="shopify sales don't match meta ads manager attribution window purchases orders pixel conversions api duplicates mer roas dashboard">
+            <a class="blog-card-link" href="/blog/shopify-sales-dont-match-meta-ads">
+              <img class="blog-thumb" src="../assets/blog/shopify-sales-dont-match-meta-ads.png" width="1600" height="900" loading="lazy" alt="Cover reading: Neither number is lying." />
+              <div class="card-body">
+                <div class="tag-row"><span class="tag">Dashboards</span><span class="tag">Meta ads</span></div>
+                <h3>Shopify sales don't match Meta Ads Manager? Here is why, and which to trust</h3>
+                <p>Five reasons the two never agree, which number to use for each decision, and a twenty minute check.</p>
+                <span class="read-link">Read article</span>
+              </div>
+            </a>
+          </article>
+
           <article class="card blog-card" data-blog-card data-search="founder video ad script template free hooks talking to camera ugc meta tiktok instagram ads write film phone">
             <a class="blog-card-link" href="/blog/founder-video-ad-script-template">
               <img class="blog-thumb" src="../assets/blog/founder-video-ad-script-template.png" width="1600" height="900" loading="lazy" alt="Cover reading: Write it the way you talk." />

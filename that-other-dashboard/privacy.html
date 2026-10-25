@@ -1,6 +1,22 @@
 <!doctype html>
 <html lang="en-GB">
   <head>
+    <meta charset="UTF-8" />
+    <!-- GA4 leaves out our own visits: local previews, and browsers opened once with ?internal=on (?internal=off undoes it) -->
+    <script>
+      (function () {
+        var own = location.hostname !== 'www.thatotheragency.co.uk';
+        try {
+          var q = /[?&]internal=(on|off)\b/.exec(location.search);
+          if (q && q[1] === 'on') localStorage.setItem('toa-internal', '1');
+          if (q && q[1] === 'off') localStorage.removeItem('toa-internal');
+          own = own || localStorage.getItem('toa-internal') === '1';
+        } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        if (own) gtag('set', { traffic_type: 'internal' });
+      })();
+    </script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RZKD9WTJYR"></script>
     <script>
@@ -10,7 +26,6 @@
 
       gtag('config', 'G-RZKD9WTJYR');
     </script>
-    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=5" />
