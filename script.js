@@ -108,6 +108,26 @@
   const root = document.documentElement;
   const canMove = root && window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // That Other Dashboard pages: the header wordmark turns from "agency" to "dashboard" once the page has
+  // settled (after the headline intro on the app page), and back to "agency" while hovered or focused, since
+  // it links to the agency home. Under reduced motion it changes straight away.
+  const morph = document.querySelector('.brand-morph');
+  if (morph && root) {
+    const box = morph.querySelector('.bm'), a = morph.querySelector('.bm-a'), d = morph.querySelector('.bm-d');
+    const show = (dash) => { box.style.width = `${(dash ? d : a).offsetWidth}px`; morph.classList.toggle('is-dash', dash); };
+    (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => {
+      show(false);
+      window.setTimeout(() => show(true), !canMove ? 0 : root.classList.contains('intro') ? 3200 : 1200);
+      if (window.matchMedia('(hover: hover)').matches) {
+        morph.addEventListener('mouseenter', () => show(false));
+        morph.addEventListener('mouseleave', () => show(true));
+      }
+      morph.addEventListener('focus', () => show(false));
+      morph.addEventListener('blur', () => show(true));
+      window.addEventListener('resize', () => show(morph.classList.contains('is-dash')));
+    });
+  }
+
   // Homepage intro: the rules draw, then the headline steps in line by line.
   // The page adds the intro class in its head; this starts it once the font is ready.
   if (root && root.classList.contains('intro')) {

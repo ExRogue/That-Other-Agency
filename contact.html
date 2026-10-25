@@ -31,7 +31,7 @@
     <meta property="og:image" content="https://www.thatotheragency.co.uk/assets/og.png?v=20261010" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="preload" href="/assets/fonts/host-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="styles.css?v=20261015a" />
+    <link rel="stylesheet" href="styles.css?v=20261025a" />
   </head>
   <body>
     <a class="skip-link" href="#content">Skip to content</a>
@@ -46,9 +46,8 @@
         <nav class="site-nav" id="site-nav" aria-label="Main navigation">
           <a href="/services">Services</a>
           <a href="/work">Work</a>
+          <a href="/that-other-dashboard">Apps</a>
           <a href="/about">About</a>
-          <a href="/blog">Blog</a>
-          <a class="current" aria-current="page" href="/contact">Contact</a>
           <a class="nav-cta" href="/contact">Book a consultation</a>
         </nav>
         <a class="btn btn-primary header-cta" href="/contact">Book a consultation</a>
@@ -79,10 +78,13 @@
 
             <h3 style="margin-top: 1rem">Before you submit</h3>
             <ul>
-              <li>Share your top priority for the next 90 days</li>
-              <li>Include approximate monthly paid acquisition spend (if applicable)</li>
-              <li>Explain what is currently blocking progress</li>
+              <li>Tell us what you would like help with</li>
+              <li>Share your top priority for the next few months</li>
+              <li>Say what is getting in the way right now</li>
             </ul>
+
+            <h3 style="margin-top: 1rem">Using That Other Dashboard?</h3>
+            <p>Email us at the address above, or start with the <a class="read-link" style="margin-top: 0" href="/that-other-dashboard/guides">guides</a></p>
           </article>
 
           <article class="card">
@@ -108,23 +110,36 @@
                   <input name="company" autocomplete="organization" required />
                 </label>
                 <label>
-                  Monthly media spend
-                  <select name="media_spend" required>
-                    <option value="Under £5k">Under £5k</option>
-                    <option value="£5k-£15k">£5k-£15k</option>
-                    <option value="£15k-£40k">£15k-£40k</option>
-                    <option value="£40k+">£40k+</option>
-                    <option value="No paid media yet">No paid media yet</option>
+                  What can we help with?
+                  <select name="help_with" required>
+                    <option value="Growth support (ads, email, conversion)">Growth support (ads, email, conversion)</option>
+                    <option value="Shopify development or a quiz">Shopify development or a quiz</option>
+                    <option value="A custom dashboard">A custom dashboard</option>
+                    <option value="A new website or store">A new website or store</option>
+                    <option value="Help with That Other Dashboard">Help with That Other Dashboard</option>
+                    <option value="Something else">Something else</option>
                   </select>
                 </label>
               </div>
+
+              <label>
+                Monthly ad spend (optional)
+                <select name="media_spend">
+                  <option value="">Choose one</option>
+                  <option value="Under £5k">Under £5k</option>
+                  <option value="£5k to £15k">£5k to £15k</option>
+                  <option value="£15k to £40k">£15k to £40k</option>
+                  <option value="£40k or more">£40k or more</option>
+                  <option value="No paid ads yet">No paid ads yet</option>
+                </select>
+              </label>
 
               <label>
                 Project details
                 <textarea
                   name="message"
                   required
-                  placeholder="Tell us a little about your brand, your goals and what is holding you back."
+                  placeholder="Tell us a little about your brand or business, your goals and what is holding you back."
                 ></textarea>
               </label>
 
@@ -141,13 +156,14 @@
       <div class="footer-cols">
         <div>
           <b>That Other Agency</b>
-          <p>Websites, ad scripts, dashboards and growth for brands that sell online. London based, working UK wide.</p>
+          <p>Growth, Shopify development, dashboards and websites for brands that sell online. London based, working UK wide.</p>
           <a href="mailto:hello@thatotheragency.co.uk">hello@thatotheragency.co.uk</a>
         </div>
         <nav class="footer-nav" aria-label="Footer navigation">
-          <div><b>Services</b><a href="/website-design">Website design</a><a href="/shopify-website-design">Shopify websites</a><a href="/website-design-for-trades">Websites for trades</a><a href="/ad-script-system">Ad script system</a><a href="/performance-dashboard">Performance dashboard</a><a href="/services">All services</a></div>
-          <div><b>Agency</b><a href="/work">Work</a><a href="/about">About</a><a href="/blog">Blog</a><a href="https://www.linkedin.com/company/that-other-agency/" target="_blank" rel="noopener">LinkedIn</a></div>
-          <div><b>Start here</b><a href="/contact">Book a consultation</a><a href="/demo">Dashboard demo</a></div>
+          <div><b>For Shopify brands</b><a href="/growth">Growth support</a><a href="/shopify-development">Shopify development</a><a href="/performance-dashboard">Custom dashboards</a><a href="/demo">Live demo</a><a href="/ad-script-system">Ad scripts</a><a href="/shopify-website-design">Shopify stores</a></div>
+          <div><b>Websites</b><a href="/website-design">Website design</a><a href="/website-design-london">Websites in London</a><a href="/website-design-for-trades">Websites for trades</a><a href="/website-for-plumbers-electricians">Plumbers and electricians</a></div>
+          <div><b>Apps</b><a href="/that-other-dashboard">That Other Dashboard</a><a href="/that-other-dashboard/guides">Guides</a></div>
+          <div><b>Agency</b><a href="/services">All services</a><a href="/work">Work</a><a href="/about">About</a><a href="/blog">Blog</a><a href="https://www.linkedin.com/company/that-other-agency/" target="_blank" rel="noopener">LinkedIn</a><a href="/contact">Book a consultation</a></div>
         </nav>
       </div>
       <p class="footer-giant" aria-hidden="true">that other agency<i>.</i></p>
@@ -157,6 +173,6 @@
       </div>
     </footer>
 
-    <script src="script.js?v=20261015b" defer></script>
+    <script src="script.js?v=20261025a" defer></script>
   </body>
 </html>

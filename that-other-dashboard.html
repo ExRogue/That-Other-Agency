@@ -30,18 +30,7 @@
     <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "That Other Dashboard", "description": "A Shopify app that puts sales, ad spend, MER, every ad and email revenue on one screen, with every change marked on the chart.", "url": "https://www.thatotheragency.co.uk/that-other-dashboard", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "image": "https://www.thatotheragency.co.uk/assets/that-other-dashboard/hero.webp", "publisher": {"@type": "Organization", "name": "That Other Agency", "url": "https://www.thatotheragency.co.uk"}}</script>
     <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.thatotheragency.co.uk/"}, {"@type": "ListItem", "position": 2, "name": "That Other Dashboard", "item": "https://www.thatotheragency.co.uk/that-other-dashboard"}]}</script>
     <link rel="preload" href="/assets/fonts/host-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="styles.css?v=20261015a" />
-    <style>
-      /* This page only: the header wordmark turns from "agency" to "dashboard" once the intro has
-         played, and back to "agency" while hovered, since it links home. Without JavaScript it stays
-         "agency"; under reduced motion it changes without moving. */
-      .bm { position: relative; display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .22em; margin-bottom: -.22em; transition: width .8s cubic-bezier(.16, 1, .3, 1); }
-      .bm-a, .bm-d { display: inline-block; transition: transform .8s cubic-bezier(.16, 1, .3, 1), opacity .5s; }
-      .bm-d { position: absolute; left: 0; top: 0; transform: translateY(115%); opacity: 0; }
-      .brand-morph.is-dash .bm-a { transform: translateY(-115%); opacity: 0; }
-      .brand-morph.is-dash .bm-d { transform: none; opacity: 1; }
-      @media (prefers-reduced-motion: reduce) { .bm, .bm-a, .bm-d { transition: none; } }
-    </style>
+    <link rel="stylesheet" href="styles.css?v=20261025a" />
     <script>if (window.matchMedia && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) { document.documentElement.classList.add('intro'); window.setTimeout(function () { document.documentElement.classList.add('go'); }, 2500); }</script>
   </head>
   <body>
@@ -54,15 +43,15 @@
           <span></span>
           <span></span>
         </button>
-        <nav class="site-nav" id="site-nav" aria-label="Main navigation">
-          <a href="/services">Services</a>
-          <a href="/work">Work</a>
-          <a href="/about">About</a>
-          <a href="/blog">Blog</a>
-          <a href="/contact">Contact</a>
-          <a class="nav-cta" href="#access">Join the waitlist</a>
+        <nav class="site-nav" id="site-nav" aria-label="That Other Dashboard">
+          <a href="/that-other-dashboard#inside">Features</a>
+          <a href="/that-other-dashboard#plans">Plans</a>
+          <a href="/that-other-dashboard/guides">Guides</a>
+          <a href="/that-other-dashboard#support">Support</a>
+          <a class="nav-home" href="/">That Other Agency <span aria-hidden="true">↗︎</span></a>
+          <a class="nav-cta" href="/that-other-dashboard#access">Join the waitlist</a>
         </nav>
-        <a class="btn btn-primary header-cta" href="#access">Join the waitlist</a>
+        <a class="btn btn-primary header-cta" href="/that-other-dashboard#access">Join the waitlist</a>
       </div>
     </header>
 
@@ -226,6 +215,27 @@
         </details>
       </section>
 
+      <section class="band-paper" id="support">
+        <div class="section-head">
+          <p class="eyebrow">Support</p>
+          <h2>Here when <em>you need us.</em></h2>
+        </div>
+        <div class="grid-2">
+          <article class="card">
+            <p class="case-meta">Questions about the app</p>
+            <h3>Email us, or read the guides</h3>
+            <p>Write to <a class="read-link" href="mailto:hello@thatotheragency.co.uk">hello@thatotheragency.co.uk</a> and we’ll reply within one business day. The guides cover connecting your tools, reading your numbers and testing a change.</p>
+            <div class="card-actions"><a class="btn btn-ghost" href="/that-other-dashboard/guides">Read the guides <span aria-hidden="true">↗︎</span></a></div>
+          </article>
+          <article class="card">
+            <p class="case-meta">From That Other Agency</p>
+            <h3>Want one built around your business?</h3>
+            <p>That Other Dashboard comes from the dashboards we build for our own clients. A custom dashboard adds any tool you use, pace against your plan, stock run rates and panels made for your questions.</p>
+            <div class="card-actions"><a class="btn btn-ghost" href="/performance-dashboard">See custom dashboards <span aria-hidden="true">↗︎</span></a></div>
+          </article>
+        </div>
+      </section>
+
       <section class="book" id="access" aria-label="Join the waitlist">
         <div class="book-grid">
           <div class="book-copy">
@@ -259,13 +269,14 @@
       <div class="footer-cols">
         <div>
           <b>That Other Agency</b>
-          <p>Websites, ad scripts, dashboards and growth for brands that sell online. London based, working UK wide.</p>
+          <p>Growth, Shopify development, dashboards and websites for brands that sell online. London based, working UK wide.</p>
           <a href="mailto:hello@thatotheragency.co.uk">hello@thatotheragency.co.uk</a>
         </div>
         <nav class="footer-nav" aria-label="Footer navigation">
-          <div><b>Services</b><a href="/website-design">Website design</a><a href="/shopify-website-design">Shopify websites</a><a href="/website-design-for-trades">Websites for trades</a><a href="/ad-script-system">Ad script system</a><a href="/performance-dashboard">Performance dashboard</a><a href="/services">All services</a></div>
-          <div><b>Agency</b><a href="/work">Work</a><a href="/about">About</a><a href="/blog">Blog</a><a href="https://www.linkedin.com/company/that-other-agency/" target="_blank" rel="noopener">LinkedIn</a></div>
-          <div><b>Dashboard app</b><a href="/that-other-dashboard">About the app</a><a href="/that-other-dashboard/guides">Guides</a><a href="/that-other-dashboard/privacy">Privacy policy</a><a href="/that-other-dashboard/terms">Terms</a><a href="/that-other-dashboard/data-deletion">Deleting your data</a></div>
+          <div><b>For Shopify brands</b><a href="/growth">Growth support</a><a href="/shopify-development">Shopify development</a><a href="/performance-dashboard">Custom dashboards</a><a href="/demo">Live demo</a><a href="/ad-script-system">Ad scripts</a><a href="/shopify-website-design">Shopify stores</a></div>
+          <div><b>Websites</b><a href="/website-design">Website design</a><a href="/website-design-london">Websites in London</a><a href="/website-design-for-trades">Websites for trades</a><a href="/website-for-plumbers-electricians">Plumbers and electricians</a></div>
+          <div><b>Apps</b><a href="/that-other-dashboard">That Other Dashboard</a><a href="/that-other-dashboard/guides">Guides</a><a href="/that-other-dashboard/privacy">Privacy policy</a><a href="/that-other-dashboard/terms">Terms</a><a href="/that-other-dashboard/data-deletion">Deleting your data</a></div>
+          <div><b>Agency</b><a href="/services">All services</a><a href="/work">Work</a><a href="/about">About</a><a href="/blog">Blog</a><a href="https://www.linkedin.com/company/that-other-agency/" target="_blank" rel="noopener">LinkedIn</a><a href="/contact">Book a consultation</a></div>
         </nav>
       </div>
       <p class="footer-giant" aria-hidden="true">that other agency<i>.</i></p>
@@ -275,31 +286,6 @@
       </div>
     </footer>
 
-    <script>
-      (function () {
-        var brand = document.querySelector('.brand-morph');
-        if (!brand) return;
-        var box = brand.querySelector('.bm'), a = brand.querySelector('.bm-a'), d = brand.querySelector('.bm-d');
-        var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        function show(dash) {
-          box.style.width = (dash ? d : a).offsetWidth + 'px';
-          brand.classList.toggle('is-dash', dash);
-        }
-        var ready = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
-        ready.then(function () {
-          show(false);
-          // After the headline's intro (about 2.5 seconds), or straight away without motion
-          window.setTimeout(function () { show(true); }, still ? 0 : 3200);
-          if (window.matchMedia && window.matchMedia('(hover: hover)').matches) {
-            brand.addEventListener('mouseenter', function () { show(false); });
-            brand.addEventListener('mouseleave', function () { show(true); });
-          }
-          brand.addEventListener('focus', function () { show(false); });
-          brand.addEventListener('blur', function () { show(true); });
-          window.addEventListener('resize', function () { show(brand.classList.contains('is-dash')); });
-        });
-      })();
-    </script>
-    <script src="script.js?v=20261015b" defer></script>
+    <script src="script.js?v=20261025a" defer></script>
   </body>
 </html>
