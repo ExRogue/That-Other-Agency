@@ -56,6 +56,25 @@ test('GA4 counts an enquiry only once FormSubmit accepts it, with the form name'
   await s.submit();
   assert.equal(events.length, 0);
 });
+test('a store check request counts as generate_lead with form_name store_check, once FormSubmit accepts it', async () => {
+  // Read from the real page, so a renamed form or a changed thank you text shows up here
+  const page = readFileSync(require('node:path').join(__dirname, '../store-check.html'), 'utf8');
+  const tag = page.match(/<form[^>]*data-contact-form[^>]*>/)[0];
+  const attr = (name) => (tag.match(new RegExp(` ${name}="([^"]*)"`)) || [])[1];
+  assert.equal(attr('data-form-name'), 'store_check');
+  assert.equal(attr('action'), 'https://formsubmit.co/hello@thatotheragency.co.uk');
+  const dataset = { formName: attr('data-form-name'), ok: attr('data-ok') };
+  for (const [success, expected] of [[true, [['event', 'generate_lead', { form_name: 'store_check' }]]], ['false', []]]) {
+    const events = [];
+    let sentBeforeReply;
+    const s = setup(async () => { sentBeforeReply = events.length; return { ok: true, json: async () => ({ success }) }; }, { dataset, gtag: (...args) => events.push(args) });
+    await s.submit();
+    assert.equal(sentBeforeReply, 0);
+    assert.deepEqual(events.map(([command, name, params]) => [command, name, { ...params }]), expected);
+    if (success === true) assert.equal(s.status.textContent, dataset.ok);
+    else assert.equal(s.status.className, 'form-status err');
+  }
+});
 test('HTTP 200 rejection must not claim success or erase the enquiry', async () => {
   const s = setup(async () => ({ ok: true, json: async () => ({ success: 'false', message: 'Not activated' }) }));
   await s.submit();

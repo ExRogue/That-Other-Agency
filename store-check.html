@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- GA4 leaves out our own visits: local previews, and browsers opened once with ?internal=on (?internal=off undoes it) -->
+    <script>
+      (function () {
+        var own = location.hostname !== 'www.thatotheragency.co.uk';
+        try {
+          var q = /[?&]internal=(on|off)\b/.exec(location.search);
+          if (q && q[1] === 'on') localStorage.setItem('toa-internal', '1');
+          if (q && q[1] === 'off') localStorage.removeItem('toa-internal');
+          own = own || localStorage.getItem('toa-internal') === '1';
+        } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        if (own) gtag('set', { traffic_type: 'internal' });
+      })();
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RZKD9WTJYR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-RZKD9WTJYR');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=5" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <title>Free Shopify Store Audit for UK Brands | That Other Agency</title>
+    <meta name="description" content="Free Shopify store audit for UK brands: tracking, speed, product pages, offers, email capture and live ads, with the three fixes we’d make first. No call needed." />
+    <link rel="canonical" href="https://www.thatotheragency.co.uk/store-check" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="That Other Agency" />
+    <meta property="og:title" content="Free Shopify Store Audit for UK Brands | That Other Agency" />
+    <meta property="og:description" content="Free Shopify store audit for UK brands: tracking, speed, product pages, offers, email capture and live ads, with the three fixes we’d make first. No call needed." />
+    <meta property="og:url" content="https://www.thatotheragency.co.uk/store-check" />
+    <meta property="og:image" content="https://www.thatotheragency.co.uk/assets/og.png?v=20261010" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#110c0d" />
+    <link rel="preload" href="/assets/fonts/host-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="styles.css?v=20261025b" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "name": "Free Shopify store check", "serviceType": "Shopify store audit", "description": "A free check of a Shopify store and its live ads: tracking, speed on a phone, product pages on a phone, the offer and basket, email capture and the ads in the Meta and Google public ad libraries, sent as a short PDF report with the three fixes to make first.", "url": "https://www.thatotheragency.co.uk/store-check", "provider": {"@type": "MarketingAgency", "name": "That Other Agency", "url": "https://www.thatotheragency.co.uk"}, "areaServed": {"@type": "Country", "name": "United Kingdom"}}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Services", "item": "https://www.thatotheragency.co.uk/services"}, {"@type": "ListItem", "position": 2, "name": "Growth support", "item": "https://www.thatotheragency.co.uk/growth"}, {"@type": "ListItem", "position": 3, "name": "Free store check", "item": "https://www.thatotheragency.co.uk/store-check"}]}</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="/" aria-label="That Other Agency, home">that other agency<i>.</i></a>
+        <button class="menu-toggle" aria-controls="site-nav" type="button" aria-expanded="false" aria-label="Open navigation">
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+          <a class="current" href="/services">Services</a>
+          <a href="/work">Work</a>
+          <a href="/that-other-dashboard">Apps</a>
+          <a href="/about">About</a>
+          <a class="nav-cta" href="/contact">Book a consultation</a>
+        </nav>
+        <a class="btn btn-primary header-cta" href="/contact">Book a consultation</a>
+      </div>
+    </header>
+
+    <main id="content">
+      <section class="page-hero check-hero">
+        <div>
+          <p class="eyebrow">Free Shopify store check</p>
+          <h1>Find the leaks. <em>Before you spend more.</em></h1>
+          <p class="lead">Send us your store address. We’ll check your tracking, speed, product pages, offer, email capture and live ads, then send you a short report with the three fixes we’d make first.</p>
+          <p class="lead"><strong>Free. No call needed. In your inbox within three working days.</strong></p>
+        </div>
+        <div class="check-form" id="check">
+          <p class="eyebrow">Ask for your store check</p>
+          <form class="contact-form" data-contact-form data-form-name="store_check" data-ok="Thanks. We’ll send your store check within three working days, from hello@thatotheragency.co.uk." action="https://formsubmit.co/hello@thatotheragency.co.uk" method="POST">
+            <input type="hidden" name="_subject" value="Free store check request" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="text" name="_honey" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" aria-label="Leave this field empty" />
+            <input type="hidden" name="utm_source" data-track /><input type="hidden" name="utm_medium" data-track /><input type="hidden" name="utm_campaign" data-track /><input type="hidden" name="utm_term" data-track /><input type="hidden" name="utm_content" data-track /><input type="hidden" name="gclid" data-track /><input type="hidden" name="fbclid" data-track /><input type="hidden" name="landing_page" data-track /><input type="hidden" name="referrer" data-track />
+            <div class="form-row">
+              <label>Name<input name="name" autocomplete="name" required /></label>
+              <label>Email<input name="email" type="email" autocomplete="email" required /></label>
+            </div>
+            <div class="form-row">
+              <label>Store address<input name="store_address" type="text" inputmode="url" autocomplete="url" autocapitalize="none" spellcheck="false" placeholder="yourstore.co.uk" required /></label>
+              <label>
+                Monthly ad spend
+                <select name="media_spend" required>
+                  <option value="">Choose one</option>
+                  <option value="Under £5k">Under £5k</option>
+                  <option value="£5k to £15k">£5k to £15k</option>
+                  <option value="£15k to £40k">£15k to £40k</option>
+                  <option value="£40k or more">£40k or more</option>
+                  <option value="No paid ads yet">No paid ads yet</option>
+                </select>
+              </label>
+            </div>
+            <fieldset>
+              <legend>Which ads do you run?</legend>
+              <div class="ticks">
+                <label class="tick"><input type="checkbox" name="ads_meta" value="Yes" /><span>Meta</span></label>
+                <label class="tick"><input type="checkbox" name="ads_google" value="Yes" /><span>Google</span></label>
+                <label class="tick"><input type="checkbox" name="ads_tiktok" value="Yes" /><span>TikTok</span></label>
+                <label class="tick"><input type="checkbox" name="ads_none_yet" value="Yes" /><span>None yet</span></label>
+              </div>
+            </fieldset>
+            <label>What’s worrying you? (optional)<textarea name="worries" rows="3" placeholder="For example, sales dipped after a theme change, or ads that used to work have stopped."></textarea></label>
+            <label class="tick"><input type="checkbox" name="account_check" value="Yes" /><span>We’d like the ad account check too (for £5k a month and up)</span></label>
+            <p class="form-note">We’ll only use these details to do your store check and send it to you. See our <a href="/privacy" style="text-decoration: underline; text-underline-offset: 3px">privacy notice</a>.</p>
+            <p class="form-status" role="status" aria-live="polite" data-form-status>Ready to send.</p>
+            <button class="btn btn-primary" type="submit">Get my free store check</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="band-paper" id="areas">
+        <div class="section-head">
+          <p class="eyebrow">What we look at</p>
+          <h2>Six places <em>sales slip away.</em></h2>
+          <p class="lead">All checked from the outside, the way your customers see your store. All we need is the address.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <span class="step-number">01</span>
+            <h3>Tracking</h3>
+            <p>Do your Meta pixel, GA4, Google Ads tag and TikTok pixel fire on product views, add to cart and checkout? Is there a cookie banner with Google’s consent mode set up, and is anything counted twice?</p>
+          </article>
+          <article class="card">
+            <span class="step-number">02</span>
+            <h3>Speed on a phone</h3>
+            <p>Google’s PageSpeed test on a phone for your homepage, a collection and a product page, with real visitor data where Google has it, and the app scripts slowing them down.</p>
+          </article>
+          <article class="card">
+            <span class="step-number">03</span>
+            <h3>Product pages on a phone</h3>
+            <p>Is the offer clear before anyone scrolls? We look for reviews, delivery and returns details, a sticky add to cart button and express checkout such as Shop Pay, Apple Pay, PayPal and Klarna.</p>
+          </article>
+          <article class="card">
+            <span class="step-number">04</span>
+            <h3>Offer and basket</h3>
+            <p>Your free delivery threshold against your typical prices, offers stacked on top of each other, sold out products on show and what your basket suggests next.</p>
+          </article>
+          <article class="card">
+            <span class="step-number">05</span>
+            <h3>Email capture</h3>
+            <p>Is there a signup form or popup, what does it offer, and does a welcome email arrive when someone signs up?</p>
+          </article>
+          <article class="card">
+            <span class="step-number">06</span>
+            <h3>Your live ads</h3>
+            <p>From Meta’s Ad Library and Google’s Ads Transparency Center: how many ads are live, in which formats, how long the longest have run, the hooks you use, and whether each ad lands on the right page with the same offer.</p>
+          </article>
+        </div>
+        <p class="tool-more">Spending £5k or more a month on ads? We can look inside your Meta and Google Ads accounts too, with view only access. <a class="read-link" href="#account">How the account check works</a></p>
+      </section>
+
+      <section id="report">
+        <div class="section-head">
+          <p class="eyebrow">What you get</p>
+          <h2>A short report. <em>Three fixes first.</em></h2>
+          <p class="lead">A PDF of four to six pages. Page one gives each area a traffic light and lists the three fixes we’d make first, ranked by likely effect and effort. Then a page per area: what we found, with screenshots, and what to do about it.</p>
+          <p class="lead">Every finding is checked by hand on your live store before it goes out, and we never promise results.</p>
+        </div>
+        <figure class="split-art">
+          <div class="report-pages">
+            <img src="assets/store-check/sample-1.png" width="1240" height="1754" alt="Sample report summary page: a traffic light for each of the six areas and the three fixes we would make first" loading="lazy" />
+            <img src="assets/store-check/sample-2.png" width="1240" height="1754" alt="Sample report page on one area: what we found, with screenshots, and what to do about it" loading="lazy" />
+            <img src="assets/store-check/sample-3.png" width="1240" height="1754" alt="Sample report page on the live ads: what is running, how long it has run and where each ad lands" loading="lazy" />
+          </div>
+          <figcaption>Sample report for Cross Street Coffee, our made up demo brand. Every finding in it is invented.</figcaption>
+        </figure>
+      </section>
+
+      <section class="band-paper" id="account">
+        <div class="section-head">
+          <p class="eyebrow">The account check</p>
+          <h2>View only. <em>Never passwords.</em></h2>
+          <p class="lead">For brands spending £5k or more a month on ads, we can look inside your Meta and Google Ads accounts too: how they’re set up, where the spend goes, how often people see the same ad, tired creative, wasted search terms, Performance Max taking credit for searches of your own name, and conversions counted twice.</p>
+          <p class="lead">We also set your ad spend against your Shopify sales over the last 90 days.</p>
+        </div>
+        <details>
+          <summary>How view only access works</summary>
+          <p>You give us access from your own accounts, so we never need a password, and you can remove us at any time.</p>
+          <ul class="include-list">
+            <li><strong>Meta:</strong> add our business portfolio as a partner on your ad account, with “View performance” only.</li>
+            <li><strong>Google Ads:</strong> invite hello@thatotheragency.co.uk with “Read only” access.</li>
+            <li><strong>Your sales:</strong> a screenshot of your Shopify Analytics is enough.</li>
+            <li><strong>Afterwards:</strong> we come off within 14 days of sending your report.</li>
+          </ul>
+          <p>Tick the box on the form and we’ll email you the exact steps.</p>
+        </details>
+      </section>
+
+      <section id="questions">
+        <div class="section-head">
+          <p class="eyebrow">Common questions</p>
+          <h2>No catch. <em>No chasing.</em></h2>
+        </div>
+        <details>
+          <summary>Is it really free?</summary>
+          <p>Yes. No card and no catch. We do a few each week because it’s the best way to show how we work, and the report is yours to keep. If we’re full, we’ll tell you the day yours will arrive.</p>
+        </details>
+        <details>
+          <summary>Do you need my passwords?</summary>
+          <p>No. The store check only needs your store address. The account check uses view only access that you give us and can remove at any time.</p>
+        </details>
+        <details>
+          <summary>Will you chase me?</summary>
+          <p>Once. We send one follow up after your report, in case you have questions. Then nothing.</p>
+        </details>
+        <details>
+          <summary>Who sees my numbers?</summary>
+          <p>Only us. Your report and anything we see in your accounts stay between you and us, and are never published. We delete our notes after six months unless you become a client.</p>
+        </details>
+        <details>
+          <summary>What if we already work with an agency?</summary>
+          <p>That’s fine. Treat it as a second opinion. The fixes are written so your own team or your agency can act on them.</p>
+        </details>
+      </section>
+
+      <section class="closing-cta"><p class="eyebrow">Free store check</p><h2>Three fixes, <span>on the house.</span></h2><p>For UK Shopify brands that run ads, or are about to. Send us your store address and your report lands within three working days.</p><a class="btn btn-primary" href="#check">Get my free store check <span aria-hidden="true">↑</span></a> <a class="btn btn-ghost" href="/contact">Or book a consultation</a></section>
+    </main>
+
+    <footer>
+      <div class="footer-cols">
+        <div>
+          <b>That Other Agency</b>
+          <p>Growth, Shopify development, dashboards and websites for brands that sell online. London based, working UK wide.</p>
+          <a href="mailto:hello@thatotheragency.co.uk">hello@thatotheragency.co.uk</a>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <div><b>For Shopify brands</b><a href="/growth">Growth support</a><a href="/store-check">Free store check</a><a href="/shopify-development">Shopify development</a><a href="/performance-dashboard">Custom dashboards</a><a href="/demo">Live demo</a><a href="/ad-script-system">Ad scripts</a><a href="/shopify-website-design">Shopify stores</a></div>
+          <div><b>Websites</b><a href="/website-design">Website design</a><a href="/website-design-london">Websites in London</a><a href="/website-design-for-trades">Websites for trades</a><a href="/website-for-plumbers-electricians">Plumbers and electricians</a></div>
+          <div><b>Apps</b><a href="/that-other-dashboard">That Other Dashboard</a><a href="/that-other-dashboard/guides">Guides</a></div>
+          <div><b>Agency</b><a href="/services">All services</a><a href="/work">Work</a><a href="/about">About</a><a href="/blog">Blog</a><a href="https://www.linkedin.com/company/that-other-agency/" target="_blank" rel="noopener">LinkedIn</a><a href="/contact">Book a consultation</a></div>
+        </nav>
+      </div>
+      <p class="footer-giant" aria-hidden="true">that other agency<i>.</i></p>
+      <div class="footer-legal">
+        <p>© <span id="year">2026</span> That Other Agency Ltd. Registered in England and Wales, company number 16799053.</p>
+        <p>London, United Kingdom · <a href="/privacy">Privacy</a></p>
+      </div>
+    </footer>
+
+    <script src="script.js?v=20261025a" defer></script>
+  </body>
+</html>
