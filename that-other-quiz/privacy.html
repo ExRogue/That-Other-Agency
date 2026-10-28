@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- GA4 leaves out our own visits: local previews, and browsers opened once with ?internal=on (?internal=off undoes it) -->
+    <script>
+      (function () {
+        var own = location.hostname !== 'www.thatotheragency.co.uk';
+        try {
+          var q = /[?&]internal=(on|off)\b/.exec(location.search);
+          if (q && q[1] === 'on') localStorage.setItem('toa-internal', '1');
+          if (q && q[1] === 'off') localStorage.removeItem('toa-internal');
+          own = own || localStorage.getItem('toa-internal') === '1';
+        } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        if (own) gtag('set', { traffic_type: 'internal' });
+      })();
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RZKD9WTJYR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-RZKD9WTJYR');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=5" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <title>That Other Quiz Privacy Policy | That Other Agency</title>
+    <meta name="description" content="What That Other Quiz keeps about your shop and its quizzes, why shoppers’ emails never reach us, who we share data with, how long we keep it and your rights." />
+    <link rel="canonical" href="https://www.thatotheragency.co.uk/that-other-quiz/privacy" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="That Other Agency" />
+    <meta property="og:title" content="That Other Quiz Privacy Policy | That Other Agency" />
+    <meta property="og:description" content="What That Other Quiz keeps about your shop and its quizzes, why shoppers’ emails never reach us, who we share data with, how long we keep it and your rights." />
+    <meta property="og:url" content="https://www.thatotheragency.co.uk/that-other-quiz/privacy" />
+    <meta property="og:image" content="https://www.thatotheragency.co.uk/assets/og.png?v=20261010" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preload" href="/assets/fonts/host-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../styles.css?v=20261025b" />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="/" aria-label="That Other Agency, home">that other agency<i>.</i></a>
+        <button class="menu-toggle" aria-controls="site-nav" type="button" aria-expanded="false" aria-label="Open navigation">
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+          <a href="/services">Services</a>
+          <a href="/work">Work</a>
+          <a href="/that-other-dashboard">Apps</a>
+          <a href="/about">About</a>
+          <a class="nav-cta" href="/contact">Book a consultation</a>
+        </nav>
+        <a class="btn btn-primary header-cta" href="/contact">Book a consultation</a>
+      </div>
+    </header>
+
+    <main id="content">
+      <section class="reveal blog-post">
+        <div class="post-layout">
+          <article>
+            <p class="eyebrow">That Other Quiz · Privacy</p>
+            <h1>Your shop’s quiz, <em>kept plainly.</em></h1>
+            <p class="post-meta">Last updated 28 October 2026</p>
+
+            <div class="insight-box">
+              The short version: That Other Quiz shows your quiz to your shoppers, counts how it does without knowing who anyone is, and reads the orders that came from it so its report can show what it earned. It never keeps your shoppers’ names, email addresses, postal addresses or what they type. When a shopper gives their email, it goes from their browser straight to your own Klaviyo, never to us. We never sell your data. Uninstall That Other Quiz and everything is deleted within 48 hours, apart from your store’s name and email address in our own email list, which we keep for up to 12 months.
+            </div>
+
+            <h2 id="who">Who we are</h2>
+            <p>That Other Quiz is a Shopify app made by That Other Agency Ltd, a company registered in England and Wales, company number 16799053, based in London. This policy covers That Other Quiz. Our website has its own <a href="/privacy">privacy notice</a>, and our other app, That Other Dashboard, has <a href="/that-other-dashboard/privacy">its own policy</a>.</p>
+            <p>When you use That Other Quiz, you decide what your quiz asks, where it shows and whether it sends shoppers to your Klaviyo, and we use what it reads only to run That Other Quiz for you. Your store’s customer data stays your responsibility as its controller. We are the controller for the few details about your business described below.</p>
+            <p>You can reach us at <a href="mailto:hello@thatotheragency.co.uk">hello@thatotheragency.co.uk</a>, or by post at our registered office address, which is listed on <a href="https://find-and-update.company-information.service.gov.uk/company/16799053" target="_blank" rel="noopener">Companies House</a>.</p>
+
+            <h2 id="collect">What That Other Quiz reads and keeps</h2>
+            <ul>
+              <li><strong>Your quizzes.</strong> Your questions, answers, results, design and settings are kept in your own Shopify store, as the app’s own data and files, not on our servers.</li>
+              <li><strong>Orders that came from a quiz.</strong> With your permission to read orders, That Other Quiz looks back 60 days when you install it, then hears about new orders from Shopify. For each order that came from a quiz it keeps Shopify’s ID for it, the date, whether it was a test or cancelled, which quiz and result it came from (and which version, during an A/B test), the subtotal in your shop’s currency, and each line’s product, quantity and value.</li>
+              <li><strong>Counts, not people.</strong> For each quiz, daily counts of views and where the quiz was shown, starts, answers, finishes and adds to bag, and the same for each version of an A/B test. These carry no ID and nothing about who anyone is.</li>
+              <li><strong>Never your shoppers’ details.</strong> That Other Quiz does not keep shoppers’ names, email addresses, phone numbers, postal addresses, customer IDs or anything they type in their own words. When a shopper gives their email in your quiz, the quiz sends it, their answers and their consent choice from their browser straight to your own Klaviyo account, with the public site ID you set. It never reaches us.</li>
+              <li><strong>The AI quiz builder.</strong> If you use it, what you asked for, and how long each build took and how much of the AI it used, so we can count your builds.</li>
+              <li><strong>Our own emails to you about That Other Quiz.</strong> Your store’s name and its email address from Shopify, with how you use That Other Quiz: when you installed or uninstalled it, your plan, how many quizzes you have made, whether a shopper has seen one yet, how many quizzes were finished this month, whether a quiz sends to Klaviyo, whether it is a development store, and when you last opened it. We keep these in our own Klaviyo account, not yours, so we can send the emails described below. Never your orders or your shoppers.</li>
+              <li><strong>Your store and its login.</strong> Your store’s address and currency, and the access token Shopify gives That Other Quiz to work with your store.</li>
+              <li><strong>Technical logs.</strong> Our hosting provider keeps short technical logs, including IP addresses and errors, to keep That Other Quiz secure and working.</li>
+            </ul>
+            <p>On a shopper’s device That Other Quiz keeps nothing, except while you run an A/B test, and then only if the shopper has agreed to analytics: which version they saw (A or B, in the browser’s local storage), so they see the same one when they come back. It holds no ID. That Other Quiz sets no tracking or advertising cookies of its own, does not collect special category data, and makes no decisions about anyone by automated means.</p>
+
+            <h2 id="use">How we use it</h2>
+            <ul>
+              <li><strong>To run your quiz</strong> on your shop and recommend products from the answers. This is needed to provide the service you signed up for.</li>
+              <li><strong>To show you how it is doing:</strong> the report’s funnel and answers, the orders and sales that came from each quiz, and which version of an A/B test is winning.</li>
+              <li><strong>To count the free plan’s monthly limit</strong> of finished quizzes, and pause the quiz for new shoppers when it is reached.</li>
+              <li><strong>To build a quiz with AI</strong>, when you ask: the builder sends your shop’s name, a summary of your products and what you asked for to Anthropic, and never any customer or order data.</li>
+              <li><strong>To email you about That Other Quiz:</strong> a welcome with tips for getting started, a nudge if your quiz isn’t on your shop yet, a note when you are near the free plan’s monthly limit or reach it, a thank you when you choose a plan, and one email after you uninstall asking what was missing. These come from us, from send.thatotheragency.co.uk, and every one has a link to unsubscribe. They are about the app you installed, which is in our legitimate interests. We send news about our other services only if you sign up for it.</li>
+              <li><strong>To run and support That Other Quiz:</strong> to keep it secure, fix problems and answer your emails. This is in our legitimate interests.</li>
+              <li><strong>To keep our accounts</strong>, which the law requires. Shopify bills paid plans, so we see which plan you are on, never your card details.</li>
+            </ul>
+            <p>We never sell your data, never use it for advertising, never share it with other merchants or combine it with theirs, and never use it to train AI models. Order data is never sent to an AI provider. Nobody at That Other Agency looks at your figures unless you ask us to for support, it is needed to keep That Other Quiz secure, or the law requires it.</p>
+
+            <h2 id="share">Who we share it with</h2>
+            <p>We never sell your data. A small number of providers run That Other Quiz for us, and they only handle your data on our instructions:</p>
+            <ul>
+              <li><strong>Shopify</strong>, the platform That Other Quiz runs in, which also keeps your quizzes and handles billing.</li>
+              <li><strong>Vercel</strong>, which hosts That Other Quiz. Its servers for That Other Quiz are in London.</li>
+              <li><strong>Neon</strong>, which hosts That Other Quiz’s database, in London.</li>
+              <li><strong>Anthropic</strong>, which writes the AI builder’s drafts from your shop’s name, a summary of your products and what you asked for.</li>
+              <li><strong>Klaviyo</strong>, which sends our own emails to you about That Other Quiz, from our own Klaviyo account. It holds your store’s name and email address and the details about how you use That Other Quiz listed above.</li>
+              <li><strong>Google Workspace</strong>, our email, if you write to us.</li>
+            </ul>
+            <p>Your own Klaviyo account is not one of our providers: shoppers’ browsers send to it directly, under your account with Klaviyo and your own privacy notice. We may share data with our professional advisers, or where the law requires it.</p>
+
+            <h2 id="authorities">Requests from public authorities</h2>
+            <p>If a police force, regulator, court or other public authority asks us for data about you or your store, we:</p>
+            <ul>
+              <li>check the request is lawful and properly made before we answer it</li>
+              <li>challenge it, or refuse, if we believe it is unlawful or goes further than the law allows</li>
+              <li>give only the minimum data the request lawfully needs</li>
+              <li>keep a record of each request, how we answered and why</li>
+              <li>tell you about it, unless the law stops us</li>
+            </ul>
+
+            <h2 id="transfers">Data outside the UK</h2>
+            <p>That Other Quiz’s servers and database are in London. Anthropic and Klaviyo are based in the United States, and Klaviyo keeps the details it holds for our emails there. Where data leaves the UK, the transfer is protected by the safeguards UK law requires, such as the UK Extension to the EU US Data Privacy Framework or the UK International Data Transfer Agreement.</p>
+
+            <h2 id="keep">How long we keep it</h2>
+            <ul>
+              <li><strong>Orders that came from a quiz:</strong> 13 months, then deleted. A quiz’s orders and counts go when you delete the quiz, and a customer’s orders when Shopify asks us on their behalf.</li>
+              <li><strong>Counts:</strong> until you delete the quiz or uninstall That Other Quiz.</li>
+              <li><strong>Our email list:</strong> your store’s name, email address and the details above stay in our Klaviyo account while That Other Quiz is installed, and for up to 12 months after you uninstall, then we delete them. Unsubscribing stops the emails straight away. To have the details deleted sooner, email us.</li>
+              <li><strong>Everything else:</strong> your login goes when you uninstall, and the rest 48 hours later, when Shopify tells us to. Shopify removes your quizzes and the app’s data in your store when you uninstall.</li>
+              <li><strong>Backups:</strong> deleted data can stay in our database provider’s backups for up to 7 days.</li>
+              <li><strong>Hosting logs:</strong> a short time, usually days, for security.</li>
+              <li><strong>Emails with us:</strong> up to two years after we last spoke, and records of what Shopify paid us for six years, as UK tax law requires.</li>
+            </ul>
+
+            <h2 id="security">How we protect it</h2>
+            <ul>
+              <li>Everything travels encrypted (HTTPS), and our database provider encrypts everything it stores (AES-256) and only accepts encrypted connections.</li>
+              <li>That Other Quiz only changes your store where you ask it to: your quizzes, kept as the app’s own data, and a discount code if you make one in the app. It reads orders and never changes them.</li>
+              <li>Only the people who run That Other Quiz at That Other Agency can reach its database and settings.</li>
+              <li>If anything ever goes wrong with your data, we will tell you without undue delay, and the Information Commissioner’s Office where the law requires.</li>
+            </ul>
+
+            <h2 id="rights">Your rights</h2>
+            <p>You can ask us to:</p>
+            <ul>
+              <li>give you a copy of the data we hold about you or your store</li>
+              <li>correct anything that is wrong or incomplete</li>
+              <li>delete your data</li>
+              <li>stop or limit how we use it, or object to us using it</li>
+              <li>send your data to you or another organisation in a common format</li>
+            </ul>
+            <p>Email <a href="mailto:hello@thatotheragency.co.uk">hello@thatotheragency.co.uk</a> with your store’s address (yourstore.myshopify.com). It is free, and we will reply within one month.</p>
+
+            <h2 id="customers">If you took a store’s quiz</h2>
+            <p>That Other Quiz keeps no personal details about the shoppers who take a store’s quiz. If you gave your email, it went to the store’s own Klaviyo, and the store’s privacy notice says how they use it: ask the store to see or delete it. If you bought something after the quiz, we keep a record of that order for the store’s report, without your name or contact details, and delete it when Shopify passes on your request to the store.</p>
+
+            <h2 id="complain">Complaints</h2>
+            <p>If you are unhappy with how we have handled your data, please tell us first and we will try to put it right. You can also complain to the Information Commissioner’s Office at <a href="https://ico.org.uk/make-a-complaint/" target="_blank" rel="noopener">ico.org.uk</a> or on 0303 123 1113.</p>
+
+            <h2 id="changes">Changes to this policy</h2>
+            <p>We will update this page if anything changes, and the date at the top will show when it last changed. If a change affects how your data is used, we will tell you in That Other Quiz before it takes effect.</p>
+          </article>
+
+          <aside class="toc">
+            <h2>On this page</h2>
+            <ol>
+              <li><a href="#who">Who we are</a></li>
+              <li><a href="#collect">What That Other Quiz keeps</a></li>
+              <li><a href="#use">How we use it</a></li>
+              <li><a href="#share">Who we share it with</a></li>
+              <li><a href="#authorities">Requests from authorities</a></li>
+              <li><a href="#transfers">Data outside the UK</a></li>
+              <li><a href="#keep">How long we keep it</a></li>
+              <li><a href="#security">How we protect it</a></li>
+              <li><a href="#rights">Your rights</a></li>
+              <li><a href="#customers">Quiz takers</a></li>
+              <li><a href="#complain">Complaints</a></li>
+            </ol>
+          </aside>
+        </div>
+      </section>
+      <section class="closing-cta"><p class="eyebrow">Any questions?</p><h2>Ask us <span>anything.</span></h2><p>Email hello@thatotheragency.co.uk and a real person will reply.</p><a class="btn btn-primary" href="mailto:hello@thatotheragency.co.uk">Email us <span aria-hidden="true">↗︎</span></a></section>
+    </main>
+
+    <footer>
+      <div class="footer-cols">
+        <div>
+          <b>That Other Agency</b>
+          <p>Growth, Shopify development, dashboards and websites for brands that sell online. London based, working UK wide.</p>
+          <a href="mailto:hello@thatotheragency.co.uk">hello@thatotheragency.co.uk</a>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <div><b>For Shopify brands</b><a href="/growth">Growth support</a><a href="/store-check">Free store check</a><a href="/shopify-development">Shopify development</a><a href="/performance-dashboard">Custom dashboards</a><a href="/demo">Live demo</a><a href="/ad-script-system">Ad scripts</a><a href="/shopify-website-design">Shopify stores</a></div>
+          <div><b>Websites</b><a href="/website-design">Website design</a><a href="/website-design-london">Websites in London</a><a href="/website-design-for-trades">Websites for trades</a><a href="/website-for-plumbers-electricians">Plumbers and electricians</a></div>
+          <div><b>Apps</b><a href="/that-other-dashboard">That Other Dashboard</a><a href="/that-other-dashboard/guides">Guides</a></div>
+          <div><b>Agency</b><a href="/services">All services</a><a href="/work">Work</a><a href="/about">About</a><a href="/blog">Blog</a><a href="https://www.linkedin.com/company/that-other-agency/" target="_blank" rel="noopener">LinkedIn</a><a href="/contact">Book a consultation</a></div>
+        </nav>
+      </div>
+      <p class="footer-giant" aria-hidden="true">that other agency<i>.</i></p>
+      <div class="footer-legal">
+        <p>© <span id="year">2026</span> That Other Agency Ltd. Registered in England and Wales, company number 16799053.</p>
+        <p>London, United Kingdom · <a href="/privacy">Privacy</a></p>
+      </div>
+    </footer>
+
+    <script src="../script.js?v=20261025a" defer></script>
+  </body>
+</html>
