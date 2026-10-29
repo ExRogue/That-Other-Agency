@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- GA4 leaves out our own visits: local previews, and browsers opened once with ?internal=on (?internal=off undoes it) -->
+    <script>
+      (function () {
+        var own = location.hostname !== 'www.thatotheragency.co.uk';
+        try {
+          var q = /[?&]internal=(on|off)\b/.exec(location.search);
+          if (q && q[1] === 'on') localStorage.setItem('toa-internal', '1');
+          if (q && q[1] === 'off') localStorage.removeItem('toa-internal');
+          own = own || localStorage.getItem('toa-internal') === '1';
+        } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        if (own) gtag('set', { traffic_type: 'internal' });
+      })();
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RZKD9WTJYR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-RZKD9WTJYR');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=5" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <title>Klaviyo Revenue Doesn't Match Shopify? | That Other Agency</title>
+    <meta name="description" content="Klaviyo revenue doesn't match Shopify, and Meta and Google claim the same sales. Why every tool overcounts, and the real number to use." />
+    <link rel="canonical" href="https://www.thatotheragency.co.uk/blog/klaviyo-revenue-vs-shopify" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Klaviyo Revenue Doesn't Match Shopify? | That Other Agency" />
+    <meta property="og:description" content="Klaviyo revenue doesn't match Shopify, and Meta and Google claim the same sales. Why every tool overcounts, and the real number to use." />
+    <meta property="og:url" content="https://www.thatotheragency.co.uk/blog/klaviyo-revenue-vs-shopify" />
+    <meta property="og:image" content="https://www.thatotheragency.co.uk/assets/blog/klaviyo-revenue-vs-shopify.png?v=20261029" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Klaviyo, Meta and Google all claim the same sale. Here is the real number", "description": "Klaviyo revenue doesn't match Shopify, and Meta and Google claim the same sales. Why every tool overcounts, and the real number to use.", "datePublished": "2026-10-29", "dateModified": "2026-10-29", "author": {"@type": "Organization", "name": "That Other Agency", "url": "https://www.thatotheragency.co.uk/"}, "publisher": {"@type": "Organization", "name": "That Other Agency", "logo": {"@type": "ImageObject", "url": "https://www.thatotheragency.co.uk/assets/logo.svg"}}, "mainEntityOfPage": "https://www.thatotheragency.co.uk/blog/klaviyo-revenue-vs-shopify", "image": "https://www.thatotheragency.co.uk/assets/blog/klaviyo-revenue-vs-shopify.png?v=20261029"}</script>
+    <link rel="preload" href="/assets/fonts/host-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../styles.css?v=20261025b" />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="/" aria-label="That Other Agency, home">that other agency<i>.</i></a>
+        <button class="menu-toggle" aria-controls="site-nav" type="button" aria-expanded="false" aria-label="Open navigation">
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+          <a href="/services">Services</a>
+          <a href="/work">Work</a>
+          <a href="/that-other-dashboard">Apps</a>
+          <a href="/about">About</a>
+          <a class="nav-cta" href="/contact">Book a consultation</a>
+        </nav>
+        <a class="btn btn-primary header-cta" href="/contact">Book a consultation</a>
+      </div>
+    </header>
+
+    <main id="content">
+      <section class="reveal blog-post">
+        <div class="post-layout">
+          <article>
+            <p class="eyebrow">Dashboards</p>
+            <h1>Klaviyo, Meta and Google all claim the same sale. <em>Here is the real number.</em></h1>
+            <p class="post-meta">Published 29 October 2026 · 6 min read</p>
+            <figure class="post-image">
+              <img src="../assets/blog/klaviyo-revenue-vs-shopify.png" width="1600" height="900" alt="Cover reading: Three tools. One sale." />
+            </figure>
+
+            <p>
+              If your Klaviyo revenue doesn't match Shopify, you are in good company. Add Klaviyo's attributed revenue
+              to what Meta and Google say they made, and most stores find the three together claim more than the
+              store actually sold. Nobody is lying. Each tool counts the same order for itself. This guide explains
+              why, works through an example in pounds, and shows the one number that cannot be double counted.
+            </p>
+
+            <div class="insight-box">
+              The short answer: Klaviyo, Meta and Google each give themselves full credit for any order that follows
+              one of their own touches, and none of them knows about the others. Shopify net sales is the real number.
+              Judge your marketing as a whole on Shopify sales against total spend, and use each platform's figure only
+              to compare things inside that platform.
+            </div>
+
+            <h2 id="why">Why Klaviyo revenue doesn't match Shopify</h2>
+            <p>Five things push Klaviyo's figure, and the ad platforms' figures, above what really happened.</p>
+            <ol>
+              <li>
+                <strong>Every tool only sees itself.</strong> Klaviyo uses a last touch model by default, but "last"
+                means the last Klaviyo message. It has no idea the customer clicked a Meta ad an hour before. Meta and
+                Google do the same from their side. One order, three owners.
+              </li>
+              <li>
+                <strong>Opens count.</strong> By default Klaviyo can credit an order to an email that was only opened,
+                not clicked, within five days. Apple Mail Privacy Protection loads emails in advance on many iPhones,
+                which registers as an open whether or not anyone read it. Klaviyo says these opens can count unless you
+                exclude them. So a customer who bought after seeing an ad may count as an email sale because their
+                phone opened a newsletter in the background.
+              </li>
+              <li>
+                <strong>The windows are different and generous.</strong> Klaviyo's default is five days after an
+                email open or click. Meta's default is seven days after a click or one day after a view. Google Ads
+                defaults to thirty days after a click. A customer who touches all three in a fortnight can be claimed
+                by all three.
+              </li>
+              <li>
+                <strong>Values are measured differently.</strong> Platforms usually report the order value your
+                tracking sends, which often includes VAT and sometimes shipping. Shopify's net sales take out tax,
+                shipping, discounts and refunds. A refund comes off Shopify and stays on every platform report. We
+                covered the VAT side in <a href="/blog/roas-vat-uk-shopify">ROAS and VAT</a>.
+              </li>
+              <li>
+                <strong>Some flows sit right before the till.</strong> Abandoned basket and abandoned checkout flows
+                email people who were already most of the way to buying. They do bring some orders back, but many of
+                those customers would have returned anyway, and Klaviyo credits all of them to the flow.
+              </li>
+            </ol>
+
+            <h2 id="example">A worked example in pounds</h2>
+            <p>
+              Take a made up store. In one week Shopify records net sales of £30,000 excluding VAT. The platforms report:
+            </p>
+            <ul>
+              <li><strong>Meta Ads Manager:</strong> £15,600 of purchases</li>
+              <li><strong>Google Ads:</strong> £9,000 of conversion value</li>
+              <li><strong>Klaviyo:</strong> £14,400 of attributed revenue</li>
+            </ul>
+            <p>
+              That is £39,000 claimed. All three are sending order totals including VAT, so take the VAT out and you
+              get about £32,500. That is still £2,500 more than the store sold, and it leaves nothing at all for
+              people who found the store through organic search, a friend or a podcast mention.
+            </p>
+            <p>
+              Now the founder reads the Klaviyo dashboard, sees £14,400 a week from email, and decides to send twice
+              as many campaigns. Klaviyo's figure goes up, because more emails means more opens inside more windows.
+              Shopify sales barely move, and unsubscribes climb. The tool that measures itself said the plan worked.
+              Only Shopify said it did not.
+            </p>
+
+            <h2 id="real">How to find the real number</h2>
+            <ul>
+              <li><strong>Start with Shopify net sales.</strong> It is the only figure tied to money arriving in the bank, and every order is counted once.</li>
+              <li><strong>Divide by total marketing spend.</strong> Put every ad platform's spend together, plus what you pay for Klaviyo and any agency running it. Sales divided by that total is MER, and attribution cannot flatter it.</li>
+              <li><strong>Split new and returning customers.</strong> Email mostly sells to people who already know you. Shopify's first time customer count, set against ad spend, tells you whether the ads are finding new buyers.</li>
+              <li><strong>Test email with a holdout.</strong> Split one flow so a random tenth of people get nothing, run it for a few weeks, then compare the two groups' orders in Shopify. The difference is what the flow really adds.</li>
+              <li><strong>Use each platform for comparisons inside it.</strong> Klaviyo is good for telling you which flow or subject line did better than another. Its counting is skewed, but skewed the same way for every email.</li>
+            </ul>
+
+            <h2 id="settings">Three Klaviyo settings worth checking</h2>
+            <ol>
+              <li><strong>Exclude Apple privacy opens</strong> from attribution, or count clicks only. Your Klaviyo revenue will fall, and it will be closer to the truth.</li>
+              <li><strong>Look at the attribution window.</strong> Five days is generous for a store whose customers usually buy the same day. Klaviyo applies a change only to conversions after you make it, so note the date.</li>
+              <li><strong>Agree on one value basis.</strong> Check whether your reports include VAT and shipping, and write down which basis your team reports on, so a figure in one meeting means the same thing in the next.</li>
+            </ol>
+            <p>
+              None of these settings makes Klaviyo agree with Shopify. They make it a little less generous, which
+              helps when you compare one email with another.
+            </p>
+
+            <h2 id="ours">What we do on client dashboards</h2>
+            <p>
+              Every <a href="/performance-dashboard">custom dashboard</a> we build takes sales and new customers from
+              Shopify, spend from every ad platform, and shows MER and cost per new customer from those figures. Each
+              platform's own claim stays on the screen, labelled as the platform's view, so you can see how far apart
+              they are without adding them up. Our <a href="/demo">live dashboard demo</a> shows a working example
+              with made up data. If you want the same for your store, every build starts with a consultation and a
+              fixed quote. For more on the ad side, read
+              <a href="/blog/shopify-sales-dont-match-meta-ads">why Shopify and Meta never show the same sales</a>.
+            </p>
+
+            <h2 id="faq">Frequently asked questions</h2>
+            <details>
+              <summary>Is Klaviyo's attributed revenue wrong?</summary>
+              <p>It is correct by its own rules. It shows orders that followed a Klaviyo message inside its window. It does not show orders that happened because of a Klaviyo message, and it cannot see the ads the same customer clicked. Treat it as Klaviyo's opinion of itself.</p>
+            </details>
+            <details>
+              <summary>Should email revenue be a set share of Shopify sales?</summary>
+              <p>There is no right share. A brand with lots of repeat buyers will see a bigger share than one selling a product people buy once. Watch the trend in your own Shopify sales from returning customers rather than chasing a benchmark.</p>
+            </details>
+            <details>
+              <summary>Can I add up the platforms if I take VAT out?</summary>
+              <p>No. Taking VAT out fixes the value basis, but the same order is still claimed by more than one platform. Adding them up will nearly always come to more than you sold.</p>
+            </details>
+
+            <div class="article-nav">
+              <a class="btn btn-ghost" href="/blog">Back to blog</a>
+              <a class="btn btn-primary" href="/contact">Book a consultation</a>
+            </div>
+          </article>
+
+          <aside class="toc">
+            <h2>On this page</h2>
+            <ol>
+              <li><a href="#why">Why the numbers differ</a></li>
+              <li><a href="#example">A worked example</a></li>
+              <li><a href="#real">The real number</a></li>
+              <li><a href="#settings">Klaviyo settings</a></li>
+              <li><a href="#ours">Our dashboards</a></li>
+              <li><a href="#faq">FAQs</a></li>
+            </ol>
+          </aside>
+        </div>
+      </section>
+      <section class="closing-cta"><p class="eyebrow">Want a second pair of eyes?</p><h2>We’ll look at it <span>with you.</span></h2><p>Book a consultation and we’ll go through your site, ads and numbers together.</p><a class="btn btn-primary" href="/contact">Book a consultation <span aria-hidden="true">↗︎</span></a></section>
+    </main>
+
+    <footer>
+      <div class="footer-cols">
+        <div>
+          <b>That Other Agency</b>
+          <p>Growth, Shopify development, dashboards and websites for brands that sell online. London based, working UK wide.</p>
+          <a href="mailto:hello@thatotheragency.co.uk">hello@thatotheragency.co.uk</a>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <div><b>For Shopify brands</b><a href="/growth">Growth support</a><a href="/store-check">Free store check</a><a href="/shopify-development">Shopify development</a><a href="/performance-dashboard">Custom dashboards</a><a href="/demo">Live demo</a><a href="/ad-script-system">Ad scripts</a><a href="/shopify-website-design">Shopify stores</a></div>
+          <div><b>Websites</b><a href="/website-design">Website design</a><a href="/website-design-london">Websites in London</a><a href="/website-design-for-trades">Websites for trades</a><a href="/website-for-plumbers-electricians">Plumbers and electricians</a></div>
+          <div><b>Apps</b><a href="/that-other-dashboard">That Other Dashboard</a><a href="/that-other-dashboard/guides">Guides</a></div>
+          <div><b>Agency</b><a href="/services">All services</a><a href="/work">Work</a><a href="/about">About</a><a href="/blog">Blog</a><a href="https://www.linkedin.com/company/that-other-agency/" target="_blank" rel="noopener">LinkedIn</a><a href="/contact">Book a consultation</a></div>
+        </nav>
+      </div>
+      <p class="footer-giant" aria-hidden="true">that other agency<i>.</i></p>
+      <div class="footer-legal">
+        <p>© <span id="year">2026</span> That Other Agency Ltd. Registered in England and Wales, company number 16799053.</p>
+        <p>London, United Kingdom · <a href="/privacy">Privacy</a></p>
+      </div>
+    </footer>
+
+    <script src="../script.js?v=20261025a" defer></script>
+  </body>
+</html>
