@@ -9,6 +9,14 @@
     {
       "source": "/demo/:path*",
       "destination": "https://dashboard-demo-iota-bice.vercel.app/demo/:path*"
+    },
+    {
+      "source": "/review",
+      "destination": "https://toa-review.vercel.app/review"
+    },
+    {
+      "source": "/review/:path*",
+      "destination": "https://toa-review.vercel.app/review/:path*"
     }
   ],
   "redirects": [
