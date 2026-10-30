@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- GA4 leaves out our own visits: local previews, and browsers opened once with ?internal=on (?internal=off undoes it) -->
+    <script>
+      (function () {
+        var own = location.hostname !== 'www.thatotheragency.co.uk';
+        try {
+          var q = /[?&]internal=(on|off)\b/.exec(location.search);
+          if (q && q[1] === 'on') localStorage.setItem('toa-internal', '1');
+          if (q && q[1] === 'off') localStorage.removeItem('toa-internal');
+          own = own || localStorage.getItem('toa-internal') === '1';
+        } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        if (own) gtag('set', { traffic_type: 'internal' });
+      })();
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RZKD9WTJYR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-RZKD9WTJYR');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=5" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <title>How to Calculate MER Shopify Stores Can Trust | That Other Agency</title>
+    <meta name="description" content="How to calculate MER on Shopify step by step: which sales figure to use, how to add up ad spend, and the UK VAT mistake that makes MER look better than it is." />
+    <link rel="canonical" href="https://www.thatotheragency.co.uk/blog/how-to-calculate-mer-shopify" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="How to Calculate MER Shopify Stores Can Trust | That Other Agency" />
+    <meta property="og:description" content="How to calculate MER on Shopify step by step: which sales figure to use, how to add up ad spend, and the UK VAT mistake that makes MER look better than it is." />
+    <meta property="og:url" content="https://www.thatotheragency.co.uk/blog/how-to-calculate-mer-shopify" />
+    <meta property="og:image" content="https://www.thatotheragency.co.uk/assets/blog/how-to-calculate-mer-shopify.png?v=20261030" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "How to calculate MER on Shopify, and the UK VAT mistake that inflates it", "description": "How to calculate MER on Shopify step by step: which sales figure to use, how to add up ad spend, and the UK VAT mistake that makes MER look better than it is.", "datePublished": "2026-10-30", "dateModified": "2026-10-30", "author": {"@type": "Organization", "name": "That Other Agency", "url": "https://www.thatotheragency.co.uk/"}, "publisher": {"@type": "Organization", "name": "That Other Agency", "logo": {"@type": "ImageObject", "url": "https://www.thatotheragency.co.uk/assets/logo.svg"}}, "mainEntityOfPage": "https://www.thatotheragency.co.uk/blog/how-to-calculate-mer-shopify", "image": "https://www.thatotheragency.co.uk/assets/blog/how-to-calculate-mer-shopify.png?v=20261030"}</script>
+    <link rel="preload" href="/assets/fonts/host-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../styles.css?v=20261025b" />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="/" aria-label="That Other Agency, home">that other agency<i>.</i></a>
+        <button class="menu-toggle" aria-controls="site-nav" type="button" aria-expanded="false" aria-label="Open navigation">
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+          <a href="/services">Services</a>
+          <a href="/work">Work</a>
+          <a href="/that-other-dashboard">Apps</a>
+          <a href="/about">About</a>
+          <a class="nav-cta" href="/contact">Book a consultation</a>
+        </nav>
+        <a class="btn btn-primary header-cta" href="/contact">Book a consultation</a>
+      </div>
+    </header>
+
+    <main id="content">
+      <section class="reveal blog-post">
+        <div class="post-layout">
+          <article>
+            <p class="eyebrow">Dashboards</p>
+            <h1>How to calculate MER on Shopify, <em>and the UK VAT mistake that inflates it.</em></h1>
+            <p class="post-meta">Published 30 October 2026 · 5 min read</p>
+            <figure class="post-image">
+              <img src="../assets/blog/how-to-calculate-mer-shopify.png" width="1600" height="900" alt="Cover reading: Your MER is flattering you." />
+            </figure>
+
+            <p>
+              MER is the simplest honest number a Shopify brand has: total sales divided by total ad spend. This guide
+              shows how to calculate MER Shopify brands can actually trust, which figures to pull from Shopify and the ad
+              platforms, and the one UK mistake that makes it look a fifth better than it is. The sum takes a minute.
+              Picking the right inputs is where most stores go wrong.
+            </p>
+
+            <div class="insight-box">
+              The short answer: MER = Shopify net sales ÷ total ad spend, for the same dates, both excluding VAT. Net
+              sales already leaves out VAT, shipping, discounts and returns. The common mistake is using Shopify's
+              "Total sales" instead, which includes VAT and shipping and can make your MER look 20% or more better than
+              the money you keep.
+            </div>
+
+            <h2 id="formula">The formula</h2>
+            <p><strong>MER (marketing efficiency ratio) = total sales ÷ total ad spend</strong></p>
+            <p>
+              Unlike ROAS, it does not care which ad gets the credit for a sale. It puts every order from every channel
+              against everything you paid the ad platforms, so it cannot be double counted. If you want the background
+              on what MER is and what a good one looks like, our guide
+              <a href="/that-other-dashboard/guides/what-is-mer">What is MER</a> covers it. This post is about getting
+              the two inputs right.
+            </p>
+
+            <h2 id="steps">How to calculate MER Shopify brands can trust, step by step</h2>
+            <ol>
+              <li>
+                <strong>Pick a complete period.</strong> A full week or a full month works best. A single day swings
+                too much, and a half finished week mixes busy and quiet days. Use the same start and end dates for
+                every figure.
+              </li>
+              <li>
+                <strong>Take net sales from Shopify.</strong> In Analytics, open the sales reports for your dates and
+                find net sales. Shopify works it out as gross sales, less discounts, less returns and other reversals.
+                It leaves out shipping and taxes, which is exactly what you want.
+              </li>
+              <li>
+                <strong>Add up ad spend from every platform.</strong> Meta, Google Ads, TikTok, Pinterest and anything
+                else you paid for ads in those dates. Take each figure from the platform's own spend column or billing
+                page, before any VAT.
+              </li>
+              <li>
+                <strong>Divide.</strong> Net sales ÷ total ad spend. Write down which figures you used, so next month's
+                number is worked out the same way.
+              </li>
+            </ol>
+
+            <h2 id="vat">The UK VAT mistake that inflates it</h2>
+            <p>
+              The biggest number at the top of most Shopify sales reports is total sales. It is what customers paid:
+              net sales plus shipping plus taxes. For a VAT registered UK store, those taxes are VAT at the standard
+              20% on most products. That money belongs to HMRC. Shipping mostly goes straight back out to your courier.
+              Neither is money your ads earned you.
+            </p>
+            <p>Here is a made up store's month:</p>
+            <ul>
+              <li><strong>Net sales:</strong> £22,000</li>
+              <li><strong>Shipping charged:</strong> £800</li>
+              <li><strong>VAT collected:</strong> £4,560</li>
+              <li><strong>Total sales:</strong> £27,360</li>
+              <li><strong>Ad spend:</strong> £5,500 Meta, £2,000 Google, £500 TikTok, so £8,000 in all</li>
+            </ul>
+            <p>
+              Using total sales, MER is £27,360 ÷ £8,000 = 3.42. Using net sales, it is £22,000 ÷ £8,000 = 2.75. Same
+              month, same ads, and the first figure is about 24% higher.
+            </p>
+            <p>
+              Now say this store keeps 34% of each pound of net sales after products, packaging, delivery and payment
+              fees. Its break even MER is 1 ÷ 0.34, about 2.9. At 3.42 the ads look comfortably profitable. At 2.75
+              they are losing money. Raise the budget on the strength of the first number and you raise the loss.
+            </p>
+
+            <h2 id="spend">Getting the spend side right</h2>
+            <p>VAT can creep into the bottom of the sum too.</p>
+            <ul>
+              <li><strong>VAT registered.</strong> If your ad accounts carry your VAT number, invoices from the big platforms usually show no UK VAT added, so the spend is already net. If an invoice does show VAT that you reclaim, use the figure before VAT.</li>
+              <li><strong>Not VAT registered.</strong> You charge no VAT, so your sales have none to strip out (taxable turnover under £90,000 means you do not have to register). Any VAT you pay on ads is a real cost you cannot reclaim, so leave it in the spend.</li>
+              <li><strong>Fees.</strong> Some teams add agency fees and tool subscriptions to spend. Either way is fine as long as you always do it the same way and say which one you use.</li>
+            </ul>
+
+            <h2 id="traps">Three other things that skew it</h2>
+            <ul>
+              <li><strong>A mixed VAT basket.</strong> Children's clothes and some food are zero rated or reduced rate. Dividing total sales by 1.2 is wrong for those stores. Net sales uses the tax Shopify actually recorded, so it avoids the problem.</li>
+              <li><strong>Returns landing later.</strong> Shopify usually records a return on the day it happens, not against the original order. A busy sale month can look great, then the following month carries its returns. Look at MER over a few months, not one.</li>
+              <li><strong>Time zones.</strong> Your store and your ad accounts may run on different time zones. Over a month the difference is small. Over a single day it can move the number noticeably.</li>
+            </ul>
+
+            <h2 id="ours">What we do on client dashboards</h2>
+            <p>
+              Every <a href="/performance-dashboard">custom dashboard</a> we build takes net sales straight from
+              Shopify and spend from each ad platform, both excluding VAT, and works out MER from those two figures
+              every day. Targets like break even MER use the same basis, so nothing on the screen flatters you. You can
+              click around a working example with made up data in our <a href="/demo">live dashboard demo</a>. If you
+              want the same for your store, every build starts with a consultation and a fixed quote. For more on VAT
+              in your numbers, read <a href="/blog/roas-vat-uk-shopify">ROAS and VAT</a>.
+            </p>
+
+            <h2 id="faq">Frequently asked questions</h2>
+            <details>
+              <summary>Is MER the same as blended ROAS?</summary>
+              <p>Yes. Both mean total sales divided by total ad spend across every channel. MER is the more common name among Shopify brands, and it avoids confusion with the ROAS each platform reports for itself.</p>
+            </details>
+            <details>
+              <summary>Should MER include shipping?</summary>
+              <p>Usually not. Shipping you charge mostly pays your courier, so counting it as sales flatters MER the same way VAT does. Net sales leaves it out for you.</p>
+            </details>
+            <details>
+              <summary>What about new customer MER?</summary>
+              <p>Some brands also divide sales from first time customers by ad spend. It tells you whether the ads are finding new buyers rather than selling to people who would have come back anyway. Use net sales from new customers in Shopify, so the VAT rule still holds.</p>
+            </details>
+
+            <div class="article-nav">
+              <a class="btn btn-ghost" href="/blog">Back to blog</a>
+              <a class="btn btn-primary" href="/contact">Book a consultation</a>
+            </div>
+          </article>
+
+          <aside class="toc">
+            <h2>On this page</h2>
+            <ol>
+              <li><a href="#formula">The formula</a></li>
+              <li><a href="#steps">Step by step</a></li>
+              <li><a href="#vat">The UK VAT mistake</a></li>
+              <li><a href="#spend">The spend side</a></li>
+              <li><a href="#traps">Other things that skew it</a></li>
+              <li><a href="#ours">Our dashboards</a></li>
+              <li><a href="#faq">FAQs</a></li>
+            </ol>
+          </aside>
+        </div>
+      </section>
+      <section class="closing-cta"><p class="eyebrow">Want a second pair of eyes?</p><h2>We’ll look at it <span>with you.</span></h2><p>Book a consultation and we’ll go through your site, ads and numbers together.</p><a class="btn btn-primary" href="/contact">Book a consultation <span aria-hidden="true">↗︎</span></a></section>
+    </main>
+
+    <footer>
+      <div class="footer-cols">
+        <div>
+          <b>That Other Agency</b>
+          <p>Growth, Shopify development, dashboards and websites for brands that sell online. London based, working UK wide.</p>
+          <a href="mailto:hello@thatotheragency.co.uk">hello@thatotheragency.co.uk</a>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <div><b>For Shopify brands</b><a href="/growth">Growth support</a><a href="/store-check">Free store check</a><a href="/shopify-development">Shopify development</a><a href="/performance-dashboard">Custom dashboards</a><a href="/demo">Live demo</a><a href="/ad-script-system">Ad scripts</a><a href="/shopify-website-design">Shopify stores</a></div>
+          <div><b>Websites</b><a href="/website-design">Website design</a><a href="/website-design-london">Websites in London</a><a href="/website-design-for-trades">Websites for trades</a><a href="/website-for-plumbers-electricians">Plumbers and electricians</a></div>
+          <div><b>Apps</b><a href="/that-other-dashboard">That Other Dashboard</a><a href="/that-other-dashboard/guides">Guides</a></div>
+          <div><b>Agency</b><a href="/services">All services</a><a href="/work">Work</a><a href="/about">About</a><a href="/blog">Blog</a><a href="https://www.linkedin.com/company/that-other-agency/" target="_blank" rel="noopener">LinkedIn</a><a href="/contact">Book a consultation</a></div>
+        </nav>
+      </div>
+      <p class="footer-giant" aria-hidden="true">that other agency<i>.</i></p>
+      <div class="footer-legal">
+        <p>© <span id="year">2026</span> That Other Agency Ltd. Registered in England and Wales, company number 16799053.</p>
+        <p>London, United Kingdom · <a href="/privacy">Privacy</a></p>
+      </div>
+    </footer>
+
+    <script src="../script.js?v=20261025a" defer></script>
+  </body>
+</html>
