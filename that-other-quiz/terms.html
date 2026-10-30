@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- GA4 leaves out our own visits: local previews, and browsers opened once with ?internal=on (?internal=off undoes it) -->
+    <script>
+      (function () {
+        var own = location.hostname !== 'www.thatotheragency.co.uk';
+        try {
+          var q = /[?&]internal=(on|off)\b/.exec(location.search);
+          if (q && q[1] === 'on') localStorage.setItem('toa-internal', '1');
+          if (q && q[1] === 'off') localStorage.removeItem('toa-internal');
+          own = own || localStorage.getItem('toa-internal') === '1';
+        } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        if (own) gtag('set', { traffic_type: 'internal' });
+      })();
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RZKD9WTJYR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-RZKD9WTJYR');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=5" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <title>That Other Quiz Terms of Service | That Other Agency</title>
+    <meta name="description" content="The terms for using That Other Quiz, That Other Agency’s Shopify app: the free and paid plans, billing through Shopify, shoppers’ emails, your data, liability and how to stop." />
+    <link rel="canonical" href="https://www.thatotheragency.co.uk/that-other-quiz/terms" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="That Other Agency" />
+    <meta property="og:title" content="That Other Quiz Terms of Service | That Other Agency" />
+    <meta property="og:description" content="The terms for using That Other Quiz, That Other Agency’s Shopify app: the free and paid plans, billing through Shopify, shoppers’ emails, your data, liability and how to stop." />
+    <meta property="og:url" content="https://www.thatotheragency.co.uk/that-other-quiz/terms" />
+    <meta property="og:image" content="https://www.thatotheragency.co.uk/assets/og.png?v=20261010" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preload" href="/assets/fonts/host-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../styles.css?v=20261025b" />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="/" aria-label="That Other Agency, home">that other agency<i>.</i></a>
+        <button class="menu-toggle" aria-controls="site-nav" type="button" aria-expanded="false" aria-label="Open navigation">
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+          <a href="/services">Services</a>
+          <a href="/work">Work</a>
+          <a href="/that-other-dashboard">Apps</a>
+          <a href="/about">About</a>
+          <a class="nav-cta" href="/contact">Book a consultation</a>
+        </nav>
+        <a class="btn btn-primary header-cta" href="/contact">Book a consultation</a>
+      </div>
+    </header>
+
+    <main id="content">
+      <section class="reveal blog-post">
+        <div class="post-layout">
+          <article>
+            <p class="eyebrow">That Other Quiz · Terms</p>
+            <h1>That Other Quiz’s terms, <em>in plain English.</em></h1>
+            <p class="post-meta">Last updated 30 October 2026</p>
+
+            <div class="insight-box">
+              The short version: That Other Quiz puts a product quiz on your shop, sends the emails shoppers choose to give to your own Klaviyo, and shows you which orders it brought in. The free plan is free up to a monthly number of finished quizzes. The paid plan is billed by Shopify, monthly or yearly, until you cancel. Your quizzes and data stay yours, and you can stop at any time by uninstalling.
+            </div>
+
+            <h2 id="about">These terms</h2>
+            <p>These terms are an agreement between your business and That Other Agency Ltd, a company registered in England and Wales, company number 16799053 (“we”), for using That Other Quiz, our Shopify app. By installing That Other Quiz you agree to them on behalf of your business, and you confirm you can make that decision for it.</p>
+            <p>That Other Quiz is for businesses, not consumers. Shopify’s own terms, and Klaviyo’s if you send shoppers to it, apply alongside these.</p>
+
+            <h2 id="service">What That Other Quiz does</h2>
+            <p>That Other Quiz lets you build product quizzes, yourself, from a template or with its AI builder, and show them on your shop as a block on a page, a popup or a page of their own. It recommends products from each shopper’s answers. If you set it up, it sends the email and answers a shopper chooses to give to your own Klaviyo account, and it can make a discount code for the people who finish a quiz. It reads your orders to show which ones came from a quiz.</p>
+            <p>It only changes your store where you ask it to: your quizzes, kept as the app’s own data, pictures you upload to your Shopify Files, and a discount code if you make one. It reads orders and never changes them.</p>
+            <p>The report counts an order as coming from a quiz when the quiz marked the shopper’s cart. Shoppers who say no to analytics aren’t marked, and some ways of buying skip the cart, so the report can count fewer orders than a quiz really brought in. It is information to help you decide, not financial or business advice, and the decisions you make with it are yours.</p>
+
+            <h2 id="ai">The AI builder</h2>
+            <p>The AI builder writes a draft quiz from your products and what you ask for. Like any AI, it can get things wrong: a question that doesn’t fit, a product that isn’t the best match, or wording you wouldn’t use. Read and test every draft before you put it on your shop. The draft is yours to change and use.</p>
+
+            <h2 id="billing">Plans and billing</h2>
+            <ul>
+              <li><strong>The free plan</strong> is free. It includes a number of finished quizzes each month, counted across all your quizzes, and a number of AI builds, both shown on That Other Quiz’s Shopify App Store listing and in the app. If we ever take a feature away from it, we will tell you in That Other Quiz at least 30 days before.</li>
+              <li><strong>The free plan’s monthly limit.</strong> That Other Quiz warns you as you get near it. Once it is passed, your quizzes stop taking new shoppers until the 1st of the next month or until you move to the paid plan. Anyone part way through a quiz can still finish it.</li>
+              <li><strong>The paid plan</strong> has a monthly or yearly fee, shown on the listing and in the app before you choose it, plus any tax Shopify applies. There is no free trial: the free plan is the way to try That Other Quiz.</li>
+              <li><strong>Billing.</strong> Shopify charges the fee on your Shopify bill, every 30 days or once a year, and Shopify’s billing terms apply to the charge. We never see your card details.</li>
+              <li><strong>Cancelling.</strong> Cancel at any time by moving to the free plan or uninstalling That Other Quiz. Shopify applies its own rules to any part of a billing period. Otherwise fees are not refundable, unless the law says they must be.</li>
+              <li><strong>Price changes.</strong> We will tell you in That Other Quiz at least 30 days before a price rise, and you can cancel before it applies.</li>
+            </ul>
+
+            <h2 id="you">Your part</h2>
+            <ul>
+              <li><strong>What your quiz says is yours.</strong> You choose its questions, results, recommendations, pictures and discount. Make sure they are accurate and lawful, and that you are allowed to use every picture you upload.</li>
+              <li><strong>Shoppers’ emails.</strong> When a shopper gives their email, it goes to your Klaviyo account under your own agreement with Klaviyo. You are responsible for it there: keep the consent tick, send marketing only to shoppers who ticked it, and keep to the law on marketing emails and to Klaviyo’s terms.</li>
+              <li><strong>Your privacy policy.</strong> The quiz tells shoppers that your shop’s privacy policy applies and links to it. Make sure your policy covers your quiz, including what it sends to Klaviyo and to any analytics or advertising tools you connect.</li>
+              <li>Decide who in your business can open That Other Quiz in your Shopify admin.</li>
+              <li>Don’t misuse That Other Quiz: no attempts to break it, overload it or get round its security or the free plan’s limits, no copying or reselling it, and nothing unlawful.</li>
+            </ul>
+
+            <h2 id="data">Your data</h2>
+            <p>Your data stays yours. You allow us to use it only to run That Other Quiz for you, as our <a href="/that-other-quiz/privacy">privacy policy</a> explains. We never sell it, never share it with other merchants and never publish your figures.</p>
+            <p>That Other Quiz keeps no names, email addresses, phone numbers or postal addresses of your shoppers. Their emails go from their browser straight to your Klaviyo and never reach us. Deleting a quiz deletes its counts and orders in That Other Quiz straight away, and uninstalling deletes everything else, as <a href="/that-other-quiz/data-deletion">deleting your data</a> describes.</p>
+            <p>Where That Other Quiz handles personal data about your customers (records of orders that came from a quiz, never names or contact details), we do it as your processor under UK and EU data protection law: only on your instructions, which are these terms, and only to run That Other Quiz for you. We keep it confidential, keep it secure, use only the providers our privacy policy lists, help you answer your customers’ requests, tell you without undue delay if anything goes wrong with it, and delete it when you uninstall.</p>
+
+            <h2 id="ours">Our part</h2>
+            <p>We run That Other Quiz with reasonable care and skill, and fix problems as quickly as we reasonably can. We can’t promise it will always be available or free of errors, because it depends on Shopify, your theme, our hosting providers and Klaviyo, which change their systems from time to time.</p>
+            <p>We keep improving That Other Quiz, so features may change. If we ever close That Other Quiz, we will give you at least 30 days’ notice in the app and stop charging you.</p>
+
+            <h2 id="ownership">Who owns what</h2>
+            <p>Your quizzes, pictures, products, brand, discount and anything you type into That Other Quiz, including what the AI builder drafts for you, remain yours. That Other Quiz’s software, design, templates and content belong to That Other Agency. While you have That Other Quiz installed you may use it, and change its templates, for your own shop, and nothing else is transferred to you.</p>
+
+            <h2 id="liability">Liability</h2>
+            <ul>
+              <li>We aren’t responsible for problems that Shopify, your theme or Klaviyo cause, such as an outage, a theme that hides the quiz, or an email Klaviyo doesn’t accept.</li>
+              <li>We aren’t responsible for what your quiz says or recommends, including drafts from the AI builder that you put on your shop.</li>
+              <li>We aren’t liable for indirect losses, or for lost profits, sales, data or opportunities, including losses from decisions made using That Other Quiz.</li>
+              <li>Our total liability to you under these terms is limited to the fees you paid for That Other Quiz in the 12 months before the claim.</li>
+              <li>Nothing in these terms limits any liability the law doesn’t allow us to limit, such as for fraud, or for death or personal injury caused by negligence.</li>
+            </ul>
+
+            <h2 id="ending">Ending</h2>
+            <p>You can stop using That Other Quiz at any time by uninstalling it. We may suspend or end your use of That Other Quiz if you seriously break these terms, misuse it, or Shopify stops your store or our app, and we will tell you why where we can.</p>
+
+            <h2 id="changes">Changes to these terms</h2>
+            <p>We may update these terms. If a change matters, we will tell you in That Other Quiz at least 30 days before it applies, and the date at the top of this page shows when they last changed. If you keep using That Other Quiz after a change applies, the new terms apply to you.</p>
+
+            <h2 id="law">Law</h2>
+            <p>These terms are governed by the law of England and Wales, and the courts of England and Wales deal with any dispute. If something goes wrong, please talk to us first at <a href="mailto:hello@thatotheragency.co.uk">hello@thatotheragency.co.uk</a>. Most things can be fixed with an email.</p>
+            <p>See also: <a href="/that-other-quiz/privacy">Privacy policy</a> and <a href="/that-other-quiz/data-deletion">how to delete your data</a>.</p>
+          </article>
+
+          <aside class="toc">
+            <h2>On this page</h2>
+            <ol>
+              <li><a href="#about">These terms</a></li>
+              <li><a href="#service">What That Other Quiz does</a></li>
+              <li><a href="#ai">The AI builder</a></li>
+              <li><a href="#billing">Plans and billing</a></li>
+              <li><a href="#you">Your part</a></li>
+              <li><a href="#data">Your data</a></li>
+              <li><a href="#ours">Our part</a></li>
+              <li><a href="#ownership">Who owns what</a></li>
+              <li><a href="#liability">Liability</a></li>
+              <li><a href="#ending">Ending</a></li>
+              <li><a href="#changes">Changes</a></li>
+              <li><a href="#law">Law</a></li>
+            </ol>
+          </aside>
+        </div>
+      </section>
+      <section class="closing-cta"><p class="eyebrow">Any questions?</p><h2>Ask us <span>anything.</span></h2><p>Email hello@thatotheragency.co.uk and a real person will reply.</p><a class="btn btn-primary" href="mailto:hello@thatotheragency.co.uk">Email us <span aria-hidden="true">↗︎</span></a></section>
+    </main>
+
+    <footer>
+      <div class="footer-cols">
+        <div>
+          <b>That Other Agency</b>
+          <p>Growth, Shopify development, dashboards and websites for brands that sell online. London based, working UK wide.</p>
+          <a href="mailto:hello@thatotheragency.co.uk">hello@thatotheragency.co.uk</a>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <div><b>For Shopify brands</b><a href="/growth">Growth support</a><a href="/store-check">Free store check</a><a href="/shopify-development">Shopify development</a><a href="/performance-dashboard">Custom dashboards</a><a href="/demo">Live demo</a><a href="/ad-script-system">Ad scripts</a><a href="/shopify-website-design">Shopify stores</a></div>
+          <div><b>Websites</b><a href="/website-design">Website design</a><a href="/website-design-london">Websites in London</a><a href="/website-design-for-trades">Websites for trades</a><a href="/website-for-plumbers-electricians">Plumbers and electricians</a></div>
+          <div><b>Apps</b><a href="/that-other-dashboard">That Other Dashboard</a><a href="/that-other-dashboard/guides">Guides</a><a href="/that-other-quiz/privacy">That Other Quiz privacy</a><a href="/that-other-quiz/terms">That Other Quiz terms</a><a href="/that-other-quiz/data-deletion">Deleting quiz data</a></div>
+          <div><b>Agency</b><a href="/services">All services</a><a href="/work">Work</a><a href="/about">About</a><a href="/blog">Blog</a><a href="https://www.linkedin.com/company/that-other-agency/" target="_blank" rel="noopener">LinkedIn</a><a href="/contact">Book a consultation</a></div>
+        </nav>
+      </div>
+      <p class="footer-giant" aria-hidden="true">that other agency<i>.</i></p>
+      <div class="footer-legal">
+        <p>© <span id="year">2026</span> That Other Agency Ltd. Registered in England and Wales, company number 16799053.</p>
+        <p>London, United Kingdom · <a href="/privacy">Privacy</a></p>
+      </div>
+    </footer>
+
+    <script src="../script.js?v=20261025a" defer></script>
+  </body>
+</html>

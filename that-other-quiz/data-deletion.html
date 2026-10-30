@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- GA4 leaves out our own visits: local previews, and browsers opened once with ?internal=on (?internal=off undoes it) -->
+    <script>
+      (function () {
+        var own = location.hostname !== 'www.thatotheragency.co.uk';
+        try {
+          var q = /[?&]internal=(on|off)\b/.exec(location.search);
+          if (q && q[1] === 'on') localStorage.setItem('toa-internal', '1');
+          if (q && q[1] === 'off') localStorage.removeItem('toa-internal');
+          own = own || localStorage.getItem('toa-internal') === '1';
+        } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        if (own) gtag('set', { traffic_type: 'internal' });
+      })();
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RZKD9WTJYR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-RZKD9WTJYR');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=5" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <title>Deleting your That Other Quiz data | That Other Agency</title>
+    <meta name="description" content="How to delete a quiz and its figures, stop sending shoppers to Klaviyo, remove everything That Other Quiz holds about your shop, or ask us to do it." />
+    <link rel="canonical" href="https://www.thatotheragency.co.uk/that-other-quiz/data-deletion" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="That Other Agency" />
+    <meta property="og:title" content="Deleting your That Other Quiz data | That Other Agency" />
+    <meta property="og:description" content="How to delete a quiz and its figures, stop sending shoppers to Klaviyo, remove everything That Other Quiz holds about your shop, or ask us to do it." />
+    <meta property="og:url" content="https://www.thatotheragency.co.uk/that-other-quiz/data-deletion" />
+    <meta property="og:image" content="https://www.thatotheragency.co.uk/assets/og.png?v=20261010" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preload" href="/assets/fonts/host-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../styles.css?v=20261025b" />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="/" aria-label="That Other Agency, home">that other agency<i>.</i></a>
+        <button class="menu-toggle" aria-controls="site-nav" type="button" aria-expanded="false" aria-label="Open navigation">
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+          <a href="/services">Services</a>
+          <a href="/work">Work</a>
+          <a href="/that-other-dashboard">Apps</a>
+          <a href="/about">About</a>
+          <a class="nav-cta" href="/contact">Book a consultation</a>
+        </nav>
+        <a class="btn btn-primary header-cta" href="/contact">Book a consultation</a>
+      </div>
+    </header>
+
+    <main id="content">
+      <section class="reveal blog-post">
+        <div class="post-layout">
+          <article>
+            <p class="eyebrow">That Other Quiz · Your data</p>
+            <h1>Deleting your data, <em>step by step.</em></h1>
+            <p class="post-meta">Last updated 30 October 2026</p>
+
+            <div class="insight-box">
+              The short version: delete a quiz in That Other Quiz and its counts and orders are deleted straight away. Uninstall That Other Quiz and everything else is deleted within 48 hours, apart from our own email list, which keeps your store’s name and email for up to 12 months. Shoppers’ emails were never with us: they are in your own Klaviyo. Or email us and we will do it for you.
+            </div>
+
+            <h2 id="quiz">Delete one quiz</h2>
+            <ol>
+              <li>In your Shopify admin, open <strong>Apps</strong>, then <strong>That Other Quiz</strong>, then <strong>Quizzes</strong>.</li>
+              <li>Click <strong>Delete</strong> next to the quiz, then <strong>Delete</strong> again to confirm.</li>
+            </ol>
+            <p>The quiz is removed from your store, and That Other Quiz deletes its counts and the records of orders that came from it, straight away. Any block or popup that showed it shows your main quiz instead.</p>
+
+            <h2 id="klaviyo">Stop sending shoppers to Klaviyo</h2>
+            <ol>
+              <li>Open the quiz in That Other Quiz’s editor and choose <strong>Klaviyo</strong>.</li>
+              <li>Clear the <strong>Public site ID</strong> and <strong>List ID</strong>, or set the <strong>Email step</strong> so the quiz doesn’t ask for an email, then save.</li>
+            </ol>
+            <p>Emails and answers that shoppers already gave are in your Klaviyo account, not with us. To delete them, delete those profiles in Klaviyo.</p>
+
+            <h2 id="store">What stays in your store</h2>
+            <ul>
+              <li><strong>The discount for quiz takers.</strong> On That Other Quiz’s home page, click <strong>Stop the code</strong> and the quiz stops showing it. The code itself is a Shopify discount: delete it under <strong>Discounts</strong> in your Shopify admin.</li>
+              <li><strong>Pictures you uploaded.</strong> They are in your own Shopify Files and stay there after you uninstall. Delete them under <strong>Content</strong>, then <strong>Files</strong>.</li>
+            </ul>
+
+            <h2 id="emails">Stop our emails</h2>
+            <p>Click <strong>Unsubscribe</strong> at the bottom of any email from us about That Other Quiz. We keep your store’s name and email address in our email list for up to 12 months after you uninstall; email us to have them deleted sooner.</p>
+
+            <h2 id="everything">Delete everything</h2>
+            <ol>
+              <li>In your Shopify admin, go to <strong>Settings</strong>, then <strong>Apps</strong>.</li>
+              <li>Find <strong>That Other Quiz</strong> and uninstall it.</li>
+            </ol>
+            <p>Shopify removes the quiz from your theme and deletes your quizzes, which are kept as the app’s own data in your store. Your store’s login to That Other Quiz is deleted at once. 48 hours later Shopify tells us to delete the rest, and we delete the records of orders that came from your quizzes, their counts and your AI builds. The gap lets you reinstall without losing your history if you change your mind. Deleted data can stay in our database provider’s backups for up to 7 days.</p>
+
+            <h2 id="ask">Ask us to do it</h2>
+            <p>Email <a href="mailto:hello@thatotheragency.co.uk">hello@thatotheragency.co.uk</a> with your store’s address (yourstore.myshopify.com) and what you would like deleted: one quiz’s counts and orders, or everything. We will check the request comes from the store, delete the data within 30 days, usually much sooner, and confirm by email.</p>
+
+            <h2 id="customers">If you took a store’s quiz</h2>
+            <p>That Other Quiz keeps no personal details about the shoppers who take a store’s quiz. If you gave your email, it went to the store’s own Klaviyo: ask the store to delete it. If you bought something after the quiz, we keep a record of that order for the store’s report, without your name or contact details, and delete it when you ask the store and Shopify passes your request on.</p>
+            <p>While a store tests two versions of its quiz, and only if you agreed to analytics, your browser remembers which version you saw. Clearing the shop’s site data in your browser deletes it.</p>
+            <p>See also: <a href="/that-other-quiz/privacy">Privacy policy</a> and <a href="/that-other-quiz/terms">That Other Quiz’s terms</a>.</p>
+          </article>
+
+          <aside class="toc">
+            <h2>On this page</h2>
+            <ol>
+              <li><a href="#quiz">One quiz</a></li>
+              <li><a href="#klaviyo">Klaviyo</a></li>
+              <li><a href="#store">In your store</a></li>
+              <li><a href="#emails">Our emails</a></li>
+              <li><a href="#everything">Everything</a></li>
+              <li><a href="#ask">Ask us</a></li>
+              <li><a href="#customers">Quiz takers</a></li>
+            </ol>
+          </aside>
+        </div>
+      </section>
+      <section class="closing-cta"><p class="eyebrow">Any questions?</p><h2>Ask us <span>anything.</span></h2><p>Email hello@thatotheragency.co.uk and a real person will reply.</p><a class="btn btn-primary" href="mailto:hello@thatotheragency.co.uk">Email us <span aria-hidden="true">↗︎</span></a></section>
+    </main>
+
+    <footer>
+      <div class="footer-cols">
+        <div>
+          <b>That Other Agency</b>
+          <p>Growth, Shopify development, dashboards and websites for brands that sell online. London based, working UK wide.</p>
+          <a href="mailto:hello@thatotheragency.co.uk">hello@thatotheragency.co.uk</a>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <div><b>For Shopify brands</b><a href="/growth">Growth support</a><a href="/store-check">Free store check</a><a href="/shopify-development">Shopify development</a><a href="/performance-dashboard">Custom dashboards</a><a href="/demo">Live demo</a><a href="/ad-script-system">Ad scripts</a><a href="/shopify-website-design">Shopify stores</a></div>
+          <div><b>Websites</b><a href="/website-design">Website design</a><a href="/website-design-london">Websites in London</a><a href="/website-design-for-trades">Websites for trades</a><a href="/website-for-plumbers-electricians">Plumbers and electricians</a></div>
+          <div><b>Apps</b><a href="/that-other-dashboard">That Other Dashboard</a><a href="/that-other-dashboard/guides">Guides</a><a href="/that-other-quiz/privacy">That Other Quiz privacy</a><a href="/that-other-quiz/terms">That Other Quiz terms</a><a href="/that-other-quiz/data-deletion">Deleting quiz data</a></div>
+          <div><b>Agency</b><a href="/services">All services</a><a href="/work">Work</a><a href="/about">About</a><a href="/blog">Blog</a><a href="https://www.linkedin.com/company/that-other-agency/" target="_blank" rel="noopener">LinkedIn</a><a href="/contact">Book a consultation</a></div>
+        </nav>
+      </div>
+      <p class="footer-giant" aria-hidden="true">that other agency<i>.</i></p>
+      <div class="footer-legal">
+        <p>© <span id="year">2026</span> That Other Agency Ltd. Registered in England and Wales, company number 16799053.</p>
+        <p>London, United Kingdom · <a href="/privacy">Privacy</a></p>
+      </div>
+    </footer>
+
+    <script src="../script.js?v=20261025a" defer></script>
+  </body>
+</html>
