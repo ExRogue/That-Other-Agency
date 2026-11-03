@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- GA4 leaves out our own visits: local previews, and browsers opened once with ?internal=on (?internal=off undoes it) -->
+    <script>
+      (function () {
+        var own = location.hostname !== 'www.thatotheragency.co.uk';
+        try {
+          var q = /[?&]internal=(on|off)\b/.exec(location.search);
+          if (q && q[1] === 'on') localStorage.setItem('toa-internal', '1');
+          if (q && q[1] === 'off') localStorage.removeItem('toa-internal');
+          own = own || localStorage.getItem('toa-internal') === '1';
+        } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        if (own) gtag('set', { traffic_type: 'internal' });
+      })();
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RZKD9WTJYR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-RZKD9WTJYR');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=5" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <title>Do I Need a Website If I'm on Checkatrade? | That Other Agency</title>
+    <meta name="description" content="Do I need a website if I'm on Checkatrade? An honest answer for UK trades: what a listing does well, what it can't do, and when your own site pays for itself." />
+    <link rel="canonical" href="https://www.thatotheragency.co.uk/blog/checkatrade-vs-your-own-website" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Do I Need a Website If I'm on Checkatrade? | That Other Agency" />
+    <meta property="og:description" content="Do I need a website if I'm on Checkatrade? An honest answer for UK trades: what a listing does well, what it can't do, and when your own site pays for itself." />
+    <meta property="og:url" content="https://www.thatotheragency.co.uk/blog/checkatrade-vs-your-own-website" />
+    <meta property="og:image" content="https://www.thatotheragency.co.uk/assets/blog/checkatrade-vs-your-own-website.png?v=20261103" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Do I Need a Website If I'm on Checkatrade? An Honest Answer", "description": "An honest answer for UK trades on Checkatrade: what a directory listing does well, what it can't do, and when your own website pays for itself.", "datePublished": "2026-11-03", "dateModified": "2026-11-03", "author": {"@type": "Organization", "name": "That Other Agency", "url": "https://www.thatotheragency.co.uk/"}, "publisher": {"@type": "Organization", "name": "That Other Agency", "logo": {"@type": "ImageObject", "url": "https://www.thatotheragency.co.uk/assets/logo.svg"}}, "mainEntityOfPage": "https://www.thatotheragency.co.uk/blog/checkatrade-vs-your-own-website", "image": "https://www.thatotheragency.co.uk/assets/blog/checkatrade-vs-your-own-website.png?v=20261103"}</script>
+    <link rel="preload" href="/assets/fonts/host-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../styles.css?v=20261025b" />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="/" aria-label="That Other Agency, home">that other agency<i>.</i></a>
+        <button class="menu-toggle" aria-controls="site-nav" type="button" aria-expanded="false" aria-label="Open navigation">
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+          <a href="/services">Services</a>
+          <a href="/work">Work</a>
+          <a href="/that-other-dashboard">Apps</a>
+          <a href="/about">About</a>
+          <a class="nav-cta" href="/contact">Book a consultation</a>
+        </nav>
+        <a class="btn btn-primary header-cta" href="/contact">Book a consultation</a>
+      </div>
+    </header>
+
+    <main id="content">
+      <section class="reveal blog-post">
+        <div class="post-layout">
+          <article>
+            <p class="eyebrow">Websites</p>
+            <h1>Do I need a website if I'm on Checkatrade? An honest answer</h1>
+            <p class="post-meta">Published 3 November 2026 · 5 min read</p>
+            <figure class="post-image">
+              <img src="../assets/blog/checkatrade-vs-your-own-website.png" width="1600" height="900" alt="Cover reading: A listing is not a website." />
+            </figure>
+
+            <p>
+              If your phone already rings from your Checkatrade profile, it is fair to ask: do I need a website if I'm on
+              Checkatrade? Plenty of trades get by without one. But a directory listing and a website do different jobs,
+              and the gap between them gets wider the more your business grows. Here is how to tell which side of that
+              gap you are on.
+            </p>
+
+            <div class="insight-box">
+              The short answer: if Checkatrade keeps you as busy as you want to be, a website is not urgent. If you want
+              bigger jobs, work from outside the directory, or less reliance on one paid listing, you need your own site,
+              and it works best alongside the listing rather than instead of it.
+            </div>
+
+            <h2 id="what-it-does">What Checkatrade does well</h2>
+            <p>
+              It is worth being fair to the directory first. Checkatrade is a paid membership. You pay to be listed, it
+              runs checks on your business before your profile goes live, and customers leave reviews that sit on your
+              profile. For a homeowner who has never heard of you, that badge and that score do a lot of the trust work.
+            </p>
+            <ul>
+              <li><strong>It brings people who are ready to buy.</strong> Someone searching the directory for an electrician has a job that needs doing.</li>
+              <li><strong>The vetting is borrowed trust.</strong> A new customer believes the directory's checks before they believe your word.</li>
+              <li><strong>Reviews collect in one place.</strong> You don't have to build that system yourself.</li>
+              <li><strong>It is quick to start.</strong> You can be listed long before a website would be finished.</li>
+            </ul>
+
+            <h2 id="what-it-cant">What a listing can't do for you</h2>
+            <p>
+              The problems are not about the directory being bad. They come from the fact that the listing is not yours.
+            </p>
+            <ul>
+              <li><strong>You sit next to your competitors.</strong> The customer sees you in a list of similar trades and compares on score, distance and price.</li>
+              <li><strong>You rent the space.</strong> If you stop paying, the profile goes, and so does the route customers used to find you.</li>
+              <li><strong>Your story is squeezed into their layout.</strong> A profile has room for a summary and some photos. It can't explain why your bathroom fits are better, or show a full project from start to finish.</li>
+              <li><strong>It ranks the directory, not you.</strong> When people search Google for your trade and town, the directory page competes for that spot. Your own name builds very little.</li>
+              <li><strong>Commercial clients look elsewhere.</strong> Letting agents, facilities managers and councils rarely pick contractors from a consumer directory. They search, then check your website.</li>
+            </ul>
+
+            <h2 id="do-i-need">Do I need a website if I'm on Checkatrade? Three questions</h2>
+            <p>Answer these honestly and the decision usually makes itself.</p>
+            <ol>
+              <li><strong>Do people search for your name?</strong> Word of mouth, vans and site boards all send people to Google with your business name. If the first result is a directory profile, or nothing, some of those people never get to you. A website is where a recommendation lands.</li>
+              <li><strong>Do you want different work from what you get now?</strong> If you want more boiler installs and fewer callouts, or more commercial jobs, you need pages that describe exactly that work. A directory profile can't target one service.</li>
+              <li><strong>What happens if the listing goes?</strong> If the honest answer is that the phone would go quiet, your business depends on a channel you don't control. A website is the cheapest insurance against that.</li>
+            </ol>
+            <p>
+              If you answered "no", "no" and "I'd be fine" to all three, keep your money for now. If any answer worried you,
+              read on.
+            </p>
+
+            <h2 id="together">How the two work together</h2>
+            <p>
+              The best setup for most trades is both. The directory brings new customers who have never heard of you.
+              The website turns everyone else into enquiries: the people who were recommended, saw your van or are
+              comparing you with someone they found elsewhere.
+            </p>
+            <ul>
+              <li><strong>Point your reviews both ways.</strong> Mention your Checkatrade rating on your site, and ask happy customers to review you on Google too, so your own name earns stars.</li>
+              <li><strong>Give each service its own page.</strong> A page about exactly the job someone searched for beats a general profile every time.</li>
+              <li><strong>Name the places you cover.</strong> A page for each area you want work from helps you show up in local searches without paying per enquiry.</li>
+              <li><strong>Show real jobs.</strong> Your own photos and a short write up of the problem, the fix and the finish say more than any badge.</li>
+              <li><strong>Make contact easy.</strong> Tap to call and a short quote form on every page, because most of these visits happen on a phone.</li>
+            </ul>
+            <p>
+              We go through the pages a trade site needs in more detail on our
+              <a href="/website-design-for-trades">website design for trades</a> page.
+            </p>
+
+            <h2 id="cost">What it costs to run both</h2>
+            <p>
+              A directory is an ongoing cost for as long as you want the enquiries. A website is mostly a one off build,
+              with small running costs after that: your domain, possibly hosting, and changes when your services change.
+              Many simple trade sites can be hosted for very little. Over a few years, the site is usually the smaller
+              of the two bills, and it is the one you keep.
+            </p>
+            <p>
+              Every site we build starts with a consultation and a fixed quote, so you know the full cost before anything
+              starts. You can see one trade site we rebuilt in our
+              <a href="/case-study-elite-southwest">Elite Southwest case study</a>, with a page for each service and
+              the areas they cover.
+            </p>
+
+            <h2 id="faq">Frequently asked questions</h2>
+            <details>
+              <summary>Should I put my website link on my Checkatrade profile?</summary>
+              <p>If the profile lets you, yes. Some customers want to see more before they get in touch, and your site is where you can show it. Check your membership terms for what the profile allows.</p>
+            </details>
+            <details>
+              <summary>Will a website get me as many leads as Checkatrade?</summary>
+              <p>Not on day one. A new site takes months to build up search traffic, while a listing can bring enquiries quickly. That is why we suggest running both rather than switching.</p>
+            </details>
+            <details>
+              <summary>Is a free Google Business Profile enough instead?</summary>
+              <p>It is worth having either way, and it is free. But like a directory listing, it is a summary in someone else's layout. It works best when it links to a website that explains your services properly.</p>
+            </details>
+
+            <div class="article-nav">
+              <a class="btn btn-ghost" href="/blog">Back to blog</a>
+              <a class="btn btn-primary" href="/contact">Book a consultation</a>
+            </div>
+          </article>
+
+          <aside class="toc">
+            <h2>On this page</h2>
+            <ol>
+              <li><a href="#what-it-does">What Checkatrade does well</a></li>
+              <li><a href="#what-it-cant">What it can't do</a></li>
+              <li><a href="#do-i-need">Three questions</a></li>
+              <li><a href="#together">Using both</a></li>
+              <li><a href="#cost">What it costs</a></li>
+              <li><a href="#faq">FAQs</a></li>
+            </ol>
+          </aside>
+        </div>
+      </section>
+      <section class="closing-cta"><p class="eyebrow">Want a second pair of eyes?</p><h2>We’ll look at it <span>with you.</span></h2><p>Book a consultation and we’ll go through your site, ads and numbers together.</p><a class="btn btn-primary" href="/contact">Book a consultation <span aria-hidden="true">↗︎</span></a></section>
+    </main>
+
+    <footer>
+      <div class="footer-cols">
+        <div>
+          <b>That Other Agency</b>
+          <p>Growth, Shopify development, dashboards and websites for brands that sell online. London based, working UK wide.</p>
+          <a href="mailto:hello@thatotheragency.co.uk">hello@thatotheragency.co.uk</a>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <div><b>For Shopify brands</b><a href="/growth">Growth support</a><a href="/store-check">Free store check</a><a href="/shopify-development">Shopify development</a><a href="/performance-dashboard">Custom dashboards</a><a href="/demo">Live demo</a><a href="/ad-script-system">Ad scripts</a><a href="/shopify-website-design">Shopify stores</a></div>
+          <div><b>Websites</b><a href="/website-design">Website design</a><a href="/website-design-london">Websites in London</a><a href="/website-design-for-trades">Websites for trades</a><a href="/website-for-plumbers-electricians">Plumbers and electricians</a></div>
+          <div><b>Apps</b><a href="/that-other-dashboard">That Other Dashboard</a><a href="/that-other-dashboard/guides">Guides</a></div>
+          <div><b>Agency</b><a href="/services">All services</a><a href="/work">Work</a><a href="/about">About</a><a href="/blog">Blog</a><a href="https://www.linkedin.com/company/that-other-agency/" target="_blank" rel="noopener">LinkedIn</a><a href="/contact">Book a consultation</a></div>
+        </nav>
+      </div>
+      <p class="footer-giant" aria-hidden="true">that other agency<i>.</i></p>
+      <div class="footer-legal">
+        <p>© <span id="year">2026</span> That Other Agency Ltd. Registered in England and Wales, company number 16799053.</p>
+        <p>London, United Kingdom · <a href="/privacy">Privacy</a></p>
+      </div>
+    </footer>
+
+    <script src="../script.js?v=20261025a" defer></script>
+  </body>
+</html>
