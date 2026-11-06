@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- GA4 leaves out our own visits: local previews, and browsers opened once with ?internal=on (?internal=off undoes it) -->
+    <script>
+      (function () {
+        var own = location.hostname !== 'www.thatotheragency.co.uk';
+        try {
+          var q = /[?&]internal=(on|off)\b/.exec(location.search);
+          if (q && q[1] === 'on') localStorage.setItem('toa-internal', '1');
+          if (q && q[1] === 'off') localStorage.removeItem('toa-internal');
+          own = own || localStorage.getItem('toa-internal') === '1';
+        } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        if (own) gtag('set', { traffic_type: 'internal' });
+      })();
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RZKD9WTJYR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-RZKD9WTJYR');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=6" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <title>Break Even ROAS UK, With VAT and Fees | That Other Agency</title>
+    <meta name="description" content="How to work out break even ROAS for a UK Shopify store, with VAT, payment fees, delivery and returns included, plus a worked example in pounds." />
+    <link rel="canonical" href="https://www.thatotheragency.co.uk/blog/break-even-roas-uk" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Break Even ROAS UK, With VAT and Fees | That Other Agency" />
+    <meta property="og:description" content="How to work out break even ROAS for a UK Shopify store, with VAT, payment fees, delivery and returns included, plus a worked example in pounds." />
+    <meta property="og:url" content="https://www.thatotheragency.co.uk/blog/break-even-roas-uk" />
+    <meta property="og:image" content="https://www.thatotheragency.co.uk/assets/blog/break-even-roas-uk.png?v=20261106" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Break even ROAS for a UK Shopify store, with VAT and fees included", "description": "How to work out break even ROAS for a UK Shopify store, with VAT, payment fees, delivery and returns included, plus a worked example in pounds.", "datePublished": "2026-11-06", "dateModified": "2026-11-06", "author": {"@type": "Organization", "name": "That Other Agency", "url": "https://www.thatotheragency.co.uk/"}, "publisher": {"@type": "Organization", "name": "That Other Agency", "logo": {"@type": "ImageObject", "url": "https://www.thatotheragency.co.uk/assets/logo.svg"}}, "mainEntityOfPage": "https://www.thatotheragency.co.uk/blog/break-even-roas-uk", "image": "https://www.thatotheragency.co.uk/assets/blog/break-even-roas-uk.png?v=20261106"}</script>
+    <link rel="preload" href="/assets/fonts/host-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../styles.css?v=20261025b" />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="/" aria-label="That Other Agency, home">that other agency<i>.</i></a>
+        <button class="menu-toggle" aria-controls="site-nav" type="button" aria-expanded="false" aria-label="Open navigation">
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+          <a href="/services">Services</a>
+          <a href="/work">Work</a>
+          <a href="/that-other-dashboard">Apps</a>
+          <a href="/about">About</a>
+          <a class="nav-cta" href="/contact">Book a consultation</a>
+        </nav>
+        <a class="btn btn-primary header-cta" href="/contact">Book a consultation</a>
+      </div>
+    </header>
+
+    <main id="content">
+      <section class="reveal blog-post">
+        <div class="post-layout">
+          <article>
+            <p class="eyebrow">Dashboards</p>
+            <h1>Break even ROAS for a UK Shopify store, <em>with VAT and fees included.</em></h1>
+            <p class="post-meta">Published 6 November 2026 · 6 min read</p>
+            <figure class="post-image">
+              <img src="../assets/blog/break-even-roas-uk.png" width="1600" height="900" alt="Cover reading: Break even is higher than you think." />
+            </figure>
+
+            <p>
+              Most break even ROAS calculators ask for one number: your margin. Type in a product margin of 70% and
+              they tell you any ROAS above 1.43 makes money. For a UK Shopify store that answer is usually far too
+              low, because it leaves out VAT, delivery, payment fees and returns. This guide works out a break even
+              ROAS UK brands can actually rely on, line by line, with a made up example in pounds.
+            </p>
+
+            <div class="insight-box">
+              The short answer: break even ROAS = revenue excluding VAT ÷ what you keep from that revenue after every
+              cost of making the sale, except the ads. Count product cost, packaging, pick and pack, delivery you pay
+              for, payment fees and an allowance for returns. If your ad platform reports sales including VAT,
+              multiply the result by 1.2 before you compare it with the platform's ROAS.
+            </div>
+
+            <h2 id="formula">The formula</h2>
+            <p><strong>Break even ROAS = 1 ÷ contribution margin</strong></p>
+            <p>
+              Contribution margin is the share of each pound of sales (excluding VAT) that is left after the costs
+              that come with each order. It is not the same as product margin, which only takes off what the product
+              cost you. At break even, every pound the ads bring in pays for itself and nothing more. Below it, each
+              sale costs you money to make.
+            </p>
+            <p>
+              ROAS here means revenue divided by ad spend. If you are new to the VAT side of that sum, our post
+              <a href="/blog/roas-vat-uk-shopify">ROAS and VAT</a> explains why revenue should leave VAT out once
+              you are VAT registered.
+            </p>
+
+            <h2 id="costs">What goes into contribution margin</h2>
+            <p>List every cost that only happens because an order happened:</p>
+            <ul>
+              <li><strong>Product cost.</strong> What you paid for the goods, including freight to get them to you.</li>
+              <li><strong>Packaging.</strong> Boxes, mailers, tissue, inserts.</li>
+              <li><strong>Pick and pack.</strong> Your warehouse or fulfilment partner's charge per order, or a fair figure for your own time if you pack yourself.</li>
+              <li><strong>Delivery you pay for.</strong> If you offer free delivery, the courier cost is all yours. If customers pay for delivery, count only the gap between what they pay and what the courier charges you.</li>
+              <li><strong>Payment fees.</strong> Card fees are usually a percentage of the full amount the customer paid, VAT included, plus a small fixed charge on some plans. Check the rate for your plan in Shopify's payment settings.</li>
+              <li><strong>Returns.</strong> The refunds, return postage and stock you cannot sell again, as a share of sales. Use last year's figure if you have one.</li>
+              <li><strong>Apps charged per order.</strong> Some subscription, reviews or shipping apps bill per order or as a share of sales. Monthly flat fees are overheads, so leave those out.</li>
+            </ul>
+            <p>Leave out rent, salaries and fixed subscriptions. They matter, but they belong in the target you set above break even, which we come to below.</p>
+
+            <h2 id="example">The break even ROAS UK sum, step by step</h2>
+            <p>Here is a made up order from a VAT registered store selling a standard rated product with free delivery:</p>
+            <ul>
+              <li><strong>Price the customer pays:</strong> £48.00, including VAT at 20%</li>
+              <li><strong>Revenue excluding VAT:</strong> £48.00 ÷ 1.2 = £40.00</li>
+              <li><strong>Product cost:</strong> £12.00</li>
+              <li><strong>Packaging:</strong> £1.00</li>
+              <li><strong>Pick and pack:</strong> £1.50</li>
+              <li><strong>Courier:</strong> £3.50</li>
+              <li><strong>Payment fees:</strong> £1.20, worked out on the full £48</li>
+              <li><strong>Returns allowance:</strong> 5% of revenue, so £2.00</li>
+            </ul>
+            <ol>
+              <li><strong>Add up the costs.</strong> £12.00 + £1.00 + £1.50 + £3.50 + £1.20 + £2.00 = £21.20.</li>
+              <li><strong>Take them off revenue.</strong> £40.00 − £21.20 = £18.80 left per order.</li>
+              <li><strong>Work out the margin.</strong> £18.80 ÷ £40.00 = 47%.</li>
+              <li><strong>Turn it into break even ROAS.</strong> 1 ÷ 0.47 = about 2.13.</li>
+            </ol>
+            <p>
+              Compare that with the calculator answer. Product cost alone gives a margin of 70% (£28 kept from £40),
+              so a break even ROAS of 1.43. A campaign running at 1.8 looks healthy against 1.43. Against 2.13, it
+              loses money on every order.
+            </p>
+
+            <h2 id="vat">Matching it to what Ads Manager shows</h2>
+            <p>
+              Your 2.13 is worked out on revenue excluding VAT. The purchase value Meta or Google reports is whatever
+              your store's tracking sends, and for many Shopify stores that is the order total, VAT included. If so,
+              their ROAS runs 20% higher than yours for the same sales.
+            </p>
+            <p>
+              So before comparing, put both on the same basis. Either take the VAT out of the platform's figure, or
+              multiply your break even by 1.2: 2.13 × 1.2 = about 2.55 in Ads Manager terms. A test order on your own
+              store tells you which basis your tracking uses. If it sends the full amount you paid, VAT is in.
+            </p>
+            <p>
+              Not VAT registered? Then you charge no VAT, there is nothing to strip out, and the 1.2 step does not
+              apply. Do the sum again on the day you register, because the same price leaves you a sixth less.
+            </p>
+
+            <h2 id="target">Break even is the floor, not the target</h2>
+            <p>
+              At break even the ads pay for themselves and nothing else. Rent, salaries and tools still need paying.
+              Most brands set a target ROAS some way above break even to cover those and leave a profit. How far above
+              depends on your overheads and how much repeat buying you see.
+            </p>
+            <p>
+              Two more things move the number. A mixed VAT basket (some zero rated or reduced rate products) means
+              dividing by 1.2 is wrong, so use the VAT Shopify recorded on real orders. And discounts lower revenue
+              without lowering costs, so work out a separate break even for sale periods.
+            </p>
+
+            <h2 id="ours">What we do on client dashboards</h2>
+            <p>
+              Every <a href="/performance-dashboard">custom dashboard</a> we build works out break even ROAS and MER
+              from each brand's own costs, on revenue excluding VAT, and shows the live figure against it every day,
+              so a campaign that only looks profitable gets spotted early. You can click around a working example with
+              made up data in our <a href="/demo">live dashboard demo</a>. If you want the same for your store, every
+              build starts with a consultation and a fixed quote. For the blended view across every channel, read
+              <a href="/blog/how-to-calculate-mer-shopify">how to calculate MER on Shopify</a>.
+            </p>
+
+            <h2 id="faq">Frequently asked questions</h2>
+            <details>
+              <summary>Is break even ROAS the same as break even MER?</summary>
+              <p>The sum is the same: 1 ÷ contribution margin. Break even ROAS is compared with one platform's ROAS, while break even MER is compared with total sales divided by total ad spend across every channel. MER is harder to flatter, so it is the better check on the business as a whole.</p>
+            </details>
+            <details>
+              <summary>Should I aim to break even on the first order?</summary>
+              <p>Not always. Brands with strong repeat buying, such as subscriptions, often accept a loss on the first order because later orders make it back. That only works if you know how many customers really come back, so check it in Shopify before you rely on it.</p>
+            </details>
+            <details>
+              <summary>Does a higher average order value change break even ROAS?</summary>
+              <p>It can. Fixed costs per order, like pick and pack and delivery, take a smaller share of a bigger basket, so contribution margin rises and break even ROAS falls. That is one reason a free delivery threshold is worth testing.</p>
+            </details>
+
+            <div class="article-nav">
+              <a class="btn btn-ghost" href="/blog">Back to blog</a>
+              <a class="btn btn-primary" href="/contact">Book a consultation</a>
+            </div>
+          </article>
+
+          <aside class="toc">
+            <h2>On this page</h2>
+            <ol>
+              <li><a href="#formula">The formula</a></li>
+              <li><a href="#costs">What goes in</a></li>
+              <li><a href="#example">Step by step</a></li>
+              <li><a href="#vat">Matching Ads Manager</a></li>
+              <li><a href="#target">Floor, not target</a></li>
+              <li><a href="#ours">Our dashboards</a></li>
+              <li><a href="#faq">FAQs</a></li>
+            </ol>
+          </aside>
+        </div>
+      </section>
+      <section class="closing-cta"><p class="eyebrow">Want a second pair of eyes?</p><h2>We’ll look at it <span>with you.</span></h2><p>Book a consultation and we’ll go through your site, ads and numbers together.</p><a class="btn btn-primary" href="/contact">Book a consultation <span aria-hidden="true">↗︎</span></a></section>
+    </main>
+
+    <footer>
+      <div class="footer-cols">
+        <div>
+          <b>That Other Agency</b>
+          <p>Growth, Shopify development, dashboards and websites for brands that sell online. London based, working UK wide.</p>
+          <a href="mailto:hello@thatotheragency.co.uk">hello@thatotheragency.co.uk</a>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <div><b>For Shopify brands</b><a href="/growth">Growth support</a><a href="/store-check">Free store check</a><a href="/shopify-development">Shopify development</a><a href="/performance-dashboard">Custom dashboards</a><a href="/demo">Live demo</a><a href="/ad-script-system">Ad scripts</a><a href="/shopify-website-design">Shopify stores</a></div>
+          <div><b>Websites</b><a href="/website-design">Website design</a><a href="/website-design-london">Websites in London</a><a href="/website-design-for-trades">Websites for trades</a><a href="/website-for-plumbers-electricians">Plumbers and electricians</a></div>
+          <div><b>Apps</b><a href="/that-other-dashboard">That Other Dashboard</a><a href="/that-other-dashboard/guides">Guides</a></div>
+          <div><b>Agency</b><a href="/services">All services</a><a href="/work">Work</a><a href="/about">About</a><a href="/blog">Blog</a><a href="https://www.linkedin.com/company/that-other-agency/" target="_blank" rel="noopener">LinkedIn</a><a href="/contact">Book a consultation</a></div>
+        </nav>
+      </div>
+      <p class="footer-giant" aria-hidden="true">that other agency<i>.</i></p>
+      <div class="footer-legal">
+        <p>© <span id="year">2026</span> That Other Agency Ltd. Registered in England and Wales, company number 16799053.</p>
+        <p>London, United Kingdom · <a href="/privacy">Privacy</a></p>
+      </div>
+    </footer>
+
+    <script src="../script.js?v=20261025a" defer></script>
+  </body>
+</html>
