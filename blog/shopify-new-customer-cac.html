@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- GA4 leaves out our own visits: local previews, and browsers opened once with ?internal=on (?internal=off undoes it) -->
+    <script>
+      (function () {
+        var own = location.hostname !== 'www.thatotheragency.co.uk';
+        try {
+          var q = /[?&]internal=(on|off)\b/.exec(location.search);
+          if (q && q[1] === 'on') localStorage.setItem('toa-internal', '1');
+          if (q && q[1] === 'off') localStorage.removeItem('toa-internal');
+          own = own || localStorage.getItem('toa-internal') === '1';
+        } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        if (own) gtag('set', { traffic_type: 'internal' });
+      })();
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RZKD9WTJYR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-RZKD9WTJYR');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=6" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <title>Shopify New Customer CAC, Worked Out | That Other Agency</title>
+    <meta name="description" content="How to work out your real Shopify new customer CAC: which spend to count, where to find new customers, and a worked example against Ads Manager." />
+    <link rel="canonical" href="https://www.thatotheragency.co.uk/blog/shopify-new-customer-cac" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Shopify New Customer CAC, Worked Out | That Other Agency" />
+    <meta property="og:description" content="How to work out your real Shopify new customer CAC: which spend to count, where to find new customers, and a worked example against Ads Manager." />
+    <meta property="og:url" content="https://www.thatotheragency.co.uk/blog/shopify-new-customer-cac" />
+    <meta property="og:image" content="https://www.thatotheragency.co.uk/assets/blog/shopify-new-customer-cac.png?v=20261113" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "How to work out your real new customer CAC on Shopify", "description": "How to work out your real Shopify new customer CAC: which spend to count, where to find new customers, and a worked example against Ads Manager.", "datePublished": "2026-11-13", "dateModified": "2026-11-13", "author": {"@type": "Organization", "name": "That Other Agency", "url": "https://www.thatotheragency.co.uk/"}, "publisher": {"@type": "Organization", "name": "That Other Agency", "logo": {"@type": "ImageObject", "url": "https://www.thatotheragency.co.uk/assets/logo.svg"}}, "mainEntityOfPage": "https://www.thatotheragency.co.uk/blog/shopify-new-customer-cac", "image": "https://www.thatotheragency.co.uk/assets/blog/shopify-new-customer-cac.png?v=20261113"}</script>
+    <link rel="preload" href="/assets/fonts/host-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../styles.css?v=20261025b" />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="/" aria-label="That Other Agency, home">that other agency<i>.</i></a>
+        <button class="menu-toggle" aria-controls="site-nav" type="button" aria-expanded="false" aria-label="Open navigation">
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+          <a href="/services">Services</a>
+          <a href="/work">Work</a>
+          <a href="/that-other-dashboard">Apps</a>
+          <a href="/about">About</a>
+          <a class="nav-cta" href="/contact">Book a consultation</a>
+        </nav>
+        <a class="btn btn-primary header-cta" href="/contact">Book a consultation</a>
+      </div>
+    </header>
+
+    <main id="content">
+      <section class="reveal blog-post">
+        <div class="post-layout">
+          <article>
+            <p class="eyebrow">Dashboards</p>
+            <h1>How to work out your real new customer CAC <em>on Shopify.</em></h1>
+            <p class="post-meta">Published 13 November 2026 · 6 min read</p>
+            <figure class="post-image">
+              <img src="../assets/blog/shopify-new-customer-cac.png" width="1600" height="900" alt="Cover reading: Count the new ones only." />
+            </figure>
+
+            <p>
+              Ask Meta what a customer costs and it will give you a cost per purchase. Ask Google and you get a cost per
+              conversion. Neither is your Shopify new customer CAC: what it really costs to win someone who has never
+              bought from you before. That number decides whether growth pays, and it is nearly always higher than the
+              ad platforms suggest. Here is how to work it out from your own store data.
+            </p>
+
+            <div class="insight-box">
+              The short answer: new customer CAC = all your marketing spend for a period ÷ the number of customers
+              whose first ever order fell in that period. Take the spend from every channel, not just one, and take the
+              customer count from Shopify, not from Ads Manager.
+            </div>
+
+            <h2 id="formula">The Shopify new customer CAC formula</h2>
+            <p><strong>New customer CAC = marketing spend ÷ new customers</strong></p>
+            <p>
+              CAC stands for customer acquisition cost. The word that matters here is "new". Plenty of reports divide
+              spend by every order, or by every customer who bought. Those figures look better because returning
+              customers are cheap to bring back, mostly through email, and many of them would have bought anyway.
+              If you are deciding how much you can afford to spend to grow, only the new ones count.
+            </p>
+            <p>Work it out for a whole month first. A single day or week jumps around too much to act on.</p>
+
+            <h2 id="spend">Step 1: add up every pound of spend</h2>
+            <p>Start with the ad platforms, then decide what else belongs in the sum:</p>
+            <ul>
+              <li><strong>Every paid channel.</strong> Meta, Google, TikTok, Pinterest and anything else you paid for in the month. Use the amount each platform actually spent, not the budget you set.</li>
+              <li><strong>Creator and affiliate fees.</strong> If you pay creators for ads or pay commission on sales, that is acquisition spend too.</li>
+              <li><strong>Agency or freelancer fees for running ads.</strong> Optional. Some brands keep these out and call the result paid media CAC. Others add them in for a fully loaded CAC. Pick one and stick to it, so this month compares fairly with last month.</li>
+            </ul>
+            <p>
+              Use spend excluding any VAT you can reclaim, so the figure is what the ads truly cost you. Leave out
+              email and SMS tools: those mostly sell to people who already bought.
+            </p>
+
+            <h2 id="customers">Step 2: count new customers in Shopify</h2>
+            <p>
+              Shopify already splits sales into new and returning customers. In your admin, go to Analytics, then
+              Reports, and look under the Customers category for the new versus returning customer sales report
+              (older stores may see it called first time versus returning). Shopify counts a customer as new when the
+              order is their first one with your store. Set the dates to your month and note the number of new
+              customers.
+            </p>
+            <p>Before you use it, check for orders that should not be there:</p>
+            <ul>
+              <li><strong>Test, staff and replacement orders.</strong> Free replacements and orders placed by your own team are not customers you paid to win.</li>
+              <li><strong>Wholesale or trade orders.</strong> If they go through the same store, filter them out by tag or sales channel.</li>
+              <li><strong>Guest checkouts with a new email.</strong> A returning customer who checks out with a different address looks new. You cannot fix this fully, but it is worth knowing the count runs slightly high.</li>
+            </ul>
+            <p>
+              Subscription renewals are fine. They come from customers who already ordered, so Shopify treats them as
+              returning and they do not inflate the new count.
+            </p>
+
+            <h2 id="example">A worked example</h2>
+            <p>Here is a made up month for a Shopify store:</p>
+            <ul>
+              <li><strong>Meta spend:</strong> £6,000</li>
+              <li><strong>Google spend:</strong> £2,500</li>
+              <li><strong>Creator fees:</strong> £1,500</li>
+              <li><strong>Total spend:</strong> £10,000</li>
+              <li><strong>Orders in Shopify:</strong> 400, of which 160 came from new customers</li>
+            </ul>
+            <ol>
+              <li><strong>Cost per order.</strong> £10,000 ÷ 400 = £25. This is the flattering version.</li>
+              <li><strong>What Meta says.</strong> Ads Manager claims 220 purchases on its £6,000, so about £27 each.</li>
+              <li><strong>New customer CAC.</strong> £10,000 ÷ 160 = £62.50.</li>
+            </ol>
+            <p>
+              Same month, same spend, and the real cost of a new customer is more than double the number on the ad
+              platform. If the first order only leaves you £30 after costs, every new customer starts out £32.50 in the
+              red. That can be fine for a brand with strong repeat buying. It is a problem if you did not know it.
+            </p>
+
+            <h2 id="gap">Why Ads Manager shows a lower number</h2>
+            <ul>
+              <li><strong>It counts returning customers.</strong> A purchase from someone on your email list who clicked an ad still counts as a purchase in Meta.</li>
+              <li><strong>Platforms share the credit.</strong> Meta, Google and Klaviyo can all claim the same order. We go through this in <a href="/blog/klaviyo-revenue-vs-shopify">Klaviyo, Meta and Google all claim the same sale</a>.</li>
+              <li><strong>Views count as well as clicks.</strong> Meta's default attribution includes people who saw an ad and bought within a day without clicking. Our post on <a href="/blog/shopify-sales-dont-match-meta-ads">why Shopify and Meta never match</a> covers the rest.</li>
+              <li><strong>Each platform only sees its own spend.</strong> Your creator fees and other channels never appear in Ads Manager's cost per purchase.</li>
+            </ul>
+
+            <h2 id="use">What to do with the number</h2>
+            <p>
+              On its own, a CAC of £62.50 is neither good nor bad. Compare it with what a new customer is worth.
+              Start with the profit on the first order, worked out as in our guide to
+              <a href="/blog/break-even-roas-uk">break even ROAS for a UK Shopify store</a>. Then look at how many new
+              customers order again within 90 days or six months, and what those orders leave you. When the profit
+              from a customer's orders passes their CAC, you have paid them back.
+            </p>
+            <p>
+              Track it every month next to the count of new customers. If CAC rises while new customers fall, the
+              spend is drifting toward people who already know you. Our post on
+              <a href="/blog/london-service-brands-lower-lead-costs-2026">how product brands can lower CAC</a> has four
+              places to look first.
+            </p>
+
+            <h2 id="ours">How we track it for clients</h2>
+            <p>
+              Every <a href="/performance-dashboard">custom dashboard</a> we build pulls spend from each ad platform and
+              new customers straight from Shopify, so new customer CAC is there every morning without a spreadsheet.
+              You can see how that looks with made up data in our <a href="/demo">live dashboard demo</a>. If you want
+              the same for your store, every build starts with a consultation and a fixed quote.
+            </p>
+
+            <h2 id="faq">Frequently asked questions</h2>
+            <details>
+              <summary>Is CAC the same as cost per acquisition (CPA)?</summary>
+              <p>Not quite. CPA is usually what an ad platform reports for any conversion it counts, new or returning. New customer CAC uses all your spend and only first time customers from Shopify, so it is the stricter number.</p>
+            </details>
+            <details>
+              <summary>Should I include discount codes in CAC?</summary>
+              <p>Most brands leave discounts out of CAC and count them as lower revenue on the first order instead. Either works, as long as you treat them the same way every month and do not count them twice.</p>
+            </details>
+            <details>
+              <summary>How often should I work out new customer CAC?</summary>
+              <p>Monthly for decisions, weekly to spot problems early. Weekly figures move around more, especially after a big sale or when a new campaign is still learning, so look at the trend rather than one week.</p>
+            </details>
+
+            <div class="article-nav">
+              <a class="btn btn-ghost" href="/blog">Back to blog</a>
+              <a class="btn btn-primary" href="/contact">Book a consultation</a>
+            </div>
+          </article>
+
+          <aside class="toc">
+            <h2>On this page</h2>
+            <ol>
+              <li><a href="#formula">The formula</a></li>
+              <li><a href="#spend">Add up the spend</a></li>
+              <li><a href="#customers">Count new customers</a></li>
+              <li><a href="#example">A worked example</a></li>
+              <li><a href="#gap">Why Ads Manager is lower</a></li>
+              <li><a href="#use">What to do with it</a></li>
+              <li><a href="#ours">How we track it</a></li>
+              <li><a href="#faq">FAQs</a></li>
+            </ol>
+          </aside>
+        </div>
+      </section>
+      <section class="closing-cta"><p class="eyebrow">Want a second pair of eyes?</p><h2>We’ll look at it <span>with you.</span></h2><p>Book a consultation and we’ll go through your site, ads and numbers together.</p><a class="btn btn-primary" href="/contact">Book a consultation <span aria-hidden="true">↗︎</span></a></section>
+    </main>
+
+    <footer>
+      <div class="footer-cols">
+        <div>
+          <b>That Other Agency</b>
+          <p>Growth, Shopify development, dashboards and websites for brands that sell online. London based, working UK wide.</p>
+          <a href="mailto:hello@thatotheragency.co.uk">hello@thatotheragency.co.uk</a>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <div><b>For Shopify brands</b><a href="/growth">Growth support</a><a href="/store-check">Free store check</a><a href="/shopify-development">Shopify development</a><a href="/performance-dashboard">Custom dashboards</a><a href="/demo">Live demo</a><a href="/ad-script-system">Ad scripts</a><a href="/shopify-website-design">Shopify stores</a></div>
+          <div><b>Websites</b><a href="/website-design">Website design</a><a href="/website-design-london">Websites in London</a><a href="/website-design-for-trades">Websites for trades</a><a href="/website-for-plumbers-electricians">Plumbers and electricians</a></div>
+          <div><b>Apps</b><a href="/that-other-dashboard">That Other Dashboard</a><a href="/that-other-dashboard/guides">Guides</a></div>
+          <div><b>Agency</b><a href="/services">All services</a><a href="/work">Work</a><a href="/about">About</a><a href="/blog">Blog</a><a href="https://www.linkedin.com/company/that-other-agency/" target="_blank" rel="noopener">LinkedIn</a><a href="/contact">Book a consultation</a></div>
+        </nav>
+      </div>
+      <p class="footer-giant" aria-hidden="true">that other agency<i>.</i></p>
+      <div class="footer-legal">
+        <p>© <span id="year">2026</span> That Other Agency Ltd. Registered in England and Wales, company number 16799053.</p>
+        <p>London, United Kingdom · <a href="/privacy">Privacy</a></p>
+      </div>
+    </footer>
+
+    <script src="../script.js?v=20261025a" defer></script>
+  </body>
+</html>
