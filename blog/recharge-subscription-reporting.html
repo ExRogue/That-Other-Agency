@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- GA4 leaves out our own visits: local previews, and browsers opened once with ?internal=on (?internal=off undoes it) -->
+    <script>
+      (function () {
+        var own = location.hostname !== 'www.thatotheragency.co.uk';
+        try {
+          var q = /[?&]internal=(on|off)\b/.exec(location.search);
+          if (q && q[1] === 'on') localStorage.setItem('toa-internal', '1');
+          if (q && q[1] === 'off') localStorage.removeItem('toa-internal');
+          own = own || localStorage.getItem('toa-internal') === '1';
+        } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        if (own) gtag('set', { traffic_type: 'internal' });
+      })();
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RZKD9WTJYR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-RZKD9WTJYR');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=6" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <title>Recharge Subscription Churn Rate, Weekly | That Other Agency</title>
+    <meta name="description" content="Recharge subscription churn rate, failed payments, cancellation reasons and two more numbers worth checking every week, with how to read each one." />
+    <link rel="canonical" href="https://www.thatotheragency.co.uk/blog/recharge-subscription-reporting" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Recharge Subscription Churn Rate, Weekly | That Other Agency" />
+    <meta property="og:description" content="Recharge subscription churn rate, failed payments, cancellation reasons and two more numbers worth checking every week, with how to read each one." />
+    <meta property="og:url" content="https://www.thatotheragency.co.uk/blog/recharge-subscription-reporting" />
+    <meta property="og:image" content="https://www.thatotheragency.co.uk/assets/blog/recharge-subscription-reporting.png?v=20261117" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Recharge reporting: the five subscription numbers worth checking every week", "description": "Recharge subscription churn rate, failed payments, cancellation reasons and two more numbers worth checking every week, with how to read each one.", "datePublished": "2026-11-17", "dateModified": "2026-11-17", "author": {"@type": "Organization", "name": "That Other Agency", "url": "https://www.thatotheragency.co.uk/"}, "publisher": {"@type": "Organization", "name": "That Other Agency", "logo": {"@type": "ImageObject", "url": "https://www.thatotheragency.co.uk/assets/logo.svg"}}, "mainEntityOfPage": "https://www.thatotheragency.co.uk/blog/recharge-subscription-reporting", "image": "https://www.thatotheragency.co.uk/assets/blog/recharge-subscription-reporting.png?v=20261117"}</script>
+    <link rel="preload" href="/assets/fonts/host-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../styles.css?v=20261025b" />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="/" aria-label="That Other Agency, home">that other agency<i>.</i></a>
+        <button class="menu-toggle" aria-controls="site-nav" type="button" aria-expanded="false" aria-label="Open navigation">
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+          <a href="/services">Services</a>
+          <a href="/work">Work</a>
+          <a href="/that-other-dashboard">Apps</a>
+          <a href="/about">About</a>
+          <a class="nav-cta" href="/contact">Book a consultation</a>
+        </nav>
+        <a class="btn btn-primary header-cta" href="/contact">Book a consultation</a>
+      </div>
+    </header>
+
+    <main id="content">
+      <section class="reveal blog-post">
+        <div class="post-layout">
+          <article>
+            <p class="eyebrow">Dashboards</p>
+            <h1>Recharge reporting: the five subscription numbers <em>worth checking every week.</em></h1>
+            <p class="post-meta">Published 17 November 2026 · 6 min read</p>
+            <figure class="post-image">
+              <img src="../assets/blog/recharge-subscription-reporting.png" width="1600" height="900" alt="Cover reading: Five numbers, every Monday." />
+            </figure>
+
+            <p>
+              Recharge gives a subscription brand a lot of reports, and most founders end up staring at one of them:
+              the Recharge subscription churn rate. It matters, but on its own it tells you that people are leaving,
+              not why, and by the time a monthly figure moves the damage is a few weeks old. Here are the five numbers
+              we would look at every week instead, what each one tells you, and what to do when it moves.
+            </p>
+
+            <div class="insight-box">
+              The short answer: check active subscribers, subscription churn rate, failed payments, cancellation
+              reasons and the share of new subscribers who reach their second charge. Look at the counts weekly and
+              the rates monthly, and always split churn into people who chose to leave and payments that failed.
+            </div>
+
+            <h2 id="active">1. Active subscribers, and the net change</h2>
+            <p>
+              Start with the simplest number: how many active subscribers you had at the end of the week, and how
+              that compares with the week before. Then break the change into its two halves, new subscribers in and
+              subscribers lost.
+            </p>
+            <p>
+              A flat line can hide a lot. Gaining 80 and losing 80 looks the same as gaining 5 and losing 5, but the
+              first means your ads are paying to refill a leaky bucket. If new subscribers are steady and the total
+              still falls, the problem is retention, not acquisition, and more ad spend will not fix it.
+            </p>
+
+            <h2 id="churn">2. Recharge subscription churn rate</h2>
+            <p>
+              Churn rate is the share of subscribers or subscriptions that ended in a period. Recharge reports two
+              versions: one for subscribers (customers) and one for subscriptions. They differ when customers hold
+              more than one subscription, so a customer who cancels one of two products counts in subscription churn
+              but not subscriber churn. Pick one and stick with it.
+            </p>
+            <p>The plain version of the sum is:</p>
+            <p><strong>Monthly churn rate = subscriptions cancelled in the month ÷ active subscriptions at the start of the month</strong></p>
+            <p>
+              For example, with a made up 1,000 active subscriptions on the 1st and 60 cancelled during the month,
+              churn is 6%. Recharge's own figure uses a more careful method that counts subscribers across each day of
+              the period, so it will not match this exactly, but the trend should move the same way.
+            </p>
+            <p>Two things make churn easier to read:</p>
+            <ul>
+              <li><strong>Split it by delivery frequency.</strong> Recharge does not do this for you. A monthly plan has twelve chances a year to cancel, a quarterly plan has four, so mixing them blurs the picture.</li>
+              <li><strong>Watch the weekly count, judge the monthly rate.</strong> Weekly rates jump around. A rising count of cancellations each Monday is the early warning; the monthly rate tells you whether it stuck.</li>
+            </ul>
+
+            <h2 id="failed">3. Failed payments, or passive churn</h2>
+            <p>
+              Not every lost subscriber chose to leave. Cards expire, get replaced after fraud or hit their limit, and
+              the charge fails. That is usually called passive churn, as opposed to active churn where the customer
+              cancels. Recharge's subscriber dashboards separate the two, and it is worth keeping them apart in your
+              own reporting too.
+            </p>
+            <p>Each week, check:</p>
+            <ul>
+              <li><strong>How many charges failed.</strong> A sudden jump can point to a payment setup problem rather than unhappy customers.</li>
+              <li><strong>How many were recovered.</strong> Recharge retries failed charges and can email customers to update their card. Whatever stays unpaid at the end of those retries becomes churn.</li>
+            </ul>
+            <p>
+              Passive churn is often the cheapest churn to fix, because these customers never meant to leave. Clearer
+              card update emails, a text message where you have permission, and a sensible retry schedule can win
+              many of them back.
+            </p>
+
+            <h2 id="reasons">4. Cancellation reasons</h2>
+            <p>
+              When customers cancel through the customer portal, Recharge can ask them why. Those answers are the most
+              useful thing in your subscription data, because they tell you what to change. Read them every week,
+              including the free text, and group them into a handful of themes:
+            </p>
+            <ul>
+              <li><strong>Too much product.</strong> Usually a frequency problem. Offer a skip, a longer gap between deliveries or a smaller size before they leave.</li>
+              <li><strong>Too expensive.</strong> Check whether these customers came in on a heavy first order discount and are now paying full price for the first time.</li>
+              <li><strong>Did not work for me.</strong> A product or expectation problem. Compare it with what your ads and product pages promise.</li>
+            </ul>
+
+            <h2 id="second">5. New subscribers who reach a second charge</h2>
+            <p>
+              The most important retention moment for most subscription brands is the second charge. Plenty of people
+              sign up for a discounted first box and leave before paying again. If your ads bring in that kind of
+              customer, your acquisition numbers can look healthy while the business shrinks.
+            </p>
+            <p>
+              Take everyone who started a subscription in a given week, then check a few weeks later, once their
+              second charge date has passed, how many paid it. Track that percentage by start week. If it drops
+              after you change an offer, a landing page or an ad, you have found the cause.
+            </p>
+            <p>
+              This also connects your subscription data to your ad spend. Our guide to
+              <a href="/blog/shopify-new-customer-cac">working out new customer CAC on Shopify</a> covers what a new
+              customer costs; this number tells you how many of them stay long enough to pay that back.
+            </p>
+
+            <h2 id="routine">A 15 minute Monday routine</h2>
+            <ol>
+              <li>Write down active subscribers, new in and lost for the week.</li>
+              <li>Split the lost into cancelled and failed payments.</li>
+              <li>Read every cancellation reason and add them to your tally.</li>
+              <li>Check the second charge rate for the start weeks that have just come due.</li>
+              <li>On the first Monday of the month, work out churn by frequency for the month before.</li>
+            </ol>
+            <p>
+              Keep it in one place next to your ad spend and Shopify sales, so you can see whether a bad week came from
+              fewer new customers, more cancellations or a pile of failed cards.
+            </p>
+
+            <h2 id="ours">How we report it for clients</h2>
+            <p>
+              Our <a href="/performance-dashboard">custom dashboards</a> pull Recharge alongside Shopify and the ad
+              platforms, so these five numbers sit on one screen next to spend and sales, updated every day. You can
+              see how a dashboard looks with made up data in our <a href="/demo">live dashboard demo</a>. If you would
+              like the same for your brand, every build starts with a consultation and a fixed quote.
+            </p>
+
+            <h2 id="faq">Frequently asked questions</h2>
+            <details>
+              <summary>What is a good subscription churn rate?</summary>
+              <p>It depends heavily on the product, the price and how often it ships, so a single benchmark is not much use. Compare your rate with your own last six months, split by delivery frequency, and judge it against what a subscriber is worth to you.</p>
+            </details>
+            <details>
+              <summary>Should skips count as churn?</summary>
+              <p>No. A skipped delivery keeps the subscription active, so it is not churn. It is worth counting separately, though: a lot of skips can mean the frequency is wrong, and some skippers go on to cancel.</p>
+            </details>
+            <details>
+              <summary>Why does my churn rate not match Recharge?</summary>
+              <p>Recharge counts subscribers across every day of the period rather than only at the start, and it reports subscriber and subscription churn separately. A simple start of month sum will land close, but not on the same figure. Use one method consistently.</p>
+            </details>
+
+            <div class="article-nav">
+              <a class="btn btn-ghost" href="/blog">Back to blog</a>
+              <a class="btn btn-primary" href="/contact">Book a consultation</a>
+            </div>
+          </article>
+
+          <aside class="toc">
+            <h2>On this page</h2>
+            <ol>
+              <li><a href="#active">Active subscribers</a></li>
+              <li><a href="#churn">Churn rate</a></li>
+              <li><a href="#failed">Failed payments</a></li>
+              <li><a href="#reasons">Cancellation reasons</a></li>
+              <li><a href="#second">Second charge rate</a></li>
+              <li><a href="#routine">A Monday routine</a></li>
+              <li><a href="#ours">How we report it</a></li>
+              <li><a href="#faq">FAQs</a></li>
+            </ol>
+          </aside>
+        </div>
+      </section>
+      <section class="closing-cta"><p class="eyebrow">Want a second pair of eyes?</p><h2>We’ll look at it <span>with you.</span></h2><p>Book a consultation and we’ll go through your site, ads and numbers together.</p><a class="btn btn-primary" href="/contact">Book a consultation <span aria-hidden="true">↗︎</span></a></section>
+    </main>
+
+    <footer>
+      <div class="footer-cols">
+        <div>
+          <b>That Other Agency</b>
+          <p>Growth, Shopify development, dashboards and websites for brands that sell online. London based, working UK wide.</p>
+          <a href="mailto:hello@thatotheragency.co.uk">hello@thatotheragency.co.uk</a>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <div><b>For Shopify brands</b><a href="/growth">Growth support</a><a href="/store-check">Free store check</a><a href="/shopify-development">Shopify development</a><a href="/performance-dashboard">Custom dashboards</a><a href="/demo">Live demo</a><a href="/ad-script-system">Ad scripts</a><a href="/shopify-website-design">Shopify stores</a></div>
+          <div><b>Websites</b><a href="/website-design">Website design</a><a href="/website-design-london">Websites in London</a><a href="/website-design-for-trades">Websites for trades</a><a href="/website-for-plumbers-electricians">Plumbers and electricians</a></div>
+          <div><b>Apps</b><a href="/that-other-dashboard">That Other Dashboard</a><a href="/that-other-dashboard/guides">Guides</a></div>
+          <div><b>Agency</b><a href="/services">All services</a><a href="/work">Work</a><a href="/about">About</a><a href="/blog">Blog</a><a href="https://www.linkedin.com/company/that-other-agency/" target="_blank" rel="noopener">LinkedIn</a><a href="/contact">Book a consultation</a></div>
+        </nav>
+      </div>
+      <p class="footer-giant" aria-hidden="true">that other agency<i>.</i></p>
+      <div class="footer-legal">
+        <p>© <span id="year">2026</span> That Other Agency Ltd. Registered in England and Wales, company number 16799053.</p>
+        <p>London, United Kingdom · <a href="/privacy">Privacy</a></p>
+      </div>
+    </footer>
+
+    <script src="../script.js?v=20261025a" defer></script>
+  </body>
+</html>
